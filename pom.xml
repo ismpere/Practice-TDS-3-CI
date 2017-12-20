@@ -48,15 +48,9 @@
 		</profile>
 		<profile>
 			<id>Isolation</id>
-			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.GDSecuenceTest</testcase.groups>
-			</properties>
 		</profile>
 		<profile>
 			<id>Integration</id>
-			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.GDSecuenceTest</testcase.groups>
-			</properties>
 		</profile>
 
 	</profiles>
