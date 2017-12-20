@@ -37,6 +37,22 @@
 				</sonar.host.url>
 			</properties>
 		</profile>
+		<profile>
+			<id>Unit</id>
+			<properties>
+				<testcase.groups>uva.tds.pr2.equippo05.AllTest</testcase.groups>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>Isolation</id>
+		</profile>
+		<profile>
+			<id>Integration</id>
+		</profile>
+		
 	</profiles>
 	<build>
 		<pluginManagement>
