@@ -36,7 +36,7 @@
 	</target>
 
 	<!-- Objetivo ejecutarTodo -->
-	<target name="ejecutarTodo" depends="ejecutarTestsTDDyCajaNegra, ejecutarTestEnAislamiento, ejecutarPruebasSecuencia" />
+	<target name="ejecutarTodo" depends="ejecutarTestsTDDyCajaNegra, ejecutarTestEnAislamiento, ejecutarPruebasSecuencia, ejecutarTestsTDD" />
 	<!-- Objetivo ejecutarTestsTDD -->
 	<target name="ejecutarTestsTDDyCajaNegra" description="pruebas TDD y de caja negra" depends="ejecutarTestsTDDyCajaNegra_win, ejecutarTestsTDDyCajaNegra_unix" />
 	<target name="ejecutarTestsTDDyCajaNegra_win" description="ejecutarTestsTDDyCajaNegra windows" if="isWindows">
@@ -49,6 +49,17 @@
 			<arg line="-c 'mvn test -P Unit'" />
 		</exec>
 	</target>
+	<target name="ejecutarTestsTDD" description="pruebas TDD" depends="ejecutarTestsTDD_win, ejecutarTestsTDD_unix" />
+		<target name="ejecutarTestsTDD_win" description="ejecutarTestsTDD windows" if="isWindows">
+			<exec dir="." executable="cmd">
+				<arg line="/c mvn test -P TDD" />
+			</exec>
+		</target>
+		<target name="ejecutarTestsTDD_unix" description="ejecutarTestsTDD unix" if="isUnix">
+			<exec dir="." executable="sh">
+				<arg line="-c 'mvn test -P TDD'" />
+			</exec>
+		</target>
 	<!-- Objetivo ejecutarTestEnAislamiento -->
 	<target name="ejecutarTestEnAislamiento" description="pruebas de caja blanca en aislamiento" depends="ejecutarTestEnAislamiento_win, ejecutarTestEnAislamiento_unix" />
 	<target name="ejecutarTestEnAislamiento_win" description="ejecutarTestEnAislamiento windows" if="isWindows">
