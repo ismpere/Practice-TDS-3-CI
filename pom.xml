@@ -40,7 +40,7 @@
 		<profile>
 			<id>Unit</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.GDSecuenceTest</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
