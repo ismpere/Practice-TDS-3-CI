@@ -47,10 +47,22 @@
 			</activation>
 		</profile>
 		<profile>
+			<id>TDD</id>
+			<properties>
+				<testcase.groups>uva.tds.pr2.equipo05.TDD</testcase.groups>
+			</properties>
+		</profile>
+		<profile>
 			<id>Isolation</id>
+			<properties>
+				<testcase.groups>uva.tds.pr2.equipo05.Isolation</testcase.groups>
+			</properties>
 		</profile>
 		<profile>
 			<id>Integration</id>
+			<properties>
+				<testcase.groups>uva.tds.pr2.equipo05.Integration</testcase.groups>
+			</properties>
 		</profile>
 
 	</profiles>

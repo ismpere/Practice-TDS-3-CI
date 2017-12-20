@@ -25,6 +25,11 @@ test_unit:
  script:
    - mvn test -P Unit
 
+test_unit:
+ stage: test
+ script:
+   - mvn test -P TDD
+
 test_isolation:
  stage: test
  script:
