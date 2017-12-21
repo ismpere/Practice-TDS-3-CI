@@ -26,21 +26,6 @@
 	</dependencies>
 	<profiles>
 		<profile>
-			<id>sonar</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<!-- Optional URL to server. Default value is http://localhost:9000 -->
-				<sonar.host.url>
-					http://sonarqube.inf.uva.es
-				</sonar.host.url>
-        <sonar.login>
-          87a44774b8a8fbd6366c73df7104f30a29071c97
-        </sonar.login>
-			</properties>
-		</profile>
-		<profile>
 			<id>Unit</id>
 			<properties>
 				<testcase.groups>uva.tds.pr2.equipo05.Prueba</testcase.groups>
@@ -95,7 +80,7 @@
 				<plugin>
         				<groupId>org.sonarsource.scanner.maven</groupId>
         				<artifactId>sonar-maven-plugin</artifactId>
-        				<version>3.0.1</version>
+        				<version>3.4.0.905</version>
       			</plugin>
 			</plugins>
 		</pluginManagement>

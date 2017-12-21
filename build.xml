@@ -38,7 +38,7 @@
 	</target>
 
 	<!-- Objetivo ejecutarTodo -->
-	<target name="ejecutarTodo" depends="ejecutarTestsTDDyCajaNegra, ejecutarTestEnAislamiento, ejecutarPruebasSecuencia, ejecutarTestsTDD" />
+	<target name="ejecutarTodo" depends="ejecutarTestsTDDyCajaNegra, ejecutarTestEnAislamiento, ejecutarPruebasSecuencia" />
 	<!-- Objetivo ejecutarTestsTDD -->
 	<target name="ejecutarTestsTDDyCajaNegra" description="pruebas TDD y de caja negra" depends="ejecutarTestsTDDyCajaNegra_win, ejecutarTestsTDDyCajaNegra_unix" />
 	<target name="ejecutarTestsTDDyCajaNegra_win" description="ejecutarTestsTDDyCajaNegra windows" if="isWindows">
