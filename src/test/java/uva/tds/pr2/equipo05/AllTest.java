@@ -1,9 +1,10 @@
 package uva.tds.pr2.equipo05;
 
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
- 
+
 @RunWith(Suite.class)
 @SuiteClasses({ 
     GDAllTest.class,

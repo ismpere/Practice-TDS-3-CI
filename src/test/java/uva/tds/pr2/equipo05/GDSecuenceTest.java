@@ -3,6 +3,7 @@ package uva.tds.pr2.equipo05;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  * Implementacion de los test de secuencia de la clase GD
@@ -15,6 +16,7 @@ public class GDSecuenceTest {
 
 	@Test
 	public void testGDSecuenciaAleatoriaDistanciasValido() {
+		
 		GD gd1 = new GD(-179.99,179.99);
 		
 		GD gd2 = new GD(-150.00,150.00);
@@ -39,6 +41,7 @@ public class GDSecuenceTest {
 	
 	@Test
 	public void testGDSecuenciaAleatoriaSettersValido(){
+		
 		GD gd1 = new GD(-179.99,179.99);
 		
 		double latitud1 = gd1.getLatitud();
@@ -56,5 +59,4 @@ public class GDSecuenceTest {
 		assertEquals(130.00, gd1.getLatitud(), ERROR_ADMISIBLE);
 		assertEquals(145.00, gd1.getLongitud(), ERROR_ADMISIBLE);
 	}
-
 }
