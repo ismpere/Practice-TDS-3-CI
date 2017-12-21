@@ -8,7 +8,6 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.login>87a44774b8a8fbd6366c73df7104f30a29071c97</sonar.login>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,6 +35,9 @@
 				<sonar.host.url>
 					http://sonarqube.inf.uva.es
 				</sonar.host.url>
+        <sonar.login>
+          87a44774b8a8fbd6366c73df7104f30a29071c97
+        </sonar.login>
 			</properties>
 		</profile>
 		<profile>
