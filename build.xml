@@ -6,7 +6,7 @@
 	<!-- Properties -->
 	<property name="jacocoagent" location="target/coverage/jacoco.exec" />
 	<property environment="env"/>
-	<property name = "USER_TOKEN" value = "87a44774b8a8fbd6366c73df7104f30a29071c97" />
+	<property name = "USER_TOKEN" value = "9f987a055ad78c5cea1332697ad5905cc082ada5" />
 	<property name = "SONAR_URL" value = "https://sonarqube.inf.uva.es/" />
 
 	<!-- Condiciones para el tratamiento de OS -->
