@@ -10,7 +10,6 @@ import org.junit.experimental.categories.Category;
  * @author ismpere
  * @author martorb
  */
-@Category({Unit.class, TDD.class})
 public class GDSecuenceTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;

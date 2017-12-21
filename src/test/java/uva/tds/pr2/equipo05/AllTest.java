@@ -17,7 +17,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * @author ismpere
  * @author martorb
  */
-@Category({Unit.class})
+@Category({Unit.class, TDD.class})
 public class AllTest {
  
 }
