@@ -4,7 +4,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
- 
+
 @RunWith(Suite.class)
 @SuiteClasses({ 
     GDAllTest.class,
@@ -17,7 +17,6 @@ import org.junit.runners.Suite.SuiteClasses;
  * @author ismpere
  * @author martorb
  */
-@Category({Unit.class, TDD.class})
 public class AllTest {
  
 }
