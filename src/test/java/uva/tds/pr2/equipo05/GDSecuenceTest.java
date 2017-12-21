@@ -22,5 +22,4 @@ public class GDSecuenceTest {
 	@Test
 	public void testGDSecuenciaAleatoriaSettersValido(){
 	}
-
 }
