@@ -6,6 +6,8 @@
 	<!-- Properties -->
 	<property name="jacocoagent" location="target/coverage/jacoco.exec" />
 	<property environment="env"/>
+	<property name = "USER_TOKEN" value = "87a44774b8a8fbd6366c73df7104f30a29071c97" />
+	<property name = "SONAR_URL" value = "https://sonarqube.inf.uva.es/" />
 
 	<!-- Condiciones para el tratamiento de OS -->
 	<condition property="isWindows">
@@ -122,7 +124,7 @@
 	</target>
 	<target name="medidas_unix" description="medidas Unix" if="isUnix">
 		<exec dir="." executable="sh">
-			<arg line="-c 'mvn -P Unit,Integration jxr:jxr pmd:pmd sonar:sonar -Dsonar.host.url=https://sonarqube.inf.uva.es/ -Dsonar.login=${env.87a44774b8a8fbd6366c73df7104f30a29071c97} -Dsonar.analysis.mode=publish -Dsonar.issuesReport.console.enable=true -Dsonar.jacoco.reportPath=target/coverage/jacoco.exec -Dsonar.junit.reportPaths=target/surefire-reports'" />
+			<arg line="-c 'mvn -P Unit,Integration jxr:jxr pmd:pmd sonar:sonar -Dsonar.host.url= ${SONAR_URL.value} -Dsonar.login= ${USER_TOKEN.value} -Dsonar.analysis.mode=publish -Dsonar.issuesReport.console.enable=true -Dsonar.jacoco.reportPath=target/coverage/jacoco.exec -Dsonar.junit.reportPaths=target/surefire-reports'" />
 		</exec>
 	</target>
 
