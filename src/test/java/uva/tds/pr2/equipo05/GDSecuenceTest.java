@@ -17,7 +17,6 @@ public class GDSecuenceTest {
 
 	@Test
 	public void testGDSecuenciaAleatoriaDistanciasValido() {
-		fail("Hola");
 	}
 	
 	@Test
