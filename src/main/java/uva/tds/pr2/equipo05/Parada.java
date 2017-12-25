@@ -73,12 +73,14 @@ public class Parada{
 	 * Devuelve la distancia en metros entre dos paradas
 	 * @param p Parada a la que calcular la distancia desde this
 	 * @return distancia entre las paradas
-	 * @assert.pre !this.equals(p)
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public double getDistanciaEntre(Parada p) {
 		if(p==null)
 			throw new IllegalArgumentException();
+		
+		if(p==this)
+			return 0.0;
 		
 		return gd.getDistanciaAt(p.getGD());
 	}
