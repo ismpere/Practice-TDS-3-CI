@@ -91,7 +91,7 @@ public class Parada{
 		if(p==null)
 			throw new IllegalArgumentException();
 		
-		if(p.length==0)
+		if(p.length<2)
 			return false;
 		else{
 			boolean repetida = false;
