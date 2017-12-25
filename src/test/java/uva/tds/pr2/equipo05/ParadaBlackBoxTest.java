@@ -5,11 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 /**
  * Implementacion de la clase de test de caja negra de la clase Parada
  * @author ismpere
  * @author martorb
  */
+@Category({Unit.class})
 public class ParadaBlackBoxTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;
@@ -83,15 +85,17 @@ public class ParadaBlackBoxTest {
     
     @Test
 	public void testCalculaDistanciaEntreParadasCercanasValido(){
+    	gd1 = new GD(41.3154608, -4.9177346);
 		p1 = new Parada("a", gd1);
-		GD gd2 = new GD(-179.99, -179.99);
+		
+		GD gd2 = new GD(41.3142809, -4.9189326);
 		Parada p2 = new Parada("b", gd2);
 		
 		double distancia = p1.getDistanciaEntre(p2);
 		
 		assertNotNull(p1);
 		assertNotNull(p2);
-		assertEquals(2600.88, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
+		assertEquals(176.80, distancia, ERROR_ADMISIBLE); 
 	}
     
     @Test
@@ -101,7 +105,7 @@ public class ParadaBlackBoxTest {
 		double distancia = p1.getDistanciaEntre(p1);
 		
 		assertNotNull(p1);
-		assertEquals(0.00, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
+		assertEquals(0.00, distancia, ERROR_ADMISIBLE); 
 	}
     
     @Test
@@ -113,7 +117,7 @@ public class ParadaBlackBoxTest {
 		
 		assertNotNull(p1);
 		assertNotNull(p2);
-		assertEquals(0.00, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
+		assertEquals(0.00, distancia, ERROR_ADMISIBLE); 
 	}
 
 	@Test(expected = AssertionError.class)
