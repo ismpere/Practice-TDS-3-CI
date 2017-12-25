@@ -1,6 +1,7 @@
 package uva.tds.pr2.equipo05;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Implementación de la clae parada
@@ -87,10 +88,10 @@ public class Parada{
 	 * Devuelve si hay paradas repetidas en una lista de paradas
 	 * @param p lista de paradas
 	 * @return hayParadasRepetidas
-	 * @throws IllegalArgumentException si alguna de las paradas es null
+	 * @throws IllegalArgumentException si alguna de las paradas es null o p es null
 	 */
 	public static boolean existeAlgunaParadaRepetida(Parada[] p) {
-		if(p==null)
+		if(p==null || new ArrayList<Parada>(Arrays.asList(p)).contains(null))
 			throw new IllegalArgumentException();
 		
 		if(p.length<2)

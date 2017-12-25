@@ -144,12 +144,6 @@ public class ParadaBlackBoxTest {
 		p1.getDistanciaEntre(p2);
 	}
 	@Test(expected = AssertionError.class)
-	public void testCalculaDistanciaEntreParadasNoValidoParadaIgual(){
-		p1 = new Parada("a", gd1);
-		
-		p1.getDistanciaEntre(p1);
-	}
-	@Test(expected = AssertionError.class)
 	public void testSetIdNoValidoIdVacio(){
 		p1 = new Parada("a", gd1);
 		p1.setId("");
