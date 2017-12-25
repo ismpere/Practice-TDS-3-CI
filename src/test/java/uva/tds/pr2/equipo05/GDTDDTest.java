@@ -3,11 +3,13 @@ package uva.tds.pr2.equipo05;
 import uva.tds.pr2.equipo05.GD;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 /**
  * Implementacion de la clase de Test para GD
  * @author ismpere
  * @author martorb
  */
+@Category({Unit.class})
 public class GDTDDTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;

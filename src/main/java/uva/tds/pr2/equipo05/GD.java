@@ -6,32 +6,37 @@ package uva.tds.pr2.equipo05;
  * @author martorb
  */
 public class GD{
+	
+	private double latitud;
+	private double longitud;
+	private static final double RADIO_TIERRA = 6371.00;
 	/**
-	 * Cosntructor por defecto de GD
+	 * Constructor por defecto de GD
 	 * @param latitud
 	 * @param longitud
 	 * @assert.pre latitud>-180.00 && latitud<180.00
 	 * @assert.pre longitud>-180.00 && longitud<180.00
-	 * @throws IllegalArgumentException si latitud==null || longitud ==null
 	 */
 	public GD(double latitud, double longitud) {
-		// TODO Auto-generated constructor stub
+		assert(latitud>-180.00 && latitud<180.00);
+		assert(longitud>-180.00 && longitud<180.00);
+		
+		this.latitud = latitud;
+		this.longitud = longitud;
 	}
 	/**
 	 * Devuelve la latitud de la direccion
 	 * @return latitud
 	 */
 	public double getLatitud() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return latitud;
 	}
 	/**
 	 * Devuelve la longitud de la direccion
 	 * @return longitud
 	 */
 	public double getLongitud() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return longitud;
 	}
 	/**
 	 * Cambia la latitud de la direccion 
@@ -39,8 +44,9 @@ public class GD{
 	 * @assert.pre latitud>-180.00 && latitud<180.00
 	 */
 	public void setLatitud(double latitud) {
-		// TODO Auto-generated method stub
+		assert(latitud>-180.00 && latitud<180.00);
 		
+		this.latitud = latitud;
 	}
 	/**
 	 * Cambia la longitud de la direccion
@@ -48,8 +54,9 @@ public class GD{
 	 * @assert.pre longitud>-180.00 && longitud<180.00
 	 */
 	public void setLongitud(double longitud) {
-		// TODO Auto-generated method stub
+		assert(longitud>-180.00 && longitud<180.00);
 		
+		this.longitud = longitud;
 	}
 	/**
 	 * Devuelve la distancia de this a gd en metros
@@ -58,8 +65,28 @@ public class GD{
 	 * @throws IllegalArgumentException si gd=null
 	 */
 	public double getDistanciaAt(GD gd) {
-		// TODO Auto-generated method stub
-		return 0.0;
+		if(gd==null)
+			throw new IllegalArgumentException("gd is null");
+
+		double distancia;
+		double difLat;
+		double difLong;
+		double a; 
+		double b; 
+		double c; 
+		double d;
+		
+		difLat = gd.getLatitud() - latitud;
+		difLong = gd.getLongitud() - longitud;
+		
+		a = Math.pow(Math.sin(difLat/2), 2);
+		b = Math.pow(Math.sin(difLong/2), 2);
+		c = a + (Math.cos(latitud)*Math.cos(gd.getLatitud() * b));
+		d = 2 * Math.atan2(Math.sqrt(c), Math.sqrt(1-c));
+		
+		distancia = RADIO_TIERRA * d;
+		
+		return distancia;
 	}
 	
 }
