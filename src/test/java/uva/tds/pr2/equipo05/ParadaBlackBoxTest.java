@@ -12,6 +12,7 @@ import org.junit.Test;
  */
 public class ParadaBlackBoxTest {
 	
+	private static final double ERROR_ADMISIBLE = 0.01;
 	private GD gd1;
 	private Parada p1;
 	
@@ -78,6 +79,41 @@ public class ParadaBlackBoxTest {
 		boolean repetidas = Parada.existeAlgunaParadaRepetida(p3);
 		
 		assertFalse(repetidas);
+	}
+    
+    @Test
+	public void testCalculaDistanciaEntreParadasCercanasValido(){
+		p1 = new Parada("a", gd1);
+		GD gd2 = new GD(-179.99, -179.99);
+		Parada p2 = new Parada("b", gd2);
+		
+		double distancia = p1.getDistanciaEntre(p2);
+		
+		assertNotNull(p1);
+		assertNotNull(p2);
+		assertEquals(2600.88, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
+	}
+    
+    @Test
+	public void testCalculaDistanciaEntreParadasValidoParadaThis(){
+		p1 = new Parada("a", gd1);
+		
+		double distancia = p1.getDistanciaEntre(p1);
+		
+		assertNotNull(p1);
+		assertEquals(0.00, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
+	}
+    
+    @Test
+	public void testCalculaDistanciaEntreParadasValidoParadasIguales(){
+		p1 = new Parada("a", gd1);
+		Parada p2 = new Parada("b", gd1);
+		
+		double distancia = p1.getDistanciaEntre(p2);
+		
+		assertNotNull(p1);
+		assertNotNull(p2);
+		assertEquals(0.00, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
 	}
 
 	@Test(expected = AssertionError.class)

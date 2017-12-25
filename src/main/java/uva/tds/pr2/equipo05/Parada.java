@@ -78,7 +78,7 @@ public class Parada{
 		if(p==null)
 			throw new IllegalArgumentException();
 		
-		if(p==this)
+		if(p==this || p.equals(this))
 			return 0.0;
 		
 		return gd.getDistanciaAt(p.getGD());
