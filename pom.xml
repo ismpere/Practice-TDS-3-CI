@@ -28,7 +28,7 @@
 		<profile>
 			<id>Unit</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.Prueba</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -37,22 +37,27 @@
 		<profile>
 			<id>TDD</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.Prueba</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
 		</profile>
 		<profile>
 			<id>Isolation</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.Prueba</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
 		</profile>
 		<profile>
 			<id>Integration</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.Prueba</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
 		</profile>
-
+    <profile>
+			<id>Secuence</id>
+			<properties>
+				<testcase.groups>uva.tds.pr2.equipo05.Secuence</testcase.groups>
+			</properties>
+		</profile>
 	</profiles>
 	<build>
 		<pluginManagement>
