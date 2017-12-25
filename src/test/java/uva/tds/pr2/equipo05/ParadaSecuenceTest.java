@@ -26,18 +26,18 @@ public class ParadaSecuenceTest {
 		double d1 = p1.getDistanciaEntre(p2);
 		double d2 = p2.getDistanciaEntre(p1);
 		
-		GD gd3 = new GD(-179.99,179.99);
+		GD gd3 = new GD(179.99,179.99);
 		
 		p1.setGD(gd3);
 		
 		double d3 = p1.getDistanciaEntre(p2);
 		
-		Parada p3 = new Parada("c", gd1);
+		Parada p3 = new Parada("c", gd3);
 		double d4 = p1.getDistanciaEntre(p3);
 		
 		p1.setGD(gd1);
 		
-		double d5 = gd1.getDistanciaAt(gd2);
+		double d5 = p1.getDistanciaEntre(p2);
 		
 		assertEquals(d1, d2, ERROR_ADMISIBLE);
 		assertEquals(0.00, d4, ERROR_ADMISIBLE);
