@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
  
 @RunWith(Suite.class)
 @SuiteClasses({ 
-    ParadaTDDTest.class,
+    ParadaUnitTDDTest.class,
     ParadaBlackBoxTest.class,
     ParadaSecuenceTest.class,})
 

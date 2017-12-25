@@ -37,7 +37,7 @@
 		<profile>
 			<id>TDD</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.TDD</testcase.groups>
 			</properties>
 		</profile>
 		<profile>

@@ -1,5 +1,6 @@
 package uva.tds.pr2.equipo05;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 /**
@@ -95,15 +96,27 @@ public class Parada{
 			return false;
 		else{
 			boolean repetida = false;
-			TreeSet<Parada> conjuntoAux = new TreeSet<>();
+			ArrayList<Parada> conjuntoAux = new ArrayList<>();
 			
 			for(int i=0; i<p.length; i++){
-				if(conjuntoAux.add(p[i])){
+				if(conjuntoAux.contains(p[i]))
 					repetida = true;
-					break;
-				}
+				else
+					conjuntoAux.add(p[i]);
 			}
 			return repetida;
 		}
+	}
+	
+	@Override
+	public boolean equals(Object other){
+	    if (other == null) 
+	    	return false;
+	    if (other == this) 
+	    	return true;
+	    if (!(other instanceof Parada))
+	    	return false;
+	    
+	    return gd.equals(((Parada)other).getGD());
 	}
 }

@@ -12,7 +12,7 @@ import org.junit.experimental.categories.Category;
  * @author martorb
  */
 @Category({Unit.class, TDD.class})
-public class ParadaTDDTest {
+public class ParadaUnitTDDTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;
 	private GD gd1;
