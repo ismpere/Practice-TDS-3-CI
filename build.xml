@@ -78,12 +78,12 @@
 	<target name="ejecutarPruebasSecuencia" description="caja negra, pruebas de secuencia" depends="ejecutarPruebasSecuencia_win, ejecutarPruebasSecuencia_unix" />
 	<target name="ejecutarPruebasSecuencia_win" description="ejecutarPruebasSecuencia windows" if="isWindows">
 		<exec dir="." executable="cmd">
-			<arg line="/c mvn test -P Sequences" />
+			<arg line="/c mvn test -P Sequence" />
 		</exec>
 	</target>
 	<target name="ejecutarPruebasSecuencia_unix" description="ejecutarPruebasSecuencia unix" if="isUnix">
 		<exec dir="." executable="sh">
-			<arg line="-c 'mvn test -P Sequences'" />
+			<arg line="-c 'mvn test -P Sequence'" />
 		</exec>
 	</target>
 	<!-- Objetivo obtenerInformeCobertura -->

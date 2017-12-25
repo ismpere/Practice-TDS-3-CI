@@ -52,7 +52,12 @@
 				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
 		</profile>
-
+    <profile>
+			<id>Secuence</id>
+			<properties>
+				<testcase.groups>uva.tds.pr2.equipo05.Secuence</testcase.groups>
+			</properties>
+		</profile>
 	</profiles>
 	<build>
 		<pluginManagement>
