@@ -88,5 +88,4 @@ public class GD{
 		
 		return (distancia*1000);
 	}
-	
 }
