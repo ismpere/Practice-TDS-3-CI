@@ -31,7 +31,7 @@ public class GDBlackBoxTest {
 		double longitud = gd1.getLongitud();
 		
 		assertNotNull(gd1);
-		assertEquals(-179.99, longitud, ERROR_ADMISIBLE);
+		assertEquals(179.99, longitud, ERROR_ADMISIBLE);
 	}
 	
 	@Test
