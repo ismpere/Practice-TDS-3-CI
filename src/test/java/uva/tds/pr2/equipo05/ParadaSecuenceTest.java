@@ -69,6 +69,4 @@ public class ParadaSecuenceTest {
 		assertEquals("c", p1.getId());
 		assertEquals(gd2, p1.getGD());
 	}
-		
-
 }
