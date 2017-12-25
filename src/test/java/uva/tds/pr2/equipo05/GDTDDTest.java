@@ -9,7 +9,7 @@ import org.junit.experimental.categories.Category;
  * @author ismpere
  * @author martorb
  */
-@Category({Unit.class})
+@Category({Unit.class, TDD.class})
 public class GDTDDTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;
