@@ -30,6 +30,11 @@ test_unit:
  script:
    - mvn test -P TDD
 
+test_secuence:
+ stage: test
+ script:
+   - mvn test -P Secuence
+
 test_isolation:
  stage: test
  script:
