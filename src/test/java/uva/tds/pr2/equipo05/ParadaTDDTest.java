@@ -5,11 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 /**
  * Implementacion de la clase de test de Parada
  * @author ismpere
  * @author martorb
  */
+@Category({Unit.class, TDD.class})
 public class ParadaTDDTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;
