@@ -43,7 +43,7 @@
 		<profile>
 			<id>Isolation</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.Isolation</testcase.groups>
 			</properties>
 		</profile>
 		<profile>
