@@ -1,7 +1,6 @@
 package uva.tds.pr2.equipo05;
 
 import java.util.ArrayList;
-import java.util.TreeSet;
 
 /**
  * Implementación de la clae parada

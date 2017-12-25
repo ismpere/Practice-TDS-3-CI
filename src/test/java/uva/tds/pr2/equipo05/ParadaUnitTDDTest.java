@@ -30,13 +30,33 @@ public class ParadaUnitTDDTest {
     }
 
 	@Test
-	public void testInicializaParadaValido() {
+	public void testInicializaParadaIdPequenioValido() {
 		p1 = new Parada("a", gd1);
 		
 		assertNotNull(p1);
 		assertEquals("a", p1.getId());
 		assertEquals(gd1,p1.getGD());
 	}
+	
+	@Test
+    public void testGetIdParadaValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	String id = p1.getId();
+    	
+    	assertNotNull(gd1);
+    	assertEquals("a", id);
+    }
+    
+    @Test
+    public void testGetGDParadaValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	GD gd = p1.getGD();
+    	
+    	assertNotNull(gd1);
+    	assertEquals(gd1, gd);
+    }
 	
 	@Test
 	public void testSetIDValidoPequenio(){
@@ -59,19 +79,6 @@ public class ParadaUnitTDDTest {
 		assertNotNull(p1);
 		assertEquals("a",p1.getId());
 		assertEquals(gd2,p1.getGD());
-	}
-	
-	@Test
-	public void testCalculaDistanciaEntreParadasExtremosValido(){
-		p1 = new Parada("a", gd1);
-		GD gd2 = new GD(-179.99, -179.99);
-		Parada p2 = new Parada("b", gd2);
-		
-		double distancia = p1.getDistanciaEntre(p2);
-		
-		assertNotNull(p1);
-		assertNotNull(p2);
-		assertEquals(2600.88, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
 	}
 	
 	@Test
