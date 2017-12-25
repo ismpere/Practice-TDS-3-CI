@@ -76,17 +76,17 @@ public class GD{
 		double c; 
 		double d;
 		
-		difLat = gd.getLatitud() - latitud;
-		difLong = gd.getLongitud() - longitud;
+		difLat = Math.toRadians(gd.getLatitud() - latitud);
+		difLong = Math.toRadians(gd.getLongitud() - longitud);
 		
 		a = Math.pow(Math.sin(difLat/2), 2);
 		b = Math.pow(Math.sin(difLong/2), 2);
-		c = a + (Math.cos(latitud)*Math.cos(gd.getLatitud() * b));
+		c = a + (Math.cos(latitud)*Math.cos(gd.getLatitud())*b);
 		d = 2 * Math.atan2(Math.sqrt(c), Math.sqrt(1-c));
 		
 		distancia = RADIO_TIERRA * d;
 		
-		return distancia;
+		return (distancia*1000);
 	}
 	
 }

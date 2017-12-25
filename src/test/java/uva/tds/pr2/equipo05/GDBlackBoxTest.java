@@ -31,6 +31,18 @@ public class GDBlackBoxTest {
 		assertNotNull(gd1);
 		assertEquals(-179.99, longitud, ERROR_ADMISIBLE);
 	}
+	
+	@Test
+	public void testCalculaDistanciaEntreDosGDValidoUbicacionesCercanas(){
+		GD gd1 = new GD(41.3154608, -4.9177346);
+		GD gd2 = new GD(41.3142809, -4.9189326);
+		
+		double distancia = gd1.getDistanciaAt(gd2);
+		
+		assertNotNull(gd1);
+		assertNotNull(gd2);
+		assertEquals(176.80, distancia, ERROR_ADMISIBLE);
+	}
 
 	@Test (expected = AssertionError.class)
 	public void testInicializaGDNoValidoLatitudInferior(){

@@ -37,14 +37,14 @@ public class GDTDDTest {
 	}
 	
 	@Test
-	public void testCalculaDistanciaEntreDosGDValido(){
-		GD gd1 = new GD(-179.99, 179.99);
-		GD gd2 = new GD(179.99, -179.99);
+	public void testCalculaDistanciaEntreDosGDValidoExtremosGeográficos(){
+		GD gd1 = new GD(179.99, 179.99);
+		GD gd2 = new GD(-179.99, -179.99);
 		
 		double distancia = gd1.getDistanciaAt(gd2);
 		
 		assertNotNull(gd1);
 		assertNotNull(gd2);
-		assertEquals(200.00, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
+		assertEquals(2600.88, distancia, ERROR_ADMISIBLE);
 	}
 }
