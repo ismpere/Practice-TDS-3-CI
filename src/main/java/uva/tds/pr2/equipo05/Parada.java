@@ -1,12 +1,16 @@
 package uva.tds.pr2.equipo05;
 
+import java.util.TreeSet;
+
 /**
  * Implementación de la clae parada
  * @author martorb
  * @author ismpere
  */
 public class Parada{
-
+	
+	private String id;
+	private GD gd;
 	/**
 	 * Constructor por defecto de la clase parada
 	 * @param id Identificador de la parada
@@ -15,7 +19,13 @@ public class Parada{
 	 * @throws IllegalArgumentException si gd==null || id==null
 	 */
 	public Parada(String id, GD gd) {
-		// TODO Auto-generated constructor stub
+		if(id==null || gd==null)
+			throw new IllegalArgumentException();
+		
+		assert(id.length()>0 && id.length()<=50);
+		
+		this.id = id;
+		this.gd = gd;
 	}
 	
 	/**
@@ -23,8 +33,7 @@ public class Parada{
 	 * @return Id Identificador
 	 */
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 	/**
@@ -32,8 +41,7 @@ public class Parada{
 	 * @return gd direccion
 	 */
 	public GD getGD() {
-		// TODO Auto-generated method stub
-		return null;
+		return gd;
 	}
 	/**
 	 * Cambia el id de la parada
@@ -42,8 +50,12 @@ public class Parada{
 	 * @throws IllegalArgumentException si id==null
 	 */
 	public void setId(String id) {
-		// TODO Auto-generated method stub
+		if(id==null)
+			throw new IllegalArgumentException();
 		
+		assert(id.length()>0 && id.length()<=50);
+		
+		this.id = id;
 	}
 	/**
 	 * Cambia la direccion de la parada
@@ -51,8 +63,10 @@ public class Parada{
 	 * @throws IllegalArgumentException si gd==null
 	 */
 	public void setGD(GD gd) {
-		// TODO Auto-generated method stub
+		if(gd==null)
+			throw new IllegalArgumentException();
 		
+		this.gd = gd;
 	}
 	/**
 	 * Devuelve la distancia en metros entre dos paradas
@@ -62,8 +76,10 @@ public class Parada{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public double getDistanciaEntre(Parada p) {
-		// TODO Auto-generated method stub
-		return 0.0;
+		if(p==null)
+			throw new IllegalArgumentException();
+		
+		return gd.getDistanciaAt(p.getGD());
 	}
 	/**
 	 * Devuelve si hay paradas repetidas en una lista de paradas
@@ -72,8 +88,22 @@ public class Parada{
 	 * @throws IllegalArgumentException si alguna de las paradas es null
 	 */
 	public static boolean existeAlgunaParadaRepetida(Parada[] p) {
-		// TODO Auto-generated method stub
-		return false;
+		if(p==null)
+			throw new IllegalArgumentException();
+		
+		if(p.length==0)
+			return false;
+		else{
+			boolean repetida = false;
+			TreeSet<Parada> conjuntoAux = new TreeSet<>();
+			
+			for(int i=0; i<p.length; i++){
+				if(conjuntoAux.add(p[i])){
+					repetida = true;
+					break;
+				}
+			}
+			return repetida;
+		}
 	}
-	
 }
