@@ -1,5 +1,8 @@
 package uva.tds.pr2.equipo05;
 
+import java.util.ArrayList;
+import static org.junit.Assert.*;
+
 /**
  * 
  * @author martorb
@@ -7,6 +10,8 @@ package uva.tds.pr2.equipo05;
  *
  */
 public class RedAutobuses {
+	
+	ArrayList<Linea> lineas=new ArrayList<>();
 	
 	/**
 	 * Constructor por defecto de la clase RedAutobuses
@@ -16,7 +21,11 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
 	 */
 	public RedAutobuses(Linea[] lista_lineas){
-		// TODO Auto-generated constructor stub
+		assertTrue(lista_lineas.length>1);
+		assertFalse(Linea.lineasRepetidas(lista_lineas));
+		for(int i=0; i<lista_lineas.length;i++){
+			lineas.add(lista_lineas[i]);
+		}
 	}
 	
 	/**
