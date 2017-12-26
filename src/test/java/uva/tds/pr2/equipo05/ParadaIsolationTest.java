@@ -55,4 +55,43 @@ public class ParadaIsolationTest {
 		verify(gd1);
 		verify(gd2);
 	}
+	
+	@Test
+	public void testCalculaDistanciaEntreParadasCercanasValidoMocking(){
+		
+		GD gd2 = createMock(GD.class);
+
+		expect(gd1.getDistanciaAt(eq(gd2))).andReturn((double)176.80).once();
+		
+		replay(gd2);
+		replay(gd1);
+		
+		p1 = new Parada("a", gd1);
+		Parada p2 = new Parada("b", gd2);
+		
+		double distancia = p1.getDistanciaEntre(p2);
+		
+		assertNotNull(p1);
+		assertNotNull(p2);
+		assertEquals(176.80, distancia, ERROR_ADMISIBLE); 
+		
+		verify(gd1);
+		verify(gd2);
+	}
+	
+	@Test
+	public void testCalculaDistanciaEntreParadasValidoParadasIgualesMocking(){
+		replay(gd1);
+		
+		p1 = new Parada("a", gd1);
+		Parada p2 = new Parada("b", gd1);
+		
+		double distancia = p1.getDistanciaEntre(p2);
+		
+		assertNotNull(p1);
+		assertNotNull(p2);
+		assertEquals(0.00, distancia, ERROR_ADMISIBLE);
+		
+		verify(gd1);
+	}
 }
