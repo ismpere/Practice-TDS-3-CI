@@ -89,7 +89,15 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si direccion==null
 	 */
 	public Linea[] getLineasConParadasCercanas(GD direccion, double radio){
-		return null;
+		assert(radio>=0);
+		ArrayList<Linea> res=new ArrayList<>();
+		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+			if(entr.getValue().existeParadasCercanas(direccion)){
+				res.add(entr.getValue());
+			}
+		}
+		Linea[] lineas_encontradas=new Linea[res.size()];
+		return res.toArray(lineas_encontradas);
 	}
 	
 	/**
