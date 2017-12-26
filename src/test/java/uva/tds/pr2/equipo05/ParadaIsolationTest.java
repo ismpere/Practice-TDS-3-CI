@@ -35,12 +35,8 @@ public class ParadaIsolationTest {
     
 	@Test
 	public void testCalculaDistanciaEntreParadasExtremosValido(){
-		expect(gd1.getLatitud()).andReturn((double)179.99);
-		expect(gd1.getLongitud()).andReturn((double)179.99);
 		
 		GD gd2 = createMock(GD.class);
-		expect(gd2.getLatitud()).andReturn((double)-179.99);
-		expect(gd2.getLongitud()).andReturn((double)-179.99);
 
 		expect(gd1.getDistanciaAt(eq(gd2))).andReturn((double)2600.88).once();
 		
@@ -55,5 +51,8 @@ public class ParadaIsolationTest {
 		assertNotNull(p1);
 		assertNotNull(p2);
 		assertEquals(2600.88, distancia, ERROR_ADMISIBLE);
+		
+		verify(gd1);
+		verify(gd2);
 	}
 }
