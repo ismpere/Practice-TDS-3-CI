@@ -1,6 +1,7 @@
 package uva.tds.pr2.equipo05;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 
 /**
@@ -11,7 +12,7 @@ import java.util.*;
  */
 public class RedAutobuses {
 	
-	HashMap<Integer,Linea> lineas=new HashMap<>();
+	HashMap<Integer,Linea> mapa_lineas=new HashMap<>();
 	
 	/**
 	 * Constructor por defecto de la clase RedAutobuses
@@ -24,7 +25,7 @@ public class RedAutobuses {
 		assert(lista_lineas.length>1);
 		assert(Linea.lineasRepetidas(lista_lineas));
 		for(int i=0; i<lista_lineas.length;i++){
-			lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
+			mapa_lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
 		}
 	}
 	
@@ -35,8 +36,8 @@ public class RedAutobuses {
 	 * @assert.pre this.contains(id)
 	 */
 	public Linea getLinea(int id){
-		assert(lineas.containsKey(id));
-		Linea res=lineas.get(id);
+		assert(mapa_lineas.containsKey(id));
+		Linea res=mapa_lineas.get(id);
 		return res;
 	}
 	
@@ -48,7 +49,7 @@ public class RedAutobuses {
 	 */
 	public void addLinea(Linea linea){
 		assert(!this.contains(linea));
-		lineas.put(linea.getId(), linea);
+		mapa_lineas.put(linea.getId(), linea);
 	}
 	
 	/**
@@ -61,17 +62,22 @@ public class RedAutobuses {
 	 */
 	public void deleteLinea(Linea linea){
 		assert(this.contains(linea));
-		assert(lineas.size()>2);
-		lineas.remove(linea.getId());
+		assert(mapa_lineas.size()>2);
+		mapa_lineas.remove(linea.getId());
 	}
 	
 	/**
 	 * Devuelve la lista (array) de todas las líneas de la red
-	 * @return lineasRed[]
+	 * @return lineas_red[]
 	 */
 	public Linea[] getAllLineas(){
-		// TODO Auto-generated constructor stub
-		return null;
+		Linea[] lineas_red=new Linea[mapa_lineas.size()];
+		int i=0;
+		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+			lineas_red[i]=entr.getValue();
+			i++;
+		}
+		return lineas_red;
 	}
 	
 	/**
