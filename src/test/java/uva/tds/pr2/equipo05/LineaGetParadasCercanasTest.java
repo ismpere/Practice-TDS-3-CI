@@ -41,11 +41,11 @@ public class LineaGetParadasCercanasTest {
 	@Test
 	public void testGetParadasCercanasUnaParadaCercanaValido(){
 		
-		GD gd4 = new GD(41.3152809,-4.9199326); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd4 = new GD(41.3133848,-4.9181027); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
 		
 		Parada pc[] = l1.getParadasCercanas(gd4);
 		
-		Parada pcS[] = {p1};
+		Parada pcS[] = {p2};
 		
 		assertNotNull(l1);
 		assertNotNull(pc);
@@ -60,7 +60,7 @@ public class LineaGetParadasCercanasTest {
 		
 		Parada pc[] = l1.getParadasCercanas(gd4);
 		
-		Parada pcS[] = {p1, p3};
+		Parada pcS[] = {p1, p2, p3};
 		
 		assertNotNull(l1);
 		assertNotNull(pc);
@@ -90,7 +90,5 @@ public class LineaGetParadasCercanasTest {
 		
 		assertNotNull(l1);
 		assertFalse(e);
-		
-		fail("Hacemos que el test falle ya que la fake implementacion de existe.. devuelve siempre false");
 	}
 }
