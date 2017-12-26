@@ -361,4 +361,19 @@ public class Linea{
 			return repetida;
 		}
 	}
+	
+	@Override
+	/**
+	 * @see 
+	 */
+	public boolean equals(Object other){
+	    if (other == null) 
+	    	return false;
+	    if (other == this) 
+	    	return true;
+	    if (!(other instanceof Linea))
+	    	return false;
+	    
+	    return paradas.equals(((Linea)other).getParadas());
+	}
 }

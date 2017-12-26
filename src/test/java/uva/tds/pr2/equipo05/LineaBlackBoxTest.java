@@ -114,7 +114,7 @@ public class LineaBlackBoxTest {
 		assertTrue(e);
 	}
     
-    @Test (expected = AssertionError.class)
+    @Test
 	public void testGetParadasConCorrespondenciaValidoLineaThis(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -126,7 +126,7 @@ public class LineaBlackBoxTest {
 		assertArrayEquals(p, pcc);
 	}
     
-    @Test (expected = AssertionError.class)
+    @Test
 	public void testGetParadasConCorrespondenciaValidoLineaIgual(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
