@@ -28,7 +28,7 @@ public class Linea{
 		
 		assert(paradas.length>2);
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
-		System.out.println(paradas[0].getDistanciaEntre(paradas[paradas.length-1]));
+		//System.out.println(paradas[0].getDistanciaEntre(paradas[paradas.length-1]));
 		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100);
 		
 		this.id = id;
@@ -135,7 +135,7 @@ public class Linea{
 		assert(!contains(p));
 		assert(p.getDistanciaEntre(getParadaInicio())<100);
 		
-		paradas.add(paradas.size()-1, p);
+		paradas.add(p);
 	}
 	/**
 	 * Añade la parada intermedia en la posicion seleccionada
@@ -236,7 +236,7 @@ public class Linea{
 		Parada[] p = l.getParadas();
 		for(int i=0; i<paradas.size(); i++){
 			for(int j=0; j<l.getParadas().length; j++){
-				if(paradas.get(i).getDistanciaEntre(p[j])<200){
+				if(paradas.get(i).getDistanciaEntre(p[j])<200 && !pAux.contains(paradas.get(i))){
 					pAux.add(paradas.get(i));
 				}
 			}

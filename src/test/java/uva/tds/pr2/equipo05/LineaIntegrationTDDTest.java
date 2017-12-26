@@ -73,7 +73,7 @@ public class LineaIntegrationTDDTest {
 	public void testExistenParadasCercanasValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(41.3153082, -4.9174276); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd4 = new GD(41.3152809,-4.9199326); 
 		
 		boolean e = l1.existeParadasCercanas(gd4);
 		
@@ -88,7 +88,7 @@ public class LineaIntegrationTDDTest {
     	GD gd4 = new GD(-100.00, 100.00);
     	Parada p4 = new Parada("d", gd4);
 		
-		Parada pa3[] = {p1, p4, p3}; //TODO son paradas aleatorias, poner paradas que lo cumplan
+		Parada pa3[] = {p1, p4, p3};
 		Linea l2 = new Linea(2, pa3);
 		
 		boolean e = l1.existeCorrespondencia(l2);
@@ -105,7 +105,7 @@ public class LineaIntegrationTDDTest {
     	GD gd4 = new GD(-100.00, 100.00);
     	Parada p4 = new Parada("d", gd4);
 		
-		Parada pa3[] = {p1, p4, p3}; //TODO son paradas aleatorias, poner paradas que lo cumplan
+		Parada pa3[] = {p1, p4, p3}; 
 		Linea l2 = new Linea(2, pa3);
 		
 		boolean e = l1.existeTransbordoDirecto(l2);
@@ -118,11 +118,11 @@ public class LineaIntegrationTDDTest {
 	public void testGetParadasCercanasValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(41.3153082, -4.9174276); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd4 = new GD(41.3152809,-4.9199326);
 		
 		Parada pa2[] = l1.getParadasCercanas(gd4);
 		
-		Parada pc[] = {p1};
+		Parada pc[] = {p2};
 		
 		assertNotNull(l1);
 		assertNotNull(pa2);
@@ -134,17 +134,15 @@ public class LineaIntegrationTDDTest {
 	public void testGetParadasConCorrespondenciaValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(-150.00, 150.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
-		Parada p4 = new Parada("d", gd4);
-		GD gd5 = new GD(-140.00, 140.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
-		Parada p5 = new Parada("d", gd5);
+		GD gd4 = new GD(-100.00, 100.00);
+    	Parada p4 = new Parada("d", gd4);
 		
-		Parada pa3[] = {p2, p4, p5};
+		Parada pa3[] = {p1, p4, p3}; 
 		Linea l2 = new Linea(2, pa3);
 		
 		Parada pa2[] = l1.getParadasConCorrespondencia(l2);
 		
-		Parada pcc[] = {p2};
+		Parada pcc[] = {p1, p2, p3};
 		
 		assertNotNull(l1);
 		assertNotNull(l2);
@@ -157,17 +155,15 @@ public class LineaIntegrationTDDTest {
 	public void testGetParadasConTransbordoDirectoValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(-150.00, 150.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
-		Parada p4 = new Parada("d", gd4);
-		GD gd5 = new GD(-140.00, 140.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
-		Parada p5 = new Parada("d", gd5);
+		GD gd4 = new GD(-100.00, 100.00);
+    	Parada p4 = new Parada("d", gd4);
 		
-		Parada pa3[] = {p2, p4, p5};
+		Parada pa3[] = {p1, p4, p3}; 
 		Linea l2 = new Linea(2, pa3);
 		
 		Parada pa2[] = l1.getParadasConTransbordoDirecto(l2);
 		
-		Parada pct[] = {p1};
+		Parada pct[] = {p1, p3};
 		
 		assertNotNull(l1);
 		assertNotNull(l2);
