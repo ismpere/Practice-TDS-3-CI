@@ -70,8 +70,24 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void addParadaIntermedia(Parada p) {
-		// TODO Auto-generated method stub
+		if(p==null )
+			throw new IllegalArgumentException();
 		
+		assert(!contains(p));
+		
+		double dMin = 0;
+		double dAux1; 
+		double dAux2;
+		int iP = 0;
+		for(int i=0; i<paradas.size()-1; i++){
+			dAux1 = p.getDistanciaEntre(paradas.get(i));
+			dAux2 = p.getDistanciaEntre(paradas.get(i+1));
+			if((dAux1+dAux2)<dMin){
+				dMin = dAux1+dAux2;
+				iP = i+1;
+			}	
+		}
+		addParadaIntermediaAt(p, iP+1);
 	}
 	/**
 	 * Cambia el identificador de la linea
