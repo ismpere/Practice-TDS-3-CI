@@ -2,6 +2,7 @@ package uva.tds.pr2.equipo05;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.After;
 import org.junit.Before;
 /**
@@ -9,6 +10,7 @@ import org.junit.Before;
  * @author ismpere
  * @author martorb
  */
+@Category({Unit.class, TDD.class})
 public class LineaUnitTDDTest {
 	
 	private GD gd1 = new GD (-179.99,179.99);
