@@ -115,8 +115,7 @@ public class RedAutobuses {
 	 * @return contieneLineaConId
 	 */
 	public boolean contains(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapa_lineas.containsKey(id);
 	}
 	/**
 	 * Devuelve si hay Lineas con paradas cercanas a una direccion con un radio de distancia maxima
