@@ -17,15 +17,15 @@ public class Linea{
 	 * Constructor por defecto de la clase Linea
 	 * @param id de la Linea
 	 * @param paradas de la linea
-	 * @assert.pre paradas.length>3
+	 * @assert.pre paradas.length>2
 	 * @assert.pre !Parada.existeAlgunaParadaRepetida(paradas)
 	 * @throws IllegalArgumentException si paradas==null || alguna de las paradas de paradas es null
 	 */
 	public Linea(int id, Parada[] paradas) {
-		if(paradas==null || new ArrayList<Parada>(Arrays.asList(paradas)).contains(null))
+		if(paradas==null )
 			throw new IllegalArgumentException();
 		
-		assert(paradas.length>3);
+		assert(paradas.length>2);
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
 		
 		this.id = id;
@@ -44,6 +44,7 @@ public class Linea{
 	 */
 	public Parada[] getParadas() {
 		Parada[] p = new Parada[paradas.size()];
+		
 		paradas.toArray(p);
 		
 		return p;
@@ -125,7 +126,7 @@ public class Linea{
 			throw new IllegalArgumentException();
 		
 		assert(!contains(p));
-		assert(i>1 && i<paradas.size());
+		assert(i>1 && i<paradas.size()+1);
 		
 		paradas.add(i-1, p);
 	}
@@ -317,7 +318,7 @@ public class Linea{
 	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
 	 */
 	public static boolean lineasRepetidas(Linea[] l){
-		if(l==null || new ArrayList<Linea>(Arrays.asList(l)).contains(null))
+		if(l==null)
 			throw new IllegalArgumentException();
 		
 		if(l.length<2)
