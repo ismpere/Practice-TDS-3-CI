@@ -35,6 +35,6 @@ public class ParadaIntegrationTDDTest {
 		
 		assertNotNull(p1);
 		assertNotNull(p2);
-		assertEquals(2600.88, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
+		assertEquals(2600.88, distancia, ERROR_ADMISIBLE);
 	}
 }
