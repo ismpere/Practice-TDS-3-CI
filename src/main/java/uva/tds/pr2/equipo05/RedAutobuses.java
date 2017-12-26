@@ -88,7 +88,7 @@ public class RedAutobuses {
 	 * @assert.pre radio>=0
 	 * @throws IllegalArgumentException si direccion==null
 	 */
-	public Linea[] getLineasConParadasCercanas(GD direccion, double radio){
+	public Linea[] getLineasConParadasCercanas(GD direccion, double radio){ //corregir
 		assert(radio>=0);
 		ArrayList<Linea> res=new ArrayList<>();
 		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
@@ -107,8 +107,7 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si linea==null
 	 */
 	public boolean contains(Linea linea){
-		// TODO Auto-generated constructor stub
-		return false;
+		return mapa_lineas.containsKey(linea.getId());
 	}
 	/**
 	 * Devuelve si contiene una linea con identificador id
