@@ -1,7 +1,7 @@
 package uva.tds.pr2.equipo05;
 
 import java.util.*;
-import static org.junit.Assert.*;
+
 
 /**
  * 
@@ -21,8 +21,8 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
 	 */
 	public RedAutobuses(Linea[] lista_lineas){
-		assertTrue(lista_lineas.length>1);
-		assertFalse(Linea.lineasRepetidas(lista_lineas));
+		assert(lista_lineas.length>1);
+		assert(Linea.lineasRepetidas(lista_lineas));
 		for(int i=0; i<lista_lineas.length;i++){
 			lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
 		}
@@ -35,7 +35,7 @@ public class RedAutobuses {
 	 * @assert.pre this.contains(id)
 	 */
 	public Linea getLinea(int id){
-		assertTrue(lineas.containsKey(id));
+		assert(lineas.containsKey(id));
 		Linea res=lineas.get(id);
 		return res;
 	}
@@ -47,7 +47,8 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si linea==null
 	 */
 	public void addLinea(Linea linea){
-		// TODO Auto-generated constructor stub
+		assert(!this.contains(linea));
+		lineas.put(linea.getId(), linea);
 	}
 	
 	/**
