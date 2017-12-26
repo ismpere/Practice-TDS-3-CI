@@ -92,7 +92,7 @@ public class RedAutobuses {
 		assert(radio>=0);
 		ArrayList<Linea> res=new ArrayList<>();
 		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
-			if(entr.getValue().existeParadasCercanas(direccion)){
+			if(entr.getValue().existeParadasCercanas(direccion,radio)){
 				res.add(entr.getValue());
 			}
 		}
@@ -125,8 +125,14 @@ public class RedAutobuses {
 	 * @assert.pre radio>=0
 	 * @throws IllegalArgumentException si gd==null
 	 */
-	public boolean existenLineasConParadasCercanas(GD gd, double radio) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existenLineasConParadasCercanas(GD direccion, double radio) {
+		assert(radio>=0);
+		boolean res=false;
+		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+			if(entr.getValue().existeParadasCercanas(direccion,radio)){
+				res=true;
+			}
+		}
+		return res;
 	}	
 }
