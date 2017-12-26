@@ -104,6 +104,61 @@ public class ParadaBlackBoxUnitTest {
 		assertNotNull(p1);
 		assertEquals(0.00, distancia, ERROR_ADMISIBLE); 
 	}
+    
+    @Test
+    public void testEqualsParadaValidoParadasIguales(){
+    	p1 = new Parada("a", gd1);
+    	Parada p2 = new Parada("b", gd1);
+    	
+    	boolean iguales = p1.equals(p2);
+    	
+    	assertNotNull(p1);
+    	assertNotNull(p2);
+    	assertTrue(iguales);
+    }
+    
+    @Test
+    public void testEqualsParadaValidoParadasDiferentes(){
+    	p1 = new Parada("a", gd1);
+    	GD gd2 = new GD(179.99, -179.99);
+    	Parada p2 = new Parada("b", gd2);
+    	
+    	boolean iguales = p1.equals(p2);
+    	
+    	assertNotNull(p1);
+    	assertNotNull(p2);
+    	assertFalse(iguales);
+    }
+    
+    @Test
+    public void testEqualsParadaValidoParadaThis(){
+    	p1 = new Parada("a", gd1);
+    	
+    	boolean iguales = p1.equals(p1);
+    	
+    	assertNotNull(p1);
+    	assertTrue(iguales);
+    }
+    
+    @Test
+    public void testEqualsParadaValidoParadaNull(){
+    	p1 = new Parada("a", gd1);
+    	
+    	boolean iguales = p1.equals(null);
+    	
+    	assertNotNull(p1);
+    	assertFalse(iguales);
+    }
+    
+    @Test
+    public void testEqualsParadaValidoNoEsUnaParada(){
+    	p1 = new Parada("a", gd1);
+    	
+    	boolean iguales = p1.equals(gd1);
+    	
+    	assertNotNull(p1);
+    	assertFalse(iguales);
+    }
 
 	@Test(expected = AssertionError.class)
 	public void testInicializaParadaNoValidoIdVacio(){
