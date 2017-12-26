@@ -34,7 +34,7 @@ public class ParadaIsolationTest {
     }
     
 	@Test
-	public void testCalculaDistanciaEntreParadasExtremosValido(){
+	public void testCalculaDistanciaEntreParadasExtremosValidoMocking(){
 		
 		GD gd2 = createMock(GD.class);
 
