@@ -194,7 +194,7 @@ public class Linea{
 	}
 	
 	/**
-	 * Devuelve si hay paradas cercanas de esa linea a una direccion
+	 * Devuelve si hay paradas cercanas de esa linea a una direccion y en un radio de distancia dado
 	 * @param gd Direccion desde la que queremos comprobar si hay paradas cercanas
 	 * @return existenParadasCercanas
 	 * @throws IllegalArgumentException si gd==null
