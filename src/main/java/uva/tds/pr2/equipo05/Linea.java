@@ -1,5 +1,8 @@
 package uva.tds.pr2.equipo05;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * 
  * @author ismpere
@@ -7,48 +10,57 @@ package uva.tds.pr2.equipo05;
  *
  */
 public class Linea{
+	
+	private int id;
+	private ArrayList<Parada> paradas;
 	/**
 	 * Constructor por defecto de la clase Linea
 	 * @param id de la Linea
-	 * @param p Paradas de la linea
-	 * @assert.pre p.length>3
-	 * @assert.pre !Parada.existeAlgunaParadaRepetida(p)
-	 * @throws IllegalArgumentException si p==null || alguna de las paradas de p es null
+	 * @param paradas de la linea
+	 * @assert.pre paradas.length>3
+	 * @assert.pre !Parada.existeAlgunaParadaRepetida(paradas)
+	 * @throws IllegalArgumentException si paradas==null || alguna de las paradas de paradas es null
 	 */
-	public Linea(int id, Parada[] p) {
-		// TODO Auto-generated constructor stub
+	public Linea(int id, Parada[] paradas) {
+		if(paradas==null || new ArrayList<Parada>(Arrays.asList(paradas)).contains(null))
+			throw new IllegalArgumentException();
+		
+		assert(paradas.length>3);
+		assert(!Parada.existeAlgunaParadaRepetida(paradas));
+		
+		this.id = id;
+		this.paradas = new ArrayList<>(Arrays.asList(paradas));
 	}
 	/**
 	 * Devuelve el identificador de la linea
 	 * @return id de la Linea
 	 */
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return id;
 	}
 	/**
 	 * Devuelve la lista de paradas de la linea
 	 * @return paradas de la Linea
 	 */
 	public Parada[] getParadas() {
-		// TODO Auto-generated method stub
-		return null;
+		Parada p[] = new Parada[paradas.size()];
+		paradas.toArray(p);
+		
+		return p;
 	}
 	/**
 	 * Devuelve la parada inicial de la linea
 	 * @return parada inicio
 	 */
 	public Parada getParadaInicio() {
-		// TODO Auto-generated method stub
-		return null;
+		return paradas.get(0);
 	}
 	/**
 	 * Devuelve la parada final de la linea
 	 * @return parada fin
 	 */
 	public Parada getParadaFin() {
-		// TODO Auto-generated method stub
-		return null;
+		return paradas.get(paradas.size()-1);
 	}
 	/**
 	 * Añade una nueva parada a la Linea
@@ -65,7 +77,7 @@ public class Linea{
 	 * @param id Nuevo identificador de la Linea
 	 */
 	public void setId(int id) {
-		// TODO Auto-generated method stub
+		this.id = id;
 		
 	}
 	/**
@@ -76,8 +88,13 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void setParadaInicio(Parada p) {
-		// TODO Auto-generated method stub
+		if(p==null)
+			throw new IllegalArgumentException();
 		
+		assert(!contains(p));
+		assert(p.getDistanciaEntre(getParadaFin())<100);
+		
+		paradas.add(0, p);
 	}
 	/**
 	 * Cambia la parada fin de la linea
@@ -87,8 +104,13 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void setParadaFin(Parada p) {
-		// TODO Auto-generated method stub
+		if(p==null)
+			throw new IllegalArgumentException();
 		
+		assert(!contains(p));
+		assert(p.getDistanciaEntre(getParadaInicio())<100);
+		
+		paradas.add(paradas.size()-1, p);
 	}
 	/**
 	 * Añade la parada intermedia en la posicion seleccionada
@@ -99,8 +121,13 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void addParadaIntermediaAt(Parada p, int i) {
-		// TODO Auto-generated method stub
+		if(p==null)
+			throw new IllegalArgumentException();
 		
+		assert(!contains(p));
+		assert(i>1 && i<paradas.size());
+		
+		paradas.add(i-1, p);
 	}
 	/**
 	 * Elimina la parada intermedia de la linea
@@ -111,8 +138,14 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void removeParadaIntermedia(Parada p) {
-		// TODO Auto-generated method stub
+		if(p==null)
+			throw new IllegalArgumentException();
 		
+		assert(contains(p));
+		assert(paradas.size()>3);
+		assert(!p.equals(getParadaInicio()) && !p.equals(getParadaFin()));
+		
+		paradas.remove(p);
 	}
 	/**
 	 * Devuelve una lista de paradas de la linea cercanas a una direccion
@@ -188,8 +221,7 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public boolean contains(Parada p) {
-		// TODO Auto-generated method stub
-		return false;
+		
 	}
 	
 	/**
