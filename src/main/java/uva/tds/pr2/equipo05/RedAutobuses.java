@@ -1,6 +1,6 @@
 package uva.tds.pr2.equipo05;
 
-import java.util.ArrayList;
+import java.util.*;
 import static org.junit.Assert.*;
 
 /**
@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  */
 public class RedAutobuses {
 	
-	ArrayList<Linea> lineas=new ArrayList<>();
+	HashMap<Integer,Linea> lineas=new HashMap<>();
 	
 	/**
 	 * Constructor por defecto de la clase RedAutobuses
@@ -24,7 +24,7 @@ public class RedAutobuses {
 		assertTrue(lista_lineas.length>1);
 		assertFalse(Linea.lineasRepetidas(lista_lineas));
 		for(int i=0; i<lista_lineas.length;i++){
-			lineas.add(lista_lineas[i]);
+			lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
 		}
 	}
 	
