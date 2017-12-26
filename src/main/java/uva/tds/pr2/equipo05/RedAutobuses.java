@@ -1,5 +1,9 @@
 package uva.tds.pr2.equipo05;
 
+import java.util.*;
+import java.util.Map.Entry;
+
+
 /**
  * 
  * @author martorb
@@ -7,6 +11,8 @@ package uva.tds.pr2.equipo05;
  *
  */
 public class RedAutobuses {
+	
+	HashMap<Integer,Linea> mapa_lineas=new HashMap<>();
 	
 	/**
 	 * Constructor por defecto de la clase RedAutobuses
@@ -16,7 +22,11 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
 	 */
 	public RedAutobuses(Linea[] lista_lineas){
-		// TODO Auto-generated constructor stub
+		assert(lista_lineas.length>1);
+		assert(Linea.lineasRepetidas(lista_lineas));
+		for(int i=0; i<lista_lineas.length;i++){
+			mapa_lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
+		}
 	}
 	
 	/**
@@ -24,11 +34,11 @@ public class RedAutobuses {
 	 * @param id Número que identifica la línea
 	 * @return líneaBuscada
 	 * @assert.pre this.contains(id)
-	 * @assert.post red.contains(linea) && linea.getId()==id
 	 */
 	public Linea getLinea(int id){
-		// TODO Auto-generated constructor stub
-		return null;
+		assert(mapa_lineas.containsKey(id));
+		Linea res=mapa_lineas.get(id);
+		return res;
 	}
 	
 	/**
@@ -38,7 +48,8 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si linea==null
 	 */
 	public void addLinea(Linea linea){
-		// TODO Auto-generated constructor stub
+		assert(!this.contains(linea));
+		mapa_lineas.put(linea.getId(), linea);
 	}
 	
 	/**
@@ -50,16 +61,23 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si linea==null
 	 */
 	public void deleteLinea(Linea linea){
-		// TODO Auto-generated constructor stub
+		assert(this.contains(linea));
+		assert(mapa_lineas.size()>2);
+		mapa_lineas.remove(linea.getId());
 	}
 	
 	/**
 	 * Devuelve la lista (array) de todas las líneas de la red
-	 * @return lineasRed[]
+	 * @return lineas_red[]
 	 */
 	public Linea[] getAllLineas(){
-		// TODO Auto-generated constructor stub
-		return null;
+		Linea[] lineas_red=new Linea[mapa_lineas.size()];
+		int i=0;
+		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+			lineas_red[i]=entr.getValue();
+			i++;
+		}
+		return lineas_red;
 	}
 	
 	/**
@@ -70,8 +88,16 @@ public class RedAutobuses {
 	 * @assert.pre radio>=0
 	 * @throws IllegalArgumentException si direccion==null
 	 */
-	public Linea[] getLineasConParadasCercanas(GD direccion, double radio){
-		return null;
+	public Linea[] getLineasConParadasCercanas(GD direccion, double radio){ //corregir
+		assert(radio>=0);
+		ArrayList<Linea> res=new ArrayList<>();
+		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+			if(entr.getValue().existeParadasCercanas(direccion,radio)){
+				res.add(entr.getValue());
+			}
+		}
+		Linea[] lineas_encontradas=new Linea[res.size()];
+		return res.toArray(lineas_encontradas);
 	}
 	
 	/**
@@ -81,8 +107,7 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si linea==null
 	 */
 	public boolean contains(Linea linea){
-		// TODO Auto-generated constructor stub
-		return false;
+		return mapa_lineas.containsKey(linea.getId());
 	}
 	/**
 	 * Devuelve si contiene una linea con identificador id
@@ -90,8 +115,7 @@ public class RedAutobuses {
 	 * @return contieneLineaConId
 	 */
 	public boolean contains(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapa_lineas.containsKey(id);
 	}
 	/**
 	 * Devuelve si hay Lineas con paradas cercanas a una direccion con un radio de distancia maxima
@@ -101,8 +125,14 @@ public class RedAutobuses {
 	 * @assert.pre radio>=0
 	 * @throws IllegalArgumentException si gd==null
 	 */
-	public boolean existenLineasConParadasCercanas(GD gd, double radio) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existenLineasConParadasCercanas(GD direccion, double radio) {
+		assert(radio>=0);
+		boolean res=false;
+		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+			if(entr.getValue().existeParadasCercanas(direccion,radio)){
+				res=true;
+			}
+		}
+		return res;
 	}	
 }
