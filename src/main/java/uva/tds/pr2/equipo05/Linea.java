@@ -23,12 +23,11 @@ public class Linea{
 	 * @throws IllegalArgumentException si paradas==null || alguna de las paradas de paradas es null
 	 */
 	public Linea(int id, Parada[] paradas) {
-		if(paradas==null )
+		if(paradas==null || Arrays.asList(paradas).contains(null))
 			throw new IllegalArgumentException();
 		
 		assert(paradas.length>2);
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
-		//System.out.println(paradas[0].getDistanciaEntre(paradas[paradas.length-1]));
 		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100);
 		
 		this.id = id;
@@ -342,7 +341,7 @@ public class Linea{
 	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
 	 */
 	public static boolean lineasRepetidas(Linea[] l){
-		if(l==null)
+		if(l==null || Arrays.asList(l).contains(null))
 			throw new IllegalArgumentException();
 		
 		if(l.length<2)
