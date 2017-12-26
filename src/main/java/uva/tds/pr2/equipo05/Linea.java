@@ -28,7 +28,7 @@ public class Linea{
 		
 		assert(paradas.length>2);
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
-		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100);
+		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100.00);
 		
 		this.id = id;
 		this.paradas = new ArrayList<>(Arrays.asList(paradas));
@@ -72,7 +72,7 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void addParadaIntermedia(Parada p) {
-		if(p==null )
+		if(p==null)
 			throw new IllegalArgumentException();
 		
 		assert(!contains(p));

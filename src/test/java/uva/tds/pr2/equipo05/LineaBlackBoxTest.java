@@ -90,6 +90,56 @@ public class LineaBlackBoxTest {
 		assertFalse(repetidas);
 	}
     
+    @Test
+	public void testExisteCorrespondenciaValidoLineaThis(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		boolean e = l1.existeCorrespondencia(l1);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
+    @Test
+	public void testExisteCorrespondenciaValidoLineaIgual(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		boolean e = l1.existeCorrespondencia(l2);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
+    @Test (expected = AssertionError.class)
+	public void testGetParadasConCorrespondenciaValidoLineaThis(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Parada[] pcc = l1.getParadasConCorrespondencia(l1);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeCorrespondencia(l1));
+		assertArrayEquals(p, pcc);
+	}
+    
+    @Test (expected = AssertionError.class)
+	public void testGetParadasConCorrespondenciaValidoLineaIgual(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		Parada[] pcc = l1.getParadasConCorrespondencia(l2);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeCorrespondencia(l2));
+		assertArrayEquals(p, pcc);
+	}
+    
     @Test (expected = IllegalArgumentException.class)
     public void testInicializaNoValidoParadasNulo(){
     	Linea l1 = new Linea(1, null);
@@ -332,5 +382,20 @@ public class LineaBlackBoxTest {
 		
 		l1.existeParadasCercanas(null);
 	}
-
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetParadasConCorrespondenciaNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.getParadasConCorrespondencia(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testExisteCorrespondenciaNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.existeCorrespondencia(null);
+	}
 }
