@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+@Category({Integration.class, TDD.class})
 public class LineaIntegrationTDDTest {
 	
 	private GD gd1 = new GD (-179.99,179.99);
