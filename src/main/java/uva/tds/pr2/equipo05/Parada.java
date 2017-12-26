@@ -1,6 +1,7 @@
 package uva.tds.pr2.equipo05;
 
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Implementación de la clae parada
@@ -72,12 +73,14 @@ public class Parada{
 	 * Devuelve la distancia en metros entre dos paradas
 	 * @param p Parada a la que calcular la distancia desde this
 	 * @return distancia entre las paradas
-	 * @assert.pre !this.equals(p)
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public double getDistanciaEntre(Parada p) {
 		if(p==null)
 			throw new IllegalArgumentException();
+		
+		if(p==this || p.equals(this))
+			return 0.0;
 		
 		return gd.getDistanciaAt(p.getGD());
 	}
@@ -85,25 +88,40 @@ public class Parada{
 	 * Devuelve si hay paradas repetidas en una lista de paradas
 	 * @param p lista de paradas
 	 * @return hayParadasRepetidas
-	 * @throws IllegalArgumentException si alguna de las paradas es null
+	 * @throws IllegalArgumentException si alguna de las paradas es null o p es null
 	 */
 	public static boolean existeAlgunaParadaRepetida(Parada[] p) {
-		if(p==null)
+		if(p==null || new ArrayList<Parada>(Arrays.asList(p)).contains(null))
 			throw new IllegalArgumentException();
 		
-		if(p.length==0)
+		if(p.length<2)
 			return false;
 		else{
 			boolean repetida = false;
-			TreeSet<Parada> conjuntoAux = new TreeSet<>();
+			ArrayList<Parada> conjuntoAux = new ArrayList<>();
 			
 			for(int i=0; i<p.length; i++){
-				if(conjuntoAux.add(p[i])){
+				if(conjuntoAux.contains(p[i]))
 					repetida = true;
-					break;
-				}
+				else
+					conjuntoAux.add(p[i]);
 			}
 			return repetida;
 		}
+	}
+	
+	@Override
+	/**
+	 * @see 
+	 */
+	public boolean equals(Object other){
+	    if (other == null) 
+	    	return false;
+	    if (other == this) 
+	    	return true;
+	    if (!(other instanceof Parada))
+	    	return false;
+	    
+	    return gd.equals(((Parada)other).getGD());
 	}
 }

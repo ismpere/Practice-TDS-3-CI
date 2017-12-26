@@ -67,6 +67,9 @@ public class GD{
 	public double getDistanciaAt(GD gd) {
 		if(gd==null)
 			throw new IllegalArgumentException("gd is null");
+		
+		if(gd==this || gd.equals(this))
+			return 0.0;
 
 		double distancia;
 		double difLat;
