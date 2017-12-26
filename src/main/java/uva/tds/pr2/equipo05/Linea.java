@@ -43,7 +43,7 @@ public class Linea{
 	 * @return paradas de la Linea
 	 */
 	public Parada[] getParadas() {
-		Parada p[] = new Parada[paradas.size()];
+		Parada[] p = new Parada[paradas.size()];
 		paradas.toArray(p);
 		
 		return p;
@@ -155,8 +155,23 @@ public class Linea{
 	 * @throws IllegalArgumentException si gd==null
 	 */
 	public Parada[] getParadasCercanas(GD gd) {
-		// TODO Auto-generated method stub
-		return null;
+		if(gd==null)
+			throw new IllegalArgumentException();
+		
+		Parada[] p;
+		if(!existeParadasCercanas(gd)){
+			p = new Parada[0];
+			return p;
+		}else{
+			ArrayList<Parada> pa = new ArrayList<>();
+			for(int i=0; i<paradas.size(); i++){
+				if(gd.getDistanciaAt(paradas.get(i).getGD())<200){
+					pa.add(paradas.get(i));
+				}
+			}
+			p = new Parada[pa.size()];
+			return pa.toArray(p);
+		}
 	}
 	/**
 	 * Devuelve si hay parads cercanas de esa linea a una direccion
@@ -165,8 +180,17 @@ public class Linea{
 	 * @throws IllegalArgumentException si gd==null
 	 */
 	public boolean existeParadasCercanas(GD gd) {
-		// TODO Auto-generated method stub
-		return false;
+		if(gd==null)
+			throw new IllegalArgumentException();
+		
+		boolean e = false;
+		for(int i=0; i<paradas.size(); i++){
+			if(gd.getDistanciaAt(paradas.get(i).getGD())<200){
+				e = true;
+				break;
+			}
+		}
+		return e;
 	}
 	/**
 	 * Devuelve la lista de paradas con correspondencia de this con l
@@ -177,19 +201,48 @@ public class Linea{
 	 * @throws IllegalArgumentException si l==null
 	 */
 	public Parada[] getParadasConCorrespondencia(Linea l) {
-		// TODO Auto-generated method stub
-		return null;
+		if(l==null)
+			throw new IllegalArgumentException();
+		
+		if(l==this || l.equals(this))
+			return getParadas();
+		
+		ArrayList<Parada> pAux = new ArrayList<>();
+		Parada[] p = l.getParadas();
+		for(int i=0; i<paradas.size(); i++){
+			for(int j=0; j<l.getParadas().length; j++){
+				if(paradas.get(i).getDistanciaEntre(p[j])<200){
+					pAux.add(paradas.get(i));
+				}
+			}
+		}
+		p = new Parada[pAux.size()];
+		return pAux.toArray(p);
 	}
 	/**
 	 * Devuelve si hay o no correspondencia de this con l
 	 * @param l Linea con la que queremos hallar si hay correspondencia
 	 * @return hayCorrespondencia
-	 * @assert.pre !this.equals(l)
 	 * @throws IllegalArgumentException si l==null
 	 */
 	public boolean existeCorrespondencia(Linea l) {
-		// TODO Auto-generated method stub
-		return false;
+		if(l==null)
+			throw new IllegalArgumentException();
+		
+		if(l==this || l.equals(this))
+			return true;
+		
+		boolean e = false;
+		Parada[] p = l.getParadas();
+		for(int i=0; i<paradas.size(); i++){
+			for(int j=0; j<l.getParadas().length; j++){
+				if(paradas.get(i).getDistanciaEntre(p[j])<200){
+					e = true;
+					break;
+				}
+			}
+		}
+		return e;
 	}
 	/**
 	 * Devuelve la lista de paradas con transbordo directo de this con l
@@ -200,8 +253,23 @@ public class Linea{
 	 * @throws IllegalArgumentException si l==null
 	 */
 	public Parada[] getParadasConTransbordoDirecto(Linea l) {
-		// TODO Auto-generated method stub
-		return null;
+		if(l==null)
+			throw new IllegalArgumentException();
+		
+		if(l==this || l.equals(this))
+			return getParadas();
+		
+		ArrayList<Parada> pAux = new ArrayList<>();
+		Parada[] p = l.getParadas();
+		for(int i=0; i<paradas.size(); i++){
+			for(int j=0; j<l.getParadas().length; j++){
+				if(paradas.get(i).getGD().equals(p[j].getGD())){
+					pAux.add(paradas.get(i));
+				}
+			}
+		}
+		p = new Parada[pAux.size()];
+		return pAux.toArray(p);
 	}
 	/**
 	 * Devuelve si hay transbordo directo entre this y l
@@ -211,8 +279,23 @@ public class Linea{
 	 * @throws IllegalArgumentException si l==null
 	 */
 	public boolean existeTransbordoDirecto(Linea l) {
-		// TODO Auto-generated method stub
-		return false;
+		if(l==null)
+			throw new IllegalArgumentException();
+		
+		if(l==this || l.equals(this))
+			return true;
+		
+		boolean e = false;
+		Parada[] p = l.getParadas();
+		for(int i=0; i<paradas.size(); i++){
+			for(int j=0; j<l.getParadas().length; j++){
+				if(paradas.get(i).getGD().equals(p[j].getGD())){
+					e = true;
+					break;
+				}
+			}
+		}
+		return e;
 	}
 	/**
 	 * Devuelve si la linea contiene una parada
@@ -221,7 +304,10 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public boolean contains(Parada p) {
+		if(p==null)
+			throw new IllegalArgumentException();
 		
+		return paradas.contains(p);
 	}
 	
 	/**
@@ -230,9 +316,24 @@ public class Linea{
 	 * @return hayLineaRepetida
 	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
 	 */
-	public static boolean lineasRepetidas(Linea[] lista_lineas){
-		// TODO Auto-generated constructor stub
-		return false;
+	public static boolean lineasRepetidas(Linea[] l){
+		if(l==null || new ArrayList<Linea>(Arrays.asList(l)).contains(null))
+			throw new IllegalArgumentException();
+		
+		if(l.length<2)
+			return false;
+		else{
+			boolean repetida = false;
+			ArrayList<Linea> conjuntoAux = new ArrayList<>();
+			
+			for(int i=0; i<l.length; i++){
+				if(conjuntoAux.contains(l[i]))
+					repetida = true;
+				else
+					conjuntoAux.add(l[i]);
+			}
+			return repetida;
+		}
 	}
 	
 }
