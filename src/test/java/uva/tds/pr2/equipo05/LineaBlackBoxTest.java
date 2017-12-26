@@ -114,6 +114,30 @@ public class LineaBlackBoxTest {
 		assertTrue(e);
 	}
     
+    @Test 
+	public void testExisteTransbordoDirectoNoValidoLineaThis(){
+    	Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		boolean e = l1.existeTransbordoDirecto(l1);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
+    @Test 
+	public void testExisteTransbordoDirectoNoValidoLineaIgual(){
+    	Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		boolean e = l1.existeTransbordoDirecto(l2);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
     @Test
 	public void testGetParadasConCorrespondenciaValidoLineaThis(){
 		Parada p[] = {p1, p2, p3};
@@ -138,6 +162,32 @@ public class LineaBlackBoxTest {
 		assertNotNull(l1);
 		assertTrue(l1.existeCorrespondencia(l2));
 		assertArrayEquals(p, pcc);
+	}
+    
+	@Test
+	public void testGetParadasConTransbordoDirectoValidoLineaThis(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Parada[] pct = l1.getParadasConTransbordoDirecto(l1);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeTransbordoDirecto(l1));
+		assertArrayEquals(p, pct);
+	}
+	
+	@Test
+	public void testGetParadasConTransbordoDirectoValidoLineaIgual(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		Parada[] pct = l1.getParadasConTransbordoDirecto(l2);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeTransbordoDirecto(l2));
+		assertArrayEquals(p, pct);
 	}
     
     @Test (expected = IllegalArgumentException.class)
@@ -397,5 +447,21 @@ public class LineaBlackBoxTest {
 		Linea l1 = new Linea(1, p);
 		
 		l1.existeCorrespondencia(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetParadasConTransbordoDirectoNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.getParadasConTransbordoDirecto(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testExisteTransbordoDirectoNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.existeTransbordoDirecto(null);
 	}
 }
