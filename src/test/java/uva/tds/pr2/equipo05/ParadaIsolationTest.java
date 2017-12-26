@@ -42,8 +42,10 @@ public class ParadaIsolationTest {
 		expect(gd2.getLatitud()).andReturn((double)-179.99);
 		expect(gd2.getLongitud()).andReturn((double)-179.99);
 
-		//expect(gd1.equals(gd2)).andReturn(false).once(); TODO No se puede cambiar el comportamiento de equals
 		expect(gd1.getDistanciaAt(eq(gd2))).andReturn((double)2600.88).once();
+		
+		replay(gd2);
+		replay(gd1);
 		
 		p1 = new Parada("a", gd1);
 		Parada p2 = new Parada("b", gd2);
@@ -52,6 +54,6 @@ public class ParadaIsolationTest {
 		
 		assertNotNull(p1);
 		assertNotNull(p2);
-		assertEquals(0.00, distancia, ERROR_ADMISIBLE); //TODO el valor es 2600.88, pero hay que cambiar cosas
+		assertEquals(2600.88, distancia, ERROR_ADMISIBLE);
 	}
 }
