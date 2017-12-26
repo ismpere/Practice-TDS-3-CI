@@ -19,6 +19,7 @@ public class Linea{
 	 * @param paradas de la linea
 	 * @assert.pre paradas.length>2
 	 * @assert.pre !Parada.existeAlgunaParadaRepetida(paradas)
+	 * @assert.pre paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100
 	 * @throws IllegalArgumentException si paradas==null || alguna de las paradas de paradas es null
 	 */
 	public Linea(int id, Parada[] paradas) {
@@ -27,6 +28,8 @@ public class Linea{
 		
 		assert(paradas.length>2);
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
+		System.out.println(paradas[0].getDistanciaEntre(paradas[paradas.length-1]));
+		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100);
 		
 		this.id = id;
 		this.paradas = new ArrayList<>(Arrays.asList(paradas));
@@ -75,11 +78,16 @@ public class Linea{
 		
 		assert(!contains(p));
 		
-		double dMin = 0;
+		double dMin;
 		double dAux1; 
 		double dAux2;
-		int iP = 0;
-		for(int i=0; i<paradas.size()-1; i++){
+		int iP = 1;
+		
+		dAux1 = p.getDistanciaEntre(paradas.get(0));
+		dAux2 = p.getDistanciaEntre(paradas.get(1));
+		dMin = dAux1 + dAux2;
+		
+		for(int i=1; i<paradas.size()-1; i++){
 			dAux1 = p.getDistanciaEntre(paradas.get(i));
 			dAux2 = p.getDistanciaEntre(paradas.get(i+1));
 			if((dAux1+dAux2)<dMin){

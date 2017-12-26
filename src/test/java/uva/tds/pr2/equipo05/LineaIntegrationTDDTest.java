@@ -10,11 +10,13 @@ import org.junit.experimental.categories.Category;
 @Category({Integration.class, TDD.class})
 public class LineaIntegrationTDDTest {
 	
-	private GD gd1 = new GD (-179.99,179.99);
-	private GD gd2 = new GD (-178.99,178.99);
-	private GD gd3 = new GD (-177.99,177.99);
-	private Parada p1, p2, p3;
-	private Parada p[] = {p1, p2, p3};
+	private GD gd1 = new GD (41.3154608,-4.9177346);
+	private GD gd2 = new GD (41.3142809,-4.9189326);
+	private GD gd3 = new GD (41.3153508,-4.9176232);
+	private Parada p1 = new Parada("a", gd1);
+    private Parada p2 = new Parada("b", gd2);
+    private Parada p3 = new Parada("c", gd3);
+	Parada[] p = {p1, p2, p3};
 
 	@Before
     public void setUp() throws Exception {
@@ -35,7 +37,7 @@ public class LineaIntegrationTDDTest {
 	public void testSetParadaInicioValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(-150.00, 150.00);
+		GD gd4 = new GD(41.3155708, -4.9178456);
 		Parada p4 = new Parada("d", gd4);
 		
 		l1.setParadaInicio(p4);
@@ -53,7 +55,7 @@ public class LineaIntegrationTDDTest {
 	public void testSetParadaFinValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(-150.00, 150.00);
+		GD gd4 = new GD(41.3155708, -4.9178456);
 		Parada p4 = new Parada("d", gd4);
 		
 		l1.setParadaFin(p4);
@@ -71,7 +73,7 @@ public class LineaIntegrationTDDTest {
 	public void testExistenParadasCercanasValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(-170.00, 170.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd4 = new GD(41.3153082, -4.9174276); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
 		
 		boolean e = l1.existeParadasCercanas(gd4);
 		
@@ -116,7 +118,7 @@ public class LineaIntegrationTDDTest {
 	public void testGetParadasCercanasValido(){
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(-150.00, 150.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd4 = new GD(41.3153082, -4.9174276); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
 		
 		Parada pa2[] = l1.getParadasCercanas(gd4);
 		
