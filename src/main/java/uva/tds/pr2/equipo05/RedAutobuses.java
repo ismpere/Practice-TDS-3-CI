@@ -60,7 +60,9 @@ public class RedAutobuses {
 	 * @throws IllegalArgumentException si linea==null
 	 */
 	public void deleteLinea(Linea linea){
-		// TODO Auto-generated constructor stub
+		assert(this.contains(linea));
+		assert(lineas.size()>2);
+		lineas.remove(linea.getId());
 	}
 	
 	/**
