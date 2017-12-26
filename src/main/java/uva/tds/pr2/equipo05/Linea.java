@@ -327,13 +327,14 @@ public class Linea{
 			ArrayList<Linea> conjuntoAux = new ArrayList<>();
 			
 			for(int i=0; i<l.length; i++){
-				if(conjuntoAux.contains(l[i]))
+				if(conjuntoAux.contains(l[i])){
 					repetida = true;
+					break;
+				}
 				else
 					conjuntoAux.add(l[i]);
 			}
 			return repetida;
 		}
 	}
-	
 }

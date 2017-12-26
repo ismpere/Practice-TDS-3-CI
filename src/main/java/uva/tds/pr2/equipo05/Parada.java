@@ -101,8 +101,10 @@ public class Parada{
 			ArrayList<Parada> conjuntoAux = new ArrayList<>();
 			
 			for(int i=0; i<p.length; i++){
-				if(conjuntoAux.contains(p[i]))
+				if(conjuntoAux.contains(p[i])){
 					repetida = true;
+					break;
+				}
 				else
 					conjuntoAux.add(p[i]);
 			}
