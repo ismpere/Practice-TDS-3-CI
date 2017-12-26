@@ -12,7 +12,7 @@ import org.junit.experimental.categories.Category;
  * @author martorb
  */
 @Category({Unit.class})
-public class ParadaBlackBoxTest {
+public class ParadaBlackBoxUnitTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;
 	private GD gd1;
@@ -84,18 +84,15 @@ public class ParadaBlackBoxTest {
 	}
     
     @Test
-	public void testCalculaDistanciaEntreParadasCercanasValido(){
-    	gd1 = new GD(41.3154608, -4.9177346);
-		p1 = new Parada("a", gd1);
+	public void testHayParadasRepetidasMismoGDValido(){
+    	p1 = new Parada("a", gd1);
+    	Parada p2 = new Parada("b", gd1);
+		Parada p3[] = {p1,p2};
 		
-		GD gd2 = new GD(41.3142809, -4.9189326);
-		Parada p2 = new Parada("b", gd2);
+		boolean repetidas = Parada.existeAlgunaParadaRepetida(p3);
 		
-		double distancia = p1.getDistanciaEntre(p2);
-		
-		assertNotNull(p1);
 		assertNotNull(p2);
-		assertEquals(176.80, distancia, ERROR_ADMISIBLE); 
+		assertTrue(repetidas);
 	}
     
     @Test
@@ -105,18 +102,6 @@ public class ParadaBlackBoxTest {
 		double distancia = p1.getDistanciaEntre(p1);
 		
 		assertNotNull(p1);
-		assertEquals(0.00, distancia, ERROR_ADMISIBLE); 
-	}
-    
-    @Test
-	public void testCalculaDistanciaEntreParadasValidoParadasIguales(){
-		p1 = new Parada("a", gd1);
-		Parada p2 = new Parada("b", gd1);
-		
-		double distancia = p1.getDistanciaEntre(p2);
-		
-		assertNotNull(p1);
-		assertNotNull(p2);
 		assertEquals(0.00, distancia, ERROR_ADMISIBLE); 
 	}
 
