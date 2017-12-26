@@ -33,11 +33,11 @@ public class RedAutobuses {
 	 * @param id Número que identifica la línea
 	 * @return líneaBuscada
 	 * @assert.pre this.contains(id)
-	 * @assert.post red.contains(linea) && linea.getId()==id
 	 */
 	public Linea getLinea(int id){
-		// TODO Auto-generated constructor stub
-		return null;
+		assertTrue(lineas.containsKey(id));
+		Linea res=lineas.get(id);
+		return res;
 	}
 	
 	/**
