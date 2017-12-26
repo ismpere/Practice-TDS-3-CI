@@ -174,7 +174,7 @@ public class Linea{
 		}
 	}
 	/**
-	 * Devuelve si hay parads cercanas de esa linea a una direccion
+	 * Devuelve si hay paradas cercanas de esa linea a una direccion
 	 * @param gd Direccion desde la que queremos comprobar si hay paradas cercanas
 	 * @return existenParadasCercanas
 	 * @throws IllegalArgumentException si gd==null
@@ -186,6 +186,26 @@ public class Linea{
 		boolean e = false;
 		for(int i=0; i<paradas.size(); i++){
 			if(gd.getDistanciaAt(paradas.get(i).getGD())<200){
+				e = true;
+				break;
+			}
+		}
+		return e;
+	}
+	
+	/**
+	 * Devuelve si hay paradas cercanas de esa linea a una direccion
+	 * @param gd Direccion desde la que queremos comprobar si hay paradas cercanas
+	 * @return existenParadasCercanas
+	 * @throws IllegalArgumentException si gd==null
+	 */
+	public boolean existeParadasCercanas(GD gd, double radio) {
+		if(gd==null)
+			throw new IllegalArgumentException();
+		
+		boolean e = false;
+		for(int i=0; i<paradas.size(); i++){
+			if(gd.getDistanciaAt(paradas.get(i).getGD())<radio){
 				e = true;
 				break;
 			}
