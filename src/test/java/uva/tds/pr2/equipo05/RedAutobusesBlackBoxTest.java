@@ -69,7 +69,7 @@ public class RedAutobusesBlackBoxTest {
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testInicializaRedNoValidoSinListaLineas() {
 		
 		RedAutobuses red= new RedAutobuses(null);
@@ -90,7 +90,7 @@ public class RedAutobusesBlackBoxTest {
 		red.getLinea(3);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testAddLineaNoValidoLineaNulo() {
 		
 		Linea[] lista_lineas={l1,l2};
@@ -106,7 +106,7 @@ public class RedAutobusesBlackBoxTest {
 		red.addLinea(l1);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testDeleteLineaNoValidoLineaNulo() {
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
@@ -127,7 +127,7 @@ public class RedAutobusesBlackBoxTest {
 		red.deleteLinea(l2);
 	}
 		
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testContainsNoValidoLineaNulo() {
 		Linea[] lista_lineas={l1,l2};
 		RedAutobuses red= new RedAutobuses(lista_lineas);

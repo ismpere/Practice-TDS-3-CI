@@ -118,7 +118,7 @@ public class RedAutobusesGetLineasConParadasCercanasTest{
 	
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testExistenLineasConParadasCercanasNoValidoGDNulo(){
 		
 		Linea[] lista_lineas={l1,l2};
@@ -136,7 +136,7 @@ public class RedAutobusesGetLineasConParadasCercanasTest{
 		red.existenLineasConParadasCercanas(gd_busq, -0.01);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testGetLineasConParadasCercanasNoValidoGDNulo(){
 		
 		Linea[] lista_lineas={l1,l2};

@@ -17,13 +17,15 @@ public class RedAutobuses {
 	/**
 	 * Constructor por defecto de la clase RedAutobuses
 	 * @param lista_lineas Lista (array) que contiene las líenas iniciales de la red
-	 * @assert.pre lista_lineas.length>1
+	 * @assert.pre lista_lineas!=null && lista_lineas.length>1
 	 * @assert.pre !Linea.lineasRepetidas(lista_lineas)
-	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
+	 * @assert.pre lista_lineas[] !contains null
 	 */
 	public RedAutobuses(Linea[] lista_lineas){
-		assert(lista_lineas.length>1);
+		assert(lista_lineas!=null && lista_lineas.length>1);
 		assert(Linea.lineasRepetidas(lista_lineas));
+		assert(!new ArrayList<Linea>(Arrays.asList(lista_lineas)).contains(null));
+		
 		for(int i=0; i<lista_lineas.length;i++){
 			mapa_lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
 		}
@@ -44,10 +46,11 @@ public class RedAutobuses {
 	/**
 	 * Añade una línea a la red 
 	 * @param linea Línea a añadir
+	 * @assert.pre linea!=null 
 	 * @assert.pre !red.contains(linea)
-	 * @throws IllegalArgumentException si linea==null
 	 */
 	public void addLinea(Linea linea){
+		assert(linea!=null);
 		assert(!this.contains(linea));
 		mapa_lineas.put(linea.getId(), linea);
 	}
@@ -55,13 +58,12 @@ public class RedAutobuses {
 	/**
 	 * Elimina una línea de la red
 	 * @param linea Línea a eliminar
-	 * @assert.pre this.contains(linea)
+	 * @assert.pre linea!=null && this.contains(linea)
 	 * @assert.pre getLineas.length>2
 	 * @assert.post !(red.contains(linea)) && red.getAllLineas.length>1
-	 * @throws IllegalArgumentException si linea==null
 	 */
 	public void deleteLinea(Linea linea){
-		assert(this.contains(linea));
+		assert(linea!=null && this.contains(linea));
 		assert(mapa_lineas.size()>2);
 		mapa_lineas.remove(linea.getId());
 	}
@@ -85,10 +87,11 @@ public class RedAutobuses {
 	 * @param direccion Punto dede el que se buscan líneas con parada cercana
 	 * @param radio (en metros) Distancia máxima desde la dirección indicada hasta alguna parada de las líneas buscadas
 	 * @return lineasEncontradas[]
+	 * @assert.pre direccion!=null
 	 * @assert.pre radio>=0
-	 * @throws IllegalArgumentException si direccion==null
 	 */
 	public Linea[] getLineasConParadasCercanas(GD direccion, double radio){
+		assert(direccion!=null);
 		assert(radio>=0);
 		ArrayList<Linea> res=new ArrayList<>();
 		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
@@ -104,11 +107,13 @@ public class RedAutobuses {
 	 * Comprueba si la red contiene una determinada línea
 	 * @param linea Linea a buscar
 	 * @return contieneLinea
-	 * @throws IllegalArgumentException si linea==null
+	 * @assert.pre linea!=null
 	 */
 	public boolean contains(Linea linea){
+		assert(linea!=null);
 		return mapa_lineas.containsKey(linea.getId());
 	}
+	
 	/**
 	 * Devuelve si contiene una linea con identificador id
 	 * @param id identificador de la linea
@@ -117,15 +122,17 @@ public class RedAutobuses {
 	public boolean contains(int id) {
 		return mapa_lineas.containsKey(id);
 	}
+	
 	/**
 	 * Devuelve si hay Lineas con paradas cercanas a una direccion con un radio de distancia maxima
 	 * @param dirección Direccion
 	 * @param radio Distancia máxima hasta una parada de otra línea
 	 * @return existenLineasConparadasCercanas
+	 * @assert.pre direccion!=null
 	 * @assert.pre radio>=0
-	 * @throws IllegalArgumentException si gd==null
 	 */
 	public boolean existenLineasConParadasCercanas(GD direccion, double radio) {
+		assert(direccion!=null);
 		assert(radio>=0);
 		boolean res=false;
 		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
