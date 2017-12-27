@@ -5,19 +5,20 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  * Implementacion de los test para el metodo getParadasCercanas
  * @author ismael
  * @author martorb
  */
+@Category({Integration.class})
 public class LineaGetParadasCercanasTest {
 	
-	private GD gd1 = new GD (-179.99,179.99); //TODO son ubicaciones aleatorias, poner ubicaciones que
-	private GD gd2 = new GD (-178.99,178.99); //satisfagan estos test
-	private GD gd3 = new GD (-177.99,177.99);
+	private GD gd1 = new GD (41.3154608,-4.9177346);
+	private GD gd2 = new GD (41.3142809,-4.9189326);
+	private GD gd3 = new GD (41.3153508,-4.9176232);
 	private Parada p1, p2, p3;
-	private Parada p[] = {p1, p2, p3};
 	private Linea l1;
 	
 	@Before
@@ -25,6 +26,7 @@ public class LineaGetParadasCercanasTest {
         p1 = new Parada("a", gd1);
         p2 = new Parada("b", gd2);
         p3 = new Parada("c", gd3);
+        Parada p[] = {p1, p2, p3};
         l1 = new Linea(1, p);
     }
      
@@ -33,18 +35,17 @@ public class LineaGetParadasCercanasTest {
         p1 = null;	
         p2 = null;	
         p3 = null;
-        p = null;
         l1 = null;
     }
     
 	@Test
 	public void testGetParadasCercanasUnaParadaCercanaValido(){
 		
-		GD gd4 = new GD(-150.00, 150.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd4 = new GD(41.3133848,-4.9181027); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
 		
 		Parada pc[] = l1.getParadasCercanas(gd4);
 		
-		Parada pcS[] = {p1};
+		Parada pcS[] = {p2};
 		
 		assertNotNull(l1);
 		assertNotNull(pc);
@@ -55,11 +56,11 @@ public class LineaGetParadasCercanasTest {
 	@Test
 	public void testGetParadasCercanasVariasParadasCercanasValido(){
 		
-		GD gd4 = new GD(-140.00, 140.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd4 = new GD(41.3153408,-4.9176332);
 		
 		Parada pc[] = l1.getParadasCercanas(gd4);
 		
-		Parada pcS[] = {p2, p3};
+		Parada pcS[] = {p1, p2, p3};
 		
 		assertNotNull(l1);
 		assertNotNull(pc);
@@ -89,18 +90,5 @@ public class LineaGetParadasCercanasTest {
 		
 		assertNotNull(l1);
 		assertFalse(e);
-		
-		fail("Hacemos que el test falle ya que la fake implementacion de existe.. devuelve siempre false");
 	}
-	
-	@Test (expected = IllegalArgumentException.class)
-	public void testGetParadasCercanasNoValidoGDNulo(){
-		l1.getParadasCercanas(null);
-	}
-	
-	@Test (expected = IllegalArgumentException.class)
-	public void testExistenParadasCercanasNoValidoGDNulo(){
-		l1.existeParadasCercanas(null);
-	}
-
 }
