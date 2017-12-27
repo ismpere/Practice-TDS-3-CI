@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category({Integration.class})
+@Category({Integration.class, Unit.class})
 public class ParadaBlackBoxIntegrationTest {
 
 	private static final double ERROR_ADMISIBLE = 0.01;

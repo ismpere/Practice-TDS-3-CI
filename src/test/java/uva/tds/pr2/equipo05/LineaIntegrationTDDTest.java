@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category({Integration.class, TDD.class})
+@Category({Integration.class, TDD.class, Unit.class})
 public class LineaIntegrationTDDTest {
 	
 	private GD gd1 = new GD (41.3154608,-4.9177346);

@@ -12,7 +12,7 @@ import org.junit.experimental.categories.Category;
  * @author ismpere
  * @author martorb
  */
-@Category({Secuence.class})
+@Category({Secuence.class, Unit.class})
 public class LineaSecuenceTest {
 
 	private GD gd1 = new GD (41.3154608,-4.9177346);

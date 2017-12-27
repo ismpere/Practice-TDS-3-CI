@@ -14,7 +14,7 @@ import org.junit.experimental.categories.Category;
  * @author ismpere
  * @author martorb
  */
-@Category({Integration.class})
+@Category({Integration.class, Unit.class})
 public class RedAutobusesGetLineasConParadasCercanasTest{
    
     private GD gd1 = new GD (41.3154608,-4.9177346);

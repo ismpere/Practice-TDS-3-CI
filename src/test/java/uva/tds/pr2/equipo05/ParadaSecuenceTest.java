@@ -10,7 +10,7 @@ import org.junit.experimental.categories.Category;
  * @author ismpere
  * @author martorb
  */
-@Category({Secuence.class})
+@Category({Secuence.class, Unit.class})
 public class ParadaSecuenceTest {
 
 	private static final double ERROR_ADMISIBLE = 0.01;
