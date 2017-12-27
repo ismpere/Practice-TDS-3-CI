@@ -159,6 +159,15 @@ public class ParadaBlackBoxUnitTest {
     	assertNotNull(p1);
     	assertFalse(iguales);
     }
+    
+    @Test
+    public void testHashCodeValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	int a = p1.hashCode();
+    	
+    	assertNotNull(p1);
+    }
 
 	@Test(expected = AssertionError.class)
 	public void testInicializaParadaNoValidoIdVacio(){
@@ -175,6 +184,18 @@ public class ParadaBlackBoxUnitTest {
 	@Test(expected = AssertionError.class)
 	public void testInicializaParadaNoValidoGDNulo(){
 		p1 = new Parada("a", null);
+	}
+	@Test(expected = AssertionError.class)
+	public void testInicializaParadaNoValidoGDNuloIDNulo(){
+		p1 = new Parada(null, null);
+	}
+	@Test(expected = AssertionError.class)
+	public void testInicializaParadaNoValidoGDNuloIDGrande(){
+		p1 = new Parada("CincoCincoCincoCincoCincoCincoCincoCincoCincoCinco+", null);
+	}
+	@Test(expected = AssertionError.class)
+	public void testInicializaParadaNoValidoGDNuloIDVacio(){
+		p1 = new Parada("", null);
 	}
 	@Test(expected = AssertionError.class)
 	public void testCalculaDistanciaEntreParadasNoValidoParadaNulo(){
