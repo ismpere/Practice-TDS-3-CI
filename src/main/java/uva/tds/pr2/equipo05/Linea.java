@@ -216,6 +216,27 @@ public class Linea{
 		}
 		return e;
 	}
+	
+	/**
+	 * Devuelve si hay paradas cercanas de esa linea a una direccion y en un radio de distancia dado
+	 * @param gd Direccion desde la que queremos comprobar si hay paradas cercanas
+	 * @param radio Radio de distancia máxima de la parada hasta las buscadas
+	 * @return existenParadasCercanas
+	 * @throws IllegalArgumentException si gd==null
+	 */
+	public boolean existeParadasCercanas(GD gd, double radio) {
+		if(gd==null)
+			throw new IllegalArgumentException();
+		
+		boolean e = false;
+		for(int i=0; i<paradas.size(); i++){
+			if(gd.getDistanciaAt(paradas.get(i).getGD())<radio){
+				e = true;
+				break;
+			}
+		}
+		return e;
+	}
 	/**
 	 * Devuelve la lista de paradas con correspondencia de this con l
 	 * Esta lista estara vacia si no hay ninguna parada con correspondencia con l
