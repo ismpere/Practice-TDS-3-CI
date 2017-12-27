@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
  
-@Category({Integration.class, Unit.class})
+@Category({Integration.class})
 public class RedAutobusesIntegrationBlackBoxTest {
    
     private GD gd1 = new GD (41.3154608,-4.9177346);

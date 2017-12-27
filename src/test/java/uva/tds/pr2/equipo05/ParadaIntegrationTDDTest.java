@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-@Category({Integration.class, TDD.class, Unit.class})
+@Category({Integration.class, TDD.class})
 public class ParadaIntegrationTDDTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;

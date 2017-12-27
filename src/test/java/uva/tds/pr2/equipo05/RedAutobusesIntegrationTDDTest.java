@@ -13,7 +13,7 @@ import org.junit.experimental.categories.Category;
  * @author martorb
  */
 
-@Category({Integration.class, TDD.class, Unit.class})
+@Category({Integration.class, TDD.class})
 public class RedAutobusesIntegrationTDDTest {
 
 	private GD gd1 = new GD (41.3154608,-4.9177346);

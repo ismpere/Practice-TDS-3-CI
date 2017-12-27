@@ -12,7 +12,7 @@ import org.junit.experimental.categories.Category;
  * @author ismael
  * @author martorb
  */
-@Category({Integration.class, Unit.class})
+@Category({Integration.class})
 public class LineaGetParadasConTransbordoDirectoTest {
 
 	private GD gd1 = new GD (41.3154608,-4.9177346);
