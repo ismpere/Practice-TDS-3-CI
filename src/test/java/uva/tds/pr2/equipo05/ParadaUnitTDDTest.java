@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 /**
  * Implementacion de la clase de test de Parada
  * @author ismpere
  * @author martorb
  */
-public class ParadaTDDTest {
+@Category({Unit.class, TDD.class})
+public class ParadaUnitTDDTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;
 	private GD gd1;
@@ -18,7 +20,7 @@ public class ParadaTDDTest {
 	
 	@Before
     public void setUp() throws Exception {
-        gd1 = new GD (-179.99,179.99);
+        gd1 = new GD (179.99,179.99);
     }
      
     @After
@@ -28,7 +30,7 @@ public class ParadaTDDTest {
     }
 
 	@Test
-	public void testInicializaParadaValido() {
+	public void testInicializaParadaIdPequenioValido() {
 		p1 = new Parada("a", gd1);
 		
 		assertNotNull(p1);
@@ -37,7 +39,27 @@ public class ParadaTDDTest {
 	}
 	
 	@Test
-	public void testSetIDValido(){
+    public void testGetIdParadaValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	String id = p1.getId();
+    	
+    	assertNotNull(gd1);
+    	assertEquals("a", id);
+    }
+    
+    @Test
+    public void testGetGDParadaValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	GD gd = p1.getGD();
+    	
+    	assertNotNull(gd1);
+    	assertEquals(gd1, gd);
+    }
+	
+	@Test
+	public void testSetIDValidoPequenio(){
 		p1 = new Parada("a", gd1);
 		
 		p1.setId("b");
@@ -60,30 +82,14 @@ public class ParadaTDDTest {
 	}
 	
 	@Test
-	public void testCalculaDistanciaEntreParadasGDValido(){
+	public void testHayParadasRepetidasDosParadasValido(){
 		p1 = new Parada("a", gd1);
-		GD gd2 = new GD(179.99, -179.99);
-		Parada p2 = new Parada("b", gd2);
 		
-		double distancia = p1.getDistanciaEntre(p2);
-		
-		assertNotNull(p1);
-		assertNotNull(p2);
-		assertEquals(200.00, distancia, ERROR_ADMISIBLE); //TODO Es un valor aleatorio, comprobar al implementar
-	}
-	
-	@Test
-	public void testHayParadasRepetidasValido(){
-		p1 = new Parada("a", gd1);
-		GD gd2 = new GD(179.99, -179.99);
-		Parada p2 = new Parada("b", gd2);
-		
-		Parada p3[] = {p1, p2, p2};
+		Parada p3[] = {p1, p1};
 		
 		boolean repetidas = Parada.existeAlgunaParadaRepetida(p3);
 		
 		assertNotNull(p1);
-		assertNotNull(p2);
 		assertTrue(repetidas);
 	}
 }

@@ -5,17 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  * Implementacion de la clase de test de secuencia de Linea
  * @author ismpere
  * @author martorb
  */
+@Category({Secuence.class})
 public class LineaSecuenceTest {
 
-	private GD gd1 = new GD (-179.99,179.99); //TODO las direcciones hay que ajustarlas, son aleatorias
-	private GD gd2 = new GD (-178.99,178.99);
-	private GD gd3 = new GD (-177.99,177.99);
+	private GD gd1 = new GD (41.3154608,-4.9177346);
+	private GD gd2 = new GD (41.3123926,-4.9176796);
+	private GD gd3 = new GD (41.3153508,-4.9176232);
 	private Parada p1, p2, p3;
 
 	@Before
@@ -37,12 +39,12 @@ public class LineaSecuenceTest {
 		GD gd4 = new GD(-160.00,160.00);
 		Parada p4 = new Parada("d", gd4);
 		
-		Parada p[] = {p1,p2,p3,p4};
+		Parada p[] = {p1,p2,p4,p3};
 		Linea l1 = new Linea(1, p);
 		
 		l1.removeParadaIntermedia(p2);
 		
-		Parada pa2[] = {p1,p2,p3};
+		Parada pa2[] = {p1,p4,p3};
 		
 		assertArrayEquals(pa2, l1.getParadas());
 		assertEquals(1, l1.getId());
@@ -53,11 +55,11 @@ public class LineaSecuenceTest {
 		GD gd4 = new GD(-160.00,160.00);
 		Parada p4 = new Parada("d", gd4);
 		
-		Parada p[] = {p1,p2,p3,p4};
+		Parada p[] = {p1,p2,p4,p3};
 		Linea l1 = new Linea(1, p);
 		
 		l1.removeParadaIntermedia(p2);
-		l1.removeParadaIntermedia(p3);
+		l1.removeParadaIntermedia(p4);
 	}
 	
 	@Test
@@ -65,7 +67,7 @@ public class LineaSecuenceTest {
 		Parada p[] = {p1,p2,p3};
 		Linea l1 = new Linea(1, p);
 		
-		GD gd4 = new GD(-160.00,160.00); //TODO las direcciones son aleatorias, poner direcciones que cumplan esto
+		GD gd4 = new GD(41.3157608,-4.9175546);
 		Parada p4 = new Parada("d", gd4);
 		
 		l1.addParadaIntermedia(p4);
@@ -76,13 +78,13 @@ public class LineaSecuenceTest {
 		l1.addParadaIntermediaAt(p5, 3);
 		
 		Parada pa2[] = l1.getParadas();
-		Parada listaP1[] = {p1, p2, p5, p4, p3};
-		
-		l1.removeParadaIntermedia(p4);
-		Parada pa4[] = l1.getParadas();
-		Parada listaP2[] = {p1, p2, p5, p3};
+		Parada listaP1[] = {p1, p4, p5, p2, p3};
 		
 		l1.removeParadaIntermedia(p5);
+		Parada pa4[] = l1.getParadas();
+		Parada listaP2[] = {p1, p4, p2, p3};
+		
+		l1.removeParadaIntermedia(p4);
 		
 		Parada pa3[] = l1.getParadas();
 		
@@ -99,7 +101,7 @@ public class LineaSecuenceTest {
 		
 		int id1 = l1.getId();
 		
-		GD gd4 = new GD(-160.00,160.00); //TODO las direcciones son aleatorias, poner direcciones que cumplan esto
+		GD gd4 = new GD(41.3153408,-4.9176332);
 		Parada p4 = new Parada("d", gd4);
 		
 		l1.setParadaInicio(p4);
@@ -108,7 +110,7 @@ public class LineaSecuenceTest {
 		Parada pa2[] = l1.getParadas();
 		Parada listaP1[] = {p4,p1,p2,p3};
 		
-		GD gd5 = new GD(-110.00,110.00);
+		GD gd5 = new GD(41.3153598,-4.9175832);
 		Parada p5 = new Parada("d", gd5);
 		
 		l1.setParadaFin(p5);
@@ -135,16 +137,16 @@ public class LineaSecuenceTest {
 		Parada.existeAlgunaParadaRepetida(p);
 		Linea l1 = new Linea(1, p);
 		
-		GD gd_bus = new GD(-140.00, 140.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
+		GD gd_bus = new GD(-140.00, 140.00);
 		
 		Parada pc[] = l1.getParadasCercanas(gd_bus);
 		
-		GD gd4 = new GD(-100.00, 100.00);
+		GD gd4 = new GD(41.308344,-4.9180686);
     	Parada p4 = new Parada("d", gd4);
-    	GD gd5 = new GD(-110.00, 110.00);
-    	Parada p5 = new Parada("d", gd5);
+    	GD gd5 = new GD(41.3153708,-4.9177132);
+    	Parada p5 = new Parada("e", gd5);
 		
-		Parada pa3[] = {p1, p4, p5}; //TODO son paradas aleatorias, poner paradas que lo cumplan
+		Parada pa3[] = {p1, p4, p5};
 		Parada.existeAlgunaParadaRepetida(pa3);
 		Linea l2 = new Linea(2, pa3);
 		
@@ -162,6 +164,8 @@ public class LineaSecuenceTest {
 		assertNotNull(pcc);
 		assertNotNull(pct);
 		assertNotNull(pcc2);
-		assertArrayEquals(pcc, pct); //TODO hay que poner valores para que esto se cumpla
+		assertEquals(2, pcc.length);
+		assertEquals(1, pct.length);
+		assertEquals(2, pcc.length);
 	}
 }
