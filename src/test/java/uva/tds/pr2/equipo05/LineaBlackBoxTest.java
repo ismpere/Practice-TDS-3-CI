@@ -190,7 +190,7 @@ public class LineaBlackBoxTest {
 		assertArrayEquals(p, pct);
 	}
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testInicializaNoValidoParadasNulo(){
     	Linea l1 = new Linea(1, null);
     }
@@ -213,19 +213,19 @@ public class LineaBlackBoxTest {
     	Linea l1 = new Linea(1, p);
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testInicializaNoValidoParadaInicioNulo(){
     	Parada p[] = {null, p1, p2};
     	Linea l1 = new Linea(1, p);
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testInicializaNoValidoParadaFinNulo(){
     	Parada p[] = {p1, p2, null};
     	Linea l1 = new Linea(1, p);
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testInicializaNoValidoParadaIntermediaNulo(){
     	Parada p[] = {p1, null, p2};
     	Linea l1 = new Linea(1, p);
@@ -240,7 +240,7 @@ public class LineaBlackBoxTest {
     	
     	l1.setParadaInicio(p4);
     }
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testsetParadaInicioNoValidoNulo(){
     	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
@@ -264,7 +264,7 @@ public class LineaBlackBoxTest {
     	
     	l1.setParadaFin(p4);
     }
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testsetParadaFinNoValidoNulo(){
     	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
@@ -278,7 +278,7 @@ public class LineaBlackBoxTest {
     	
     	l1.setParadaInicio(p3);
     }
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testaddParadaIntermediaNoValidoNulo(){
     	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
@@ -292,7 +292,7 @@ public class LineaBlackBoxTest {
     	
     	l1.addParadaIntermedia(p1);
     }
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testaddParadaAtPosicionNoValidoNulo(){
     	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
@@ -372,7 +372,7 @@ public class LineaBlackBoxTest {
     	
     	l1.removeParadaIntermedia(p4);
     }
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testEliminaParadaIntermediaNoValidoParadaNulo(){
     	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
@@ -380,7 +380,7 @@ public class LineaBlackBoxTest {
     	l1.removeParadaIntermedia(null);
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = AssertionError.class)
     public void testContainsParadaNoValidoParanaNulo(){
     	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
@@ -388,12 +388,12 @@ public class LineaBlackBoxTest {
     	l1.contains(null);
     }
     
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testLineasRepetidasNoValidoListaVacia() {
 		Boolean r=Linea.lineasRepetidas(null);
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testLineasRepetidasNoValidoAlgunaLineaNula() {
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -401,13 +401,13 @@ public class LineaBlackBoxTest {
 		Boolean r=Linea.lineasRepetidas(lista_lineas);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testHayLineasRepetidasNoValidoLineasNulo(){
 		
 		Linea.lineasRepetidas(null);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testHayLineasRepetidasNoValidoAlgunaLineaNulo(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -417,7 +417,7 @@ public class LineaBlackBoxTest {
 		Linea.lineasRepetidas(l);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testGetParadasCercanasNoValidoGDNulo(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -425,7 +425,7 @@ public class LineaBlackBoxTest {
 		l1.getParadasCercanas(null);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testExistenParadasCercanasNoValidoGDNulo(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -433,7 +433,7 @@ public class LineaBlackBoxTest {
 		l1.existeParadasCercanas(null);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testGetParadasConCorrespondenciaNoValidoLineaNulo(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -441,7 +441,7 @@ public class LineaBlackBoxTest {
 		l1.getParadasConCorrespondencia(null);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testExisteCorrespondenciaNoValidoLineaNulo(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -449,7 +449,7 @@ public class LineaBlackBoxTest {
 		l1.existeCorrespondencia(null);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testGetParadasConTransbordoDirectoNoValidoLineaNulo(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
@@ -457,7 +457,7 @@ public class LineaBlackBoxTest {
 		l1.getParadasConTransbordoDirecto(null);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testExisteTransbordoDirectoNoValidoLineaNulo(){
 		Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
