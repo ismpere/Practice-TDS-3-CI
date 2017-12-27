@@ -7,7 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
     RedAutobusesTDDTest.class,
-    RedAutobusesBlackBoxTest.class,
+    RedAutobusesUnitBlackBoxTest.class,
+    RedAutobusesIntegrationTDDTest.class,
     RedAutobusesGetLineasConParadasCercanasTest.class,
     RedAutobusesSecuenceTest.class})
 
