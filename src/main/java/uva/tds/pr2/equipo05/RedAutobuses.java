@@ -63,8 +63,8 @@ public class RedAutobuses {
 	 * @assert.post !(red.contains(linea)) && red.getAllLineas.length>1
 	 */
 	public void deleteLinea(Linea linea){
-		assert(linea!=null && contains(linea));
-		assert(mapa_lineas.size()>2);
+		assert(linea!=null && mapa_lineas.size()>2);
+		assert(contains(linea));
 		mapa_lineas.remove(linea.getId());
 	}
 	
