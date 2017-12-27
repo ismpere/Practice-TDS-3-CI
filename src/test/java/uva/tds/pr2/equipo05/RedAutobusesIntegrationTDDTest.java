@@ -6,6 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Implementacion de la clase de test  de integración TDD de RedAutobuses
+ * @author ismpere
+ * @author martorb
+ */
 public class RedAutobusesIntegrationTDDTest {
 
 	private GD gd1 = new GD (41.3154608,-4.9177346);
@@ -41,13 +46,7 @@ public class RedAutobusesIntegrationTDDTest {
         p5 = null;
         p6 = null;
     }
-    
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-	
-
+  
 	@Test
 	public void testInicializaRedValido() {  //integr
 		Linea l1 = new Linea(1, lp1);
@@ -79,7 +78,9 @@ public class RedAutobusesIntegrationTDDTest {
 	@Test
 	public void testGetLineasConParadasCercanasValido(){
 		
-		GD gd_busq= new GD(-179.98,179.99);
+		GD gd_busq= new GD(41.3155000,-4.9177300);
+		Linea l1 = new Linea(1, lp1);
+		Linea l2 = new Linea(2,lp2);
 		Linea[] lista_lineas={l1,l2};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
