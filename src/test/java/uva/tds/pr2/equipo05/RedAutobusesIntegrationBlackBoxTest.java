@@ -4,18 +4,12 @@ import static org.junit.Assert.*;
  
 import org.junit.After;
 import org.junit.Before;
- 
-import uva.tds.pr2.equipo05.*;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-/**
- * Implementacion de la clase de test TDD de RedAutobuses
- * @author ismpere
- * @author martorb
- */
-@Category({Unit.class, TDD.class})
-public class RedAutobusesTDDTest {
  
+@Category({Integration.class})
+public class RedAutobusesIntegrationBlackBoxTest {
+   
     private GD gd1 = new GD (41.3154608,-4.9177346);
     private GD gd2 = new GD (41.3142809,-4.9189326);
     private GD gd3 = new GD (41.3153508,-4.9176232);
@@ -30,12 +24,13 @@ public class RedAutobusesTDDTest {
     private Parada p5 = new Parada("e", gd5);
     private Parada p6 = new Parada("f", gd6);
    
+    private Parada p_1[] = {p1,p2,p3};
+    private Parada p_2[] = {p4,p5,p6};
+   
     private Linea l1, l2;
    
     @Before
     public void setUp() throws Exception {
-        Parada p_1[] = {p1,p2,p3};
-        Parada p_2[] = {p4,p5,p6};
        
         l1= new Linea(1,p_1);
         l2= new Linea(2,p_2);
@@ -46,28 +41,31 @@ public class RedAutobusesTDDTest {
         l1= null;
         l2= null;
     }
+ 
+    @Test (expected = AssertionError.class)
+    public void testAddLineaNoValidoLineaRepetida() {
+       
+        Linea[] lista_lineas={l1,l2};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+        red.addLinea(l1);
+    }
    
-    @Test
-    public void testContieneParadaPorIdValido(){
+    @Test (expected = AssertionError.class)
+    public void testDeleteLineaNoValidoLineaNoExisteEnRed() {
+       
+        GD gd4 = new GD(-100.00, 100.00);  
+        GD gd5 = new GD(-100.0002, 100.00);
+        GD gd6 = new GD(-100.00001, 100.00);
+        Parada p4 = new Parada("d", gd4);
+        Parada p5 = new Parada("d", gd5);
+        Parada p6 = new Parada("d", gd6);
+       
+        Parada pa3[] = {p4, p5, p6};
+        Linea l3 = new Linea(2, pa3);
+       
         Linea[] lista_lineas={l1,l2};
         RedAutobuses red= new RedAutobuses(lista_lineas);
-       
-        boolean c = red.contains(1);
-       
-        assertNotNull(red);
-        assertTrue(c);
+        red.deleteLinea(l3);
     }
-    
-    @Test
-    public void testGetLineaPorIdValido(){
-        Linea[] lista_lineas={l1,l2};
-        RedAutobuses red= new RedAutobuses(lista_lineas);
-       
-        Linea l = red.getLinea(1);
-       
-        assertNotNull(red);
-        assertNotNull(l);
-        assertEquals(l1, l);
-    }
-  
+ 
 }

@@ -23,8 +23,8 @@ public class RedAutobuses {
 	 */
 	public RedAutobuses(Linea[] lista_lineas){
 		assert(lista_lineas!=null && lista_lineas.length>1);
-		assert(Linea.lineasRepetidas(lista_lineas));
-		assert(!new ArrayList<Linea>(Arrays.asList(lista_lineas)).contains(null));
+		assert(!Linea.lineasRepetidas(lista_lineas));
+		assert(!Arrays.asList(lista_lineas).contains(null));
 		
 		for(int i=0; i<lista_lineas.length;i++){
 			mapa_lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
@@ -35,12 +35,11 @@ public class RedAutobuses {
 	 * Devuelve una línea de la red a partir de su identificador
 	 * @param id Número que identifica la línea
 	 * @return líneaBuscada
-	 * @assert.pre this.contains(id)
+	 * @assert.pre contains(id)
 	 */
 	public Linea getLinea(int id){
-		assert(mapa_lineas.containsKey(id));
-		Linea res=mapa_lineas.get(id);
-		return res;
+		assert(contains(id));
+		return mapa_lineas.get(id);
 	}
 	
 	/**
@@ -51,7 +50,7 @@ public class RedAutobuses {
 	 */
 	public void addLinea(Linea linea){
 		assert(linea!=null);
-		assert(!this.contains(linea));
+		assert(!contains(linea));
 		mapa_lineas.put(linea.getId(), linea);
 	}
 	
@@ -63,8 +62,8 @@ public class RedAutobuses {
 	 * @assert.post !(red.contains(linea)) && red.getAllLineas.length>1
 	 */
 	public void deleteLinea(Linea linea){
-		assert(linea!=null && this.contains(linea));
-		assert(mapa_lineas.size()>2);
+		assert(linea!=null && mapa_lineas.size()>2);
+		assert(contains(linea));
 		mapa_lineas.remove(linea.getId());
 	}
 	
@@ -138,6 +137,7 @@ public class RedAutobuses {
 		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
 			if(entr.getValue().existeParadasCercanas(direccion,radio)){
 				res=true;
+				break;
 			}
 		}
 		return res;

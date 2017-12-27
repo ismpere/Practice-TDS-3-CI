@@ -24,7 +24,7 @@ public class Linea{
 	 */
 	public Linea(int id, Parada[] paradas) {
 		assert(paradas!=null && paradas.length>2);
-		assert(!new ArrayList<Parada>(Arrays.asList(paradas)).contains(null));
+		assert(!Arrays.asList(paradas).contains(null));
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
 		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100.00);
 		
