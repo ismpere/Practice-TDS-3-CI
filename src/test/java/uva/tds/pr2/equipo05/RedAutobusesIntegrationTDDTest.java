@@ -5,12 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  * Implementacion de la clase de test  de integración TDD de RedAutobuses
  * @author ismpere
  * @author martorb
  */
+
+@Category({Integration.class, TDD.class})
 public class RedAutobusesIntegrationTDDTest {
 
 	private GD gd1 = new GD (41.3154608,-4.9177346);
