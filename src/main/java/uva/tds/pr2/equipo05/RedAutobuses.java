@@ -35,10 +35,10 @@ public class RedAutobuses {
 	 * Devuelve una línea de la red a partir de su identificador
 	 * @param id Número que identifica la línea
 	 * @return líneaBuscada
-	 * @assert.pre this.contains(id)
+	 * @assert.pre contains(id)
 	 */
 	public Linea getLinea(int id){
-		assert(mapa_lineas.containsKey(id));
+		assert(contains(id));
 		Linea res=mapa_lineas.get(id);
 		return res;
 	}
