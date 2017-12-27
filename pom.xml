@@ -49,7 +49,7 @@
 		<profile>
 			<id>Integration</id>
 			<properties>
-				<testcase.groups>uva.tds.pr2.equipo05.Integration</testcase.groups>
+				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
 		</profile>
     <profile>
