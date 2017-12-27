@@ -18,23 +18,28 @@ import org.junit.experimental.categories.Category;
 @Category({Secuence.class, Integration.class})
 public class RedAutobusesSecuenceTest {
 	
-	private GD gd1 = new GD (-179.99,179.99);
-	private GD gd2 = new GD (-178.99,178.99);
-	private GD gd3 = new GD (-177.99,177.99);
-	private GD gd4 = new GD (-176.99,176.99);
-	
-	private Parada p1= new Parada("1",gd1);
-	private Parada p2= new Parada("2",gd2);
-	private Parada p3= new Parada("3",gd3);
-	private Parada p4= new Parada("4",gd4);
-	
+
+	 private GD gd1 = new GD (41.3154608,-4.9177346);
+	 private GD gd2 = new GD (41.3142809,-4.9189326);
+	 private GD gd3 = new GD (41.3153508,-4.9176232);
+     private GD gd4 = new GD (41.308344,-4.9180686);
+     private GD gd5 = new GD (41.3123926,-4.9176796);
+     private GD gd6 = new GD (41.3078393,-4.9181145);
+     
+	 private Parada p1 = new Parada("a",gd1);
+	 private Parada p2 = new Parada("b",gd2);
+	 private Parada p3 = new Parada("c",gd3);
+	 private Parada p4 = new Parada("d", gd4);
+	 private Parada p5 = new Parada("e", gd5);
+	 private Parada p6 = new Parada("f", gd6);
+	   
 	private Linea l1, l2,l3;
 	
 	@Before
     public void setUp() throws Exception {
 		Parada p_1[] = {p1,p2,p3};
-		Parada p_2[] = {p2,p3,p4};
-		Parada p_3[] = {p4,p1,p2};
+		Parada p_2[] = {p4,p5,p6};
+		Parada p_3[] = {p3,p2,p1};
 		l1= new Linea(1,p_1);
 		l2= new Linea(2,p_2);
 		l3= new Linea(3,p_3);
