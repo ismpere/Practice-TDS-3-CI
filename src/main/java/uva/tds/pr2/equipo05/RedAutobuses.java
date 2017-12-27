@@ -138,6 +138,7 @@ public class RedAutobuses {
 		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
 			if(entr.getValue().existeParadasCercanas(direccion,radio)){
 				res=true;
+				break;
 			}
 		}
 		return res;
