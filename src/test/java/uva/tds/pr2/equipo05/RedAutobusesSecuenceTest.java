@@ -15,7 +15,7 @@ import org.junit.experimental.categories.Category;
  * @author ismpere
  *
  */
-@Category({Sequence.class, Integration.class})
+@Category({Secuence.class, Integration.class})
 public class RedAutobusesSecuenceTest {
 	
 	private GD gd1 = new GD (-179.99,179.99);
