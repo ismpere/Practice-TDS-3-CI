@@ -47,51 +47,47 @@ public class RedAutobusesIntegrationTDDTest {
         l2= null;
     }
     
-	@Test
-	public void testInicializaRedValido() {  //integr
-		Linea l1 = new Linea(1, lp1);
-		Linea l2 = new Linea(2,lp2);
-		Linea[] lista_lineas={l1,l2};
-		RedAutobuses red= new RedAutobuses(lista_lineas);
-		
-		assertNotNull(red);
-		assertArrayEquals(lista_lineas, red.getAllLineas());
-	}
+    @Test
+    public void testInicializaRedValido() {
+       
+        Linea[] lista_lineas={l1,l2};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+       
+        assertNotNull(red);
+        assertArrayEquals(lista_lineas, red.getAllLineas());
+    }
+   
 	
-	@Test
-	public void testExistenLineasConParadasCercanasValido(){
-		
-		GD gd_busq= new GD(41.3155000,-4.9177300);
-		Linea l1 = new Linea(1, lp1);
-		Linea l2 = new Linea(2,lp2);
-		Linea[] lista_lineas={l1,l2};
-		RedAutobuses red= new RedAutobuses(lista_lineas);
-		
-		boolean e = red.existenLineasConParadasCercanas(gd_busq, 1000);
-		
-		Linea[] lcS = {l1};
-		
-		assertNotNull(red);
-		assertTrue(e);				
-	}
+	 @Test
+	    public void testExistenLineasConParadasCercanasValido(){
+	       
+	        GD gd_busq = new GD (41.3143109,-4.9188026);
+	        Linea[] lista_lineas={l1,l2};
+	        RedAutobuses red= new RedAutobuses(lista_lineas);
+	       
+	        boolean e = red.existenLineasConParadasCercanas(gd_busq, 1000);
+	       
+	        Linea[] lcS = {l1};
+	       
+	        assertNotNull(red);
+	        assertTrue(e);             
+	    }
 	
-	@Test
-	public void testGetLineasConParadasCercanasValido(){
-		
-		GD gd_busq= new GD(41.3155000,-4.9177300);
-		Linea l1 = new Linea(1, lp1);
-		Linea l2 = new Linea(2,lp2);
-		Linea[] lista_lineas={l1,l2};
-		RedAutobuses red= new RedAutobuses(lista_lineas);
-		
-		Linea[] lineas_cercanas=red.getLineasConParadasCercanas(gd_busq,1000);
-		
-		Linea[] lcS = {l1};
-		
-		assertNotNull(red);
-		assertNotNull(lineas_cercanas);
-		assertTrue(red.existenLineasConParadasCercanas(gd_busq, 1000));
-		assertArrayEquals(lcS, lineas_cercanas);		
-	}
+	  @Test
+	    public void testGetLineasConParadasCercanasValido(){
+	       
+	        GD gd_busq = new GD (41.3143109,-4.9188026);
+	        Linea[] lista_lineas={l1,l2};
+	        RedAutobuses red= new RedAutobuses(lista_lineas);
+	       
+	        Linea[] lineas_cercanas=red.getLineasConParadasCercanas(gd_busq, 100);
+	       
+	        Linea[] lcS = {l1};
+	       
+	        assertNotNull(red);
+	        assertNotNull(lineas_cercanas);
+	        assertTrue(red.existenLineasConParadasCercanas(gd_busq, 100));
+	        assertArrayEquals(lcS, lineas_cercanas);       
+	    }
 
 }
