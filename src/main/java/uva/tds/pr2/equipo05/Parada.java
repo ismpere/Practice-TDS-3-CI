@@ -17,13 +17,13 @@ public class Parada{
 	 * @param id Identificador de la parada
 	 * @param gd Direccion de la parada
 	 * @assert.pre id.length>0 && id.length<=50
-	 * @throws IllegalArgumentException si gd==null || id==null
+	 * @assert.pre gd!=null
+	 * @assert.pre id!=null
 	 */
 	public Parada(String id, GD gd) {
-		if(id==null || gd==null)
-			throw new IllegalArgumentException();
-		
 		assert(id.length()>0 && id.length()<=50);
+		assert(gd!=null);
+		assert(id!=null);
 		
 		this.id = id;
 		this.gd = gd;
