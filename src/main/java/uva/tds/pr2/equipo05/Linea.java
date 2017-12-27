@@ -17,16 +17,18 @@ public class Linea{
 	 * Constructor por defecto de la clase Linea
 	 * @param id de la Linea
 	 * @param paradas de la linea
-	 * @assert.pre paradas.length>3
+	 * @assert.pre paradas.length>2
 	 * @assert.pre !Parada.existeAlgunaParadaRepetida(paradas)
+	 * @assert.pre paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100
 	 * @throws IllegalArgumentException si paradas==null || alguna de las paradas de paradas es null
 	 */
 	public Linea(int id, Parada[] paradas) {
-		if(paradas==null || new ArrayList<Parada>(Arrays.asList(paradas)).contains(null))
+		if(paradas==null || Arrays.asList(paradas).contains(null))
 			throw new IllegalArgumentException();
 		
-		assert(paradas.length>3);
+		assert(paradas.length>2);
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
+		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100.00);
 		
 		this.id = id;
 		this.paradas = new ArrayList<>(Arrays.asList(paradas));
@@ -44,6 +46,7 @@ public class Linea{
 	 */
 	public Parada[] getParadas() {
 		Parada[] p = new Parada[paradas.size()];
+		
 		paradas.toArray(p);
 		
 		return p;
@@ -69,8 +72,29 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void addParadaIntermedia(Parada p) {
-		// TODO Auto-generated method stub
+		if(p==null)
+			throw new IllegalArgumentException();
 		
+		assert(!contains(p));
+		
+		double dMin;
+		double dAux1; 
+		double dAux2;
+		int iP = 1;
+		
+		dAux1 = p.getDistanciaEntre(paradas.get(0));
+		dAux2 = p.getDistanciaEntre(paradas.get(1));
+		dMin = dAux1 + dAux2;
+		
+		for(int i=1; i<paradas.size()-1; i++){
+			dAux1 = p.getDistanciaEntre(paradas.get(i));
+			dAux2 = p.getDistanciaEntre(paradas.get(i+1));
+			if((dAux1+dAux2)<dMin){
+				dMin = dAux1+dAux2;
+				iP = i+1;
+			}	
+		}
+		addParadaIntermediaAt(p, iP+1);
 	}
 	/**
 	 * Cambia el identificador de la linea
@@ -110,7 +134,7 @@ public class Linea{
 		assert(!contains(p));
 		assert(p.getDistanciaEntre(getParadaInicio())<100);
 		
-		paradas.add(paradas.size()-1, p);
+		paradas.add(p);
 	}
 	/**
 	 * Añade la parada intermedia en la posicion seleccionada
@@ -125,7 +149,7 @@ public class Linea{
 			throw new IllegalArgumentException();
 		
 		assert(!contains(p));
-		assert(i>1 && i<paradas.size());
+		assert(i>1 && i<paradas.size()+1);
 		
 		paradas.add(i-1, p);
 	}
@@ -211,7 +235,7 @@ public class Linea{
 		Parada[] p = l.getParadas();
 		for(int i=0; i<paradas.size(); i++){
 			for(int j=0; j<l.getParadas().length; j++){
-				if(paradas.get(i).getDistanciaEntre(p[j])<200){
+				if(paradas.get(i).getDistanciaEntre(p[j])<200 && !pAux.contains(paradas.get(i))){
 					pAux.add(paradas.get(i));
 				}
 			}
@@ -317,7 +341,7 @@ public class Linea{
 	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
 	 */
 	public static boolean lineasRepetidas(Linea[] l){
-		if(l==null || new ArrayList<Linea>(Arrays.asList(l)).contains(null))
+		if(l==null || Arrays.asList(l).contains(null))
 			throw new IllegalArgumentException();
 		
 		if(l.length<2)
@@ -336,5 +360,20 @@ public class Linea{
 			}
 			return repetida;
 		}
+	}
+	
+	@Override
+	/**
+	 * @see 
+	 */
+	public boolean equals(Object other){
+	    if (other == null) 
+	    	return false;
+	    if (other == this) 
+	    	return true;
+	    if (!(other instanceof Linea))
+	    	return false;
+	    
+	    return paradas.equals(((Linea)other).getParadas());
 	}
 }

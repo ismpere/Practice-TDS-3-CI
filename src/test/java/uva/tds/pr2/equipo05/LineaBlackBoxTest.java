@@ -5,17 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  * Implementacion de la clase de test de caja negra (no tiene todos) de la clase Linea
  * @author ismpere
  * @author martorb
  */
+@Category({Unit.class})
 public class LineaBlackBoxTest {
 
-	private GD gd1 = new GD (-179.99,179.99); //TODO las direcciones hay que ajustarlas, son aleatorias
-	private GD gd2 = new GD (-178.99,178.99);
-	private GD gd3 = new GD (-177.99,177.99);
+	private GD gd1 = new GD (41.3154608,-4.9177346);
+	private GD gd2 = new GD (41.3142809,-4.9189326);
+	private GD gd3 = new GD (41.3153508,-4.9176232);
 	private Parada p1, p2, p3;
 
 	@Before
@@ -34,7 +36,7 @@ public class LineaBlackBoxTest {
     
     @Test
     public void testGetIdLineaValido(){
-    	Parada p[] = {p1, p3, p2};
+    	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
     	
     	int id = l1.getId();
@@ -45,7 +47,7 @@ public class LineaBlackBoxTest {
     
     @Test
     public void testGetParadasLineaValido(){
-    	Parada p[] = {p1, p3, p2};
+    	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
     	
     	Parada pa2[] = l1.getParadas();
@@ -56,7 +58,7 @@ public class LineaBlackBoxTest {
     
     @Test
     public void testNoContieneParadaValido(){
-    	Parada p[] = {p1, p3, p2};
+    	Parada p[] = {p1, p2, p3};
     	Linea l1 = new Linea(1, p);
     	
     	GD gd4 = new GD(-100.00, 100.00);
@@ -66,21 +68,17 @@ public class LineaBlackBoxTest {
 
 		assertNotNull(l1);
 		assertFalse(c);
-		
-		fail("El test pasa en verde ya que la fake implementacion de contains devuelve siempre false");
     }
     
     @Test
 	public void testNoHayLineasRepetidasValido(){
-    	Parada p[] = {p1, p3, p2};
+    	Parada p[] = {p1, p2, p3};
 		Linea l1 = new Linea(1, p);
 		
 		GD gd4 = new GD(-150.00, 150.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
 		Parada p4 = new Parada("d", gd4);
-		GD gd5 = new GD(-140.00, 140.00); //TODO son ubicaciones aleatorias, poner una valida que lo cumpla
-		Parada p5 = new Parada("d", gd5);
 		
-		Parada pa3[] = {p2, p4, p5};
+		Parada pa3[] = {p3, p4, p1};
 		Linea l2 = new Linea(2, pa3);
 		
 		Linea l[] = {l1,l2};
@@ -90,8 +88,106 @@ public class LineaBlackBoxTest {
 		assertNotNull(l1);
 		assertNotNull(l2);
 		assertFalse(repetidas);
+	}
+    
+    @Test
+	public void testExisteCorrespondenciaValidoLineaThis(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
 		
-		fail("El test no falla por si solo ya que la fake implementacion de lineasRepetidas devuelve siempre false");
+		boolean e = l1.existeCorrespondencia(l1);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
+    @Test
+	public void testExisteCorrespondenciaValidoLineaIgual(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		boolean e = l1.existeCorrespondencia(l2);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
+    @Test 
+	public void testExisteTransbordoDirectoNoValidoLineaThis(){
+    	Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		boolean e = l1.existeTransbordoDirecto(l1);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
+    @Test 
+	public void testExisteTransbordoDirectoNoValidoLineaIgual(){
+    	Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		boolean e = l1.existeTransbordoDirecto(l2);
+		
+		assertNotNull(l1);
+		assertTrue(e);
+	}
+    
+    @Test
+	public void testGetParadasConCorrespondenciaValidoLineaThis(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Parada[] pcc = l1.getParadasConCorrespondencia(l1);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeCorrespondencia(l1));
+		assertArrayEquals(p, pcc);
+	}
+    
+    @Test
+	public void testGetParadasConCorrespondenciaValidoLineaIgual(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		Parada[] pcc = l1.getParadasConCorrespondencia(l2);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeCorrespondencia(l2));
+		assertArrayEquals(p, pcc);
+	}
+    
+	@Test
+	public void testGetParadasConTransbordoDirectoValidoLineaThis(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Parada[] pct = l1.getParadasConTransbordoDirecto(l1);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeTransbordoDirecto(l1));
+		assertArrayEquals(p, pct);
+	}
+	
+	@Test
+	public void testGetParadasConTransbordoDirectoValidoLineaIgual(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		Linea l2 = new Linea(2, p);
+		
+		Parada[] pct = l1.getParadasConTransbordoDirecto(l2);
+		
+		assertNotNull(l1);
+		assertTrue(l1.existeTransbordoDirecto(l2));
+		assertArrayEquals(p, pct);
 	}
     
     @Test (expected = IllegalArgumentException.class)
@@ -320,5 +416,52 @@ public class LineaBlackBoxTest {
 		
 		Linea.lineasRepetidas(l);
 	}
-
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetParadasCercanasNoValidoGDNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.getParadasCercanas(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testExistenParadasCercanasNoValidoGDNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.existeParadasCercanas(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetParadasConCorrespondenciaNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.getParadasConCorrespondencia(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testExisteCorrespondenciaNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.existeCorrespondencia(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testGetParadasConTransbordoDirectoNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.getParadasConTransbordoDirecto(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testExisteTransbordoDirectoNoValidoLineaNulo(){
+		Parada p[] = {p1, p2, p3};
+		Linea l1 = new Linea(1, p);
+		
+		l1.existeTransbordoDirecto(null);
+	}
 }
