@@ -80,8 +80,8 @@ public class Parada{
 	 * Devuelve si hay paradas repetidas en una lista de paradas
 	 * @param p lista de paradas
 	 * @return hayParadasRepetidas
-	 * @asert.pre p!=null
-	 * @asert.pre p[] !contains null
+	 * @assert.pre p!=null
+	 * @assert.pre p[] !contains null
 	 */
 	public static boolean existeAlgunaParadaRepetida(Parada[] p) {
 		assert(p!=null);
