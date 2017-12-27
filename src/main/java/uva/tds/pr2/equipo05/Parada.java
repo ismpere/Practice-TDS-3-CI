@@ -21,9 +21,9 @@ public class Parada{
 	 * @assert.pre id!=null
 	 */
 	public Parada(String id, GD gd) {
-		assert(id.length()>0 && id.length()<=50);
 		assert(gd!=null);
 		assert(id!=null);
+		assert(id.length()>0 && id.length()<=50);
 		
 		this.id = id;
 		this.gd = gd;
