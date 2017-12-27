@@ -62,12 +62,10 @@ public class GD{
 	 * Devuelve la distancia de this a gd en metros
 	 * @param gd Direccion a la que queremos calcular la distancia desde this
 	 * @return distancia en metros
-	 * @throws IllegalArgumentException si gd=null
+	 * @assert.pre gd!=null
 	 */
 	public double getDistanciaAt(GD gd) {
-		if(gd==null)
-			throw new IllegalArgumentException("gd is null");
-		
+		assert(gd!=null);
 		if(gd==this || gd.equals(this))
 			return 0.0;
 
