@@ -1,18 +1,19 @@
 package uva.tds.pr2.equipo05;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
+=======
+>>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 /**
  * Implementación de la clae parada
  * @author martorb
  * @author ismpere
  */
 public class Parada{
-	
-	private String id;
-	private GD gd;
+
 	/**
 	 * Constructor por defecto de la clase parada
 	 * @param id Identificador de la parada
@@ -22,12 +23,16 @@ public class Parada{
 	 * @assert.pre id!=null
 	 */
 	public Parada(String id, GD gd) {
+<<<<<<< HEAD
 		assert(gd!=null);
 		assert(id!=null);
 		assert(id.length()>0 && id.length()<=50);
 		
 		this.id = id;
 		this.gd = gd;
+=======
+		// TODO Auto-generated constructor stub
+>>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	
 	/**
@@ -35,7 +40,8 @@ public class Parada{
 	 * @return Id Identificador
 	 */
 	public String getId() {
-		return id;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
@@ -43,7 +49,8 @@ public class Parada{
 	 * @return gd direccion
 	 */
 	public GD getGD() {
-		return gd;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	/**
 	 * Cambia el id de la parada
@@ -51,8 +58,13 @@ public class Parada{
 	 * @assert.pre id!=null && id.length>0 && id.length<=50
 	 */
 	public void setId(String id) {
+<<<<<<< HEAD
 		assert(id!=null && id.length()>0 && id.length()<=50);
 		this.id = id;
+=======
+		// TODO Auto-generated method stub
+		
+>>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Cambia la direccion de la parada
@@ -60,13 +72,19 @@ public class Parada{
 	 * @assert.pre gd!=null
 	 */
 	public void setGD(GD gd) {
+<<<<<<< HEAD
 		assert(gd!=null);
 		this.gd = gd;
+=======
+		// TODO Auto-generated method stub
+		
+>>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve la distancia en metros entre dos paradas
 	 * @param p Parada a la que calcular la distancia desde this
 	 * @return distancia entre las paradas
+<<<<<<< HEAD
 	 * @assert.pre p!=null
 	 */
 	public double getDistanciaEntre(Parada p) {
@@ -76,11 +94,20 @@ public class Parada{
 			return 0.0;
 		
 		return gd.getDistanciaAt(p.getGD());
+=======
+	 * @assert.pre !this.equals(p)
+	 * @throws IllegalArgumentException si p==null
+	 */
+	public double getDistanciaEntre(Parada p) {
+		// TODO Auto-generated method stub
+		return 0.0;
+>>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve si hay paradas repetidas en una lista de paradas
 	 * @param p lista de paradas
 	 * @return hayParadasRepetidas
+<<<<<<< HEAD
 	 * @assert.pre p!=null
 	 * @assert.pre p[] !contains null
 	 */
@@ -128,4 +155,13 @@ public class Parada{
     public int hashCode() {
         return Objects.hash(id,gd);
     }
+=======
+	 * @throws IllegalArgumentException si alguna de las paradas es null
+	 */
+	public static boolean existeAlgunaParadaRepetida(Parada[] p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+>>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 }
