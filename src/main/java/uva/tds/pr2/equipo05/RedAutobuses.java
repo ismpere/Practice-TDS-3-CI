@@ -51,7 +51,7 @@ public class RedAutobuses {
 	 */
 	public void addLinea(Linea linea){
 		assert(linea!=null);
-		assert(!this.contains(linea));
+		assert(!contains(linea));
 		mapa_lineas.put(linea.getId(), linea);
 	}
 	
@@ -63,7 +63,7 @@ public class RedAutobuses {
 	 * @assert.post !(red.contains(linea)) && red.getAllLineas.length>1
 	 */
 	public void deleteLinea(Linea linea){
-		assert(linea!=null && this.contains(linea));
+		assert(linea!=null && contains(linea));
 		assert(mapa_lineas.size()>2);
 		mapa_lineas.remove(linea.getId());
 	}
