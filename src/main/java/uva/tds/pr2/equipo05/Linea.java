@@ -204,9 +204,10 @@ public class Linea{
 	 */
 	public boolean existeParadasCercanas(GD gd, double radio) {
 		assert(gd!=null);
+		assert(radio>0);
 		boolean e = false;
 		for(int i=0; i<paradas.size(); i++){
-			if(gd.getDistanciaAt(paradas.get(i).getGD())<radio){
+			if(gd.getDistanciaAt(paradas.get(i).getGD())<=radio){
 				e = true;
 				break;
 			}
