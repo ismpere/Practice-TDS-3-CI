@@ -67,13 +67,5 @@ public class RedAutobusesIntegrationBlackBoxTest {
         RedAutobuses red= new RedAutobuses(lista_lineas);
         red.deleteLinea(l3);
     }
-   
-    @Test (expected = AssertionError.class)
-    public void testGetLineaNoValidoNoExisteEnRed(){
-       
-        Linea[] lista_lineas={l1,l2};
-        RedAutobuses red= new RedAutobuses(lista_lineas);
-        red.getLinea(3);
-    }
  
 }
