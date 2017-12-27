@@ -147,8 +147,7 @@ public class GDBlackBoxTest {
 	@Test (expected = AssertionError.class)
 	public void testCalculaDistanciaEntreDosGDNoValidoGDNulo(){
 		GD gd1 = new GD(179.99, -179.99);
-		GD gd2 = null;
 		
-		gd1.getDistanciaAt(gd2);
+		gd1.getDistanciaAt(null);
 	}
 }

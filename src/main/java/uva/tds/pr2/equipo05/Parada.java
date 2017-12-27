@@ -2,6 +2,7 @@ package uva.tds.pr2.equipo05;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Implementación de la clae parada
@@ -119,4 +120,12 @@ public class Parada{
 	    
 	    return gd.equals(((Parada)other).getGD());
 	}
+	
+	/**
+	 * @see
+	 */
+	@Override
+    public int hashCode() {
+        return Objects.hash(id,gd);
+    }
 }

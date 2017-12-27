@@ -12,22 +12,22 @@ import java.util.Map.Entry;
  */
 public class RedAutobuses {
 	
-	HashMap<Integer,Linea> mapa_lineas=new HashMap<>();
+	HashMap<Integer,Linea> mapaLineas=new HashMap<>();
 	
 	/**
 	 * Constructor por defecto de la clase RedAutobuses
-	 * @param lista_lineas Lista (array) que contiene las líenas iniciales de la red
+	 * @param listaLineas Lista (array) que contiene las líenas iniciales de la red
 	 * @assert.pre lista_lineas!=null && lista_lineas.length>1
 	 * @assert.pre !Linea.lineasRepetidas(lista_lineas)
 	 * @assert.pre lista_lineas[] !contains null
 	 */
-	public RedAutobuses(Linea[] lista_lineas){
-		assert(lista_lineas!=null && lista_lineas.length>1);
-		assert(!Linea.lineasRepetidas(lista_lineas));
-		assert(!Arrays.asList(lista_lineas).contains(null));
+	public RedAutobuses(Linea[] listaLineas){
+		assert(listaLineas!=null && listaLineas.length>1);
+		assert(!Linea.lineasRepetidas(listaLineas));
+		assert(!Arrays.asList(listaLineas).contains(null));
 		
-		for(int i=0; i<lista_lineas.length;i++){
-			mapa_lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
+		for(int i=0; i<listaLineas.length;i++){
+			mapaLineas.put(listaLineas[i].getId(),listaLineas[i]);
 		}
 	}
 	
@@ -39,7 +39,7 @@ public class RedAutobuses {
 	 */
 	public Linea getLinea(int id){
 		assert(contains(id));
-		return mapa_lineas.get(id);
+		return mapaLineas.get(id);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class RedAutobuses {
 	public void addLinea(Linea linea){
 		assert(linea!=null);
 		assert(!contains(linea));
-		mapa_lineas.put(linea.getId(), linea);
+		mapaLineas.put(linea.getId(), linea);
 	}
 	
 	/**
@@ -62,9 +62,9 @@ public class RedAutobuses {
 	 * @assert.post !(red.contains(linea)) && red.getAllLineas.length>1
 	 */
 	public void deleteLinea(Linea linea){
-		assert(linea!=null && mapa_lineas.size()>2);
+		assert(linea!=null && mapaLineas.size()>2);
 		assert(contains(linea));
-		mapa_lineas.remove(linea.getId());
+		mapaLineas.remove(linea.getId());
 	}
 	
 	/**
@@ -72,13 +72,13 @@ public class RedAutobuses {
 	 * @return lineas_red[]
 	 */
 	public Linea[] getAllLineas(){
-		Linea[] lineas_red=new Linea[mapa_lineas.size()];
+		Linea[] lineasRed=new Linea[mapaLineas.size()];
 		int i=0;
-		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
-			lineas_red[i]=entr.getValue();
+		for(Entry<Integer,Linea> entr: mapaLineas.entrySet()) {
+			lineasRed[i]=entr.getValue();
 			i++;
 		}
-		return lineas_red;
+		return lineasRed;
 	}
 	
 	/**
@@ -93,13 +93,13 @@ public class RedAutobuses {
 		assert(direccion!=null);
 		assert(radio>=0);
 		ArrayList<Linea> res=new ArrayList<>();
-		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+		for(Entry<Integer,Linea> entr: mapaLineas.entrySet()) {
 			if(entr.getValue().existeParadasCercanas(direccion,radio)){
 				res.add(entr.getValue());
 			}
 		}
-		Linea[] lineas_encontradas=new Linea[res.size()];
-		return res.toArray(lineas_encontradas);
+		Linea[] lineasEncontradas=new Linea[res.size()];
+		return res.toArray(lineasEncontradas);
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class RedAutobuses {
 	 */
 	public boolean contains(Linea linea){
 		assert(linea!=null);
-		return mapa_lineas.containsKey(linea.getId());
+		return mapaLineas.containsKey(linea.getId());
 	}
 	
 	/**
@@ -119,7 +119,7 @@ public class RedAutobuses {
 	 * @return contieneLineaConId
 	 */
 	public boolean contains(int id) {
-		return mapa_lineas.containsKey(id);
+		return mapaLineas.containsKey(id);
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public class RedAutobuses {
 		assert(direccion!=null);
 		assert(radio>=0);
 		boolean res=false;
-		for(Entry<Integer,Linea> entr: mapa_lineas.entrySet()) {
+		for(Entry<Integer,Linea> entr: mapaLineas.entrySet()) {
 			if(entr.getValue().existeParadasCercanas(direccion,radio)){
 				res=true;
 				break;

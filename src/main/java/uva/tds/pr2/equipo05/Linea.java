@@ -2,6 +2,7 @@ package uva.tds.pr2.equipo05;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * 
@@ -203,9 +204,10 @@ public class Linea{
 	 */
 	public boolean existeParadasCercanas(GD gd, double radio) {
 		assert(gd!=null);
+		assert(radio>0);
 		boolean e = false;
 		for(int i=0; i<paradas.size(); i++){
-			if(gd.getDistanciaAt(paradas.get(i).getGD())<radio){
+			if(gd.getDistanciaAt(paradas.get(i).getGD())<=radio){
 				e = true;
 				break;
 			}
@@ -358,6 +360,14 @@ public class Linea{
 	    if (!(other instanceof Linea))
 	    	return false;
 	    
-	    return paradas.equals(((Linea)other).getParadas());
+	    return paradas.equals(new ArrayList<>(Arrays.asList(((Linea)other).getParadas())));
 	}
+	
+	@Override
+	/**
+	 * @see
+	 */
+    public int hashCode() {
+        return Objects.hash(id,paradas);
+    }
 }

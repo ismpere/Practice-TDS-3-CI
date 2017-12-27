@@ -14,7 +14,7 @@ import org.junit.experimental.categories.Category;
  * @author martorb
  */
 @Category({Unit.class, TDD.class})
-public class RedAutobusesTDDTest {
+public class RedAutobusesUnitTDDTest {
  
     private GD gd1 = new GD (41.3154608,-4.9177346);
     private GD gd2 = new GD (41.3142809,-4.9189326);

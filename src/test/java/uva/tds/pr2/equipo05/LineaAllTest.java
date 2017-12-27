@@ -10,6 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
     LineaIntegrationTDDTest.class,
     LineaBlackBoxTest.class,
     LineaGetParadasTest.class,
+    LineaIsolationTest.class,
     LineaSecuenceTest.class})
 
 /**

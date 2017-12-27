@@ -189,6 +189,81 @@ public class LineaBlackBoxTest {
 		assertTrue(l1.existeTransbordoDirecto(l2));
 		assertArrayEquals(p, pct);
 	}
+	
+	@Test
+    public void testEqualsLineaValidoLineasIguales(){
+		Parada[] p = {p1, p2, p3};
+    	Linea l1 = new Linea(1, p);
+    	
+    	Parada[] pp = {p1,p2,p3};
+    	Linea l2 = new Linea(2,p);
+    	
+    	boolean iguales = l1.equals(l2);
+    	
+    	assertNotNull(l1);
+    	assertNotNull(l2);
+    	assertTrue(iguales);
+    }
+    
+    @Test
+    public void testEqualsLineaValidoLineasDiferentes(){
+    	Parada[] p = {p1, p2, p3};
+    	Linea l1 = new Linea(1, p);
+    	
+    	Parada[] pp = {p3,p2,p1};
+    	Linea l2 = new Linea(2,pp);
+    	
+    	boolean iguales = l1.equals(l2);
+    	
+    	assertNotNull(l1);
+    	assertNotNull(l2);
+    	assertFalse(iguales);
+    }
+    
+    @Test
+    public void testEqualsLineaValidoLineaThis(){
+    	Parada[] p = {p1, p2, p3};
+    	Linea l1 = new Linea(1, p);
+    	
+    	boolean iguales = l1.equals(l1);
+    	
+    	assertNotNull(l1);
+    	assertTrue(iguales);
+    }
+    
+    @Test
+    public void testEqualsLineaValidoLineaNull(){
+    	Parada[] p = {p1, p2, p3};
+    	Linea l1 = new Linea(1, p);
+    	
+    	boolean iguales = l1.equals(null);
+    	
+    	assertNotNull(l1);
+    	assertFalse(iguales);
+    }
+    
+    @Test
+    public void testEqualsLineaValidoNoEsUnaLinea(){
+    	Parada[] p = {p1, p2, p3};
+    	Linea l1 = new Linea(1, p);
+    	
+    	Parada pa1 = new Parada("a", gd1);
+    	
+    	boolean iguales = l1.equals(pa1);
+    	
+    	assertNotNull(l1);
+    	assertFalse(iguales);
+    }
+    
+    @Test
+    public void testHashCodeValido(){
+    	Parada[] p = {p1, p2, p3};
+    	Linea l1 = new Linea(1, p);
+    	
+    	int a = l1.hashCode();
+    	
+    	assertNotNull(p1);
+    }
     
     @Test (expected = AssertionError.class)
     public void testInicializaNoValidoParadasNulo(){
