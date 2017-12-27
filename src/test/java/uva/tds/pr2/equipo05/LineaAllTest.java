@@ -6,8 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
  
 @RunWith(Suite.class)
 @SuiteClasses({ 
-    LineaUnitTDDTest.class,
-    LineaIntegrationTDDTest.class,
+    LineaTDDTest.class,
     LineaBlackBoxTest.class,
     LineaGetParadasTest.class,
     LineaSecuenceTest.class})

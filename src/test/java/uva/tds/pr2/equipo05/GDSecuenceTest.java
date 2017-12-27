@@ -10,7 +10,6 @@ import org.junit.experimental.categories.Category;
  * @author ismpere
  * @author martorb
  */
-@Category({Secuence.class})
 public class GDSecuenceTest {
 	
 	private static final double ERROR_ADMISIBLE = 0.01;
@@ -36,7 +35,7 @@ public class GDSecuenceTest {
 		assertEquals(d1, d2, ERROR_ADMISIBLE);
 		assertEquals(d1, d4, ERROR_ADMISIBLE);
 		assertNotEquals(d1, d3, ERROR_ADMISIBLE);
-		assertEquals(-179.99, gd1.getLatitud(), ERROR_ADMISIBLE);
+		assertEquals(140.00, gd1.getLatitud(), ERROR_ADMISIBLE);
 		assertEquals(179.99, gd1.getLongitud(), ERROR_ADMISIBLE);
 	}
 	
