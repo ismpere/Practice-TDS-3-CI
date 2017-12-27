@@ -1,12 +1,9 @@
 package uva.tds.pr2.equipo05;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-=======
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 /**
  * 
  * @author ismpere
@@ -14,10 +11,12 @@ import java.util.Objects;
  *
  */
 public class Linea{
+	
+	private int id;
+	private ArrayList<Parada> paradas;
 	/**
 	 * Constructor por defecto de la clase Linea
 	 * @param id de la Linea
-<<<<<<< HEAD
 	 * @param paradas de la linea
 	 * @assert.pre paradas!=null && paradas.length>2
 	 * @assert.pre paradas[] !contains null
@@ -32,47 +31,38 @@ public class Linea{
 		
 		this.id = id;
 		this.paradas = new ArrayList<>(Arrays.asList(paradas));
-=======
-	 * @param p Paradas de la linea
-	 * @assert.pre p.length>3
-	 * @assert.pre !Parada.existeAlgunaParadaRepetida(p)
-	 * @throws IllegalArgumentException si p==null || alguna de las paradas de p es null
-	 */
-	public Linea(int id, Parada[] p) {
-		// TODO Auto-generated constructor stub
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve el identificador de la linea
 	 * @return id de la Linea
 	 */
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return id;
 	}
 	/**
 	 * Devuelve la lista de paradas de la linea
 	 * @return paradas de la Linea
 	 */
 	public Parada[] getParadas() {
-		// TODO Auto-generated method stub
-		return null;
+		Parada[] p = new Parada[paradas.size()];
+		
+		paradas.toArray(p);
+		
+		return p;
 	}
 	/**
 	 * Devuelve la parada inicial de la linea
 	 * @return parada inicio
 	 */
 	public Parada getParadaInicio() {
-		// TODO Auto-generated method stub
-		return null;
+		return paradas.get(0);
 	}
 	/**
 	 * Devuelve la parada final de la linea
 	 * @return parada fin
 	 */
 	public Parada getParadaFin() {
-		// TODO Auto-generated method stub
-		return null;
+		return paradas.get(paradas.size()-1);
 	}
 	/**
 	 * Añade una nueva parada a la Linea
@@ -81,7 +71,6 @@ public class Linea{
 	 * @assert.pre !contains(p)
 	 */
 	public void addParadaIntermedia(Parada p) {
-<<<<<<< HEAD
 		assert(p!=null);
 		assert(!contains(p));
 		
@@ -89,17 +78,27 @@ public class Linea{
 		double dAux1; 
 		double dAux2;
 		int iP = 1;
-=======
-		// TODO Auto-generated method stub
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 		
+		dAux1 = p.getDistanciaEntre(paradas.get(0));
+		dAux2 = p.getDistanciaEntre(paradas.get(1));
+		dMin = dAux1 + dAux2;
+		
+		for(int i=1; i<paradas.size()-1; i++){
+			dAux1 = p.getDistanciaEntre(paradas.get(i));
+			dAux2 = p.getDistanciaEntre(paradas.get(i+1));
+			if((dAux1+dAux2)<dMin){
+				dMin = dAux1+dAux2;
+				iP = i+1;
+			}	
+		}
+		addParadaIntermediaAt(p, iP+1);
 	}
 	/**
 	 * Cambia el identificador de la linea
 	 * @param id Nuevo identificador de la Linea
 	 */
 	public void setId(int id) {
-		// TODO Auto-generated method stub
+		this.id = id;
 		
 	}
 	/**
@@ -109,13 +108,10 @@ public class Linea{
 	 * @assert.pre p.getDistanciaAt(getParadaFin)<100
 	 */
 	public void setParadaInicio(Parada p) {
-<<<<<<< HEAD
 		assert(p!=null && !contains(p));
 		assert(p.getDistanciaEntre(getParadaFin())<100);
-=======
-		// TODO Auto-generated method stub
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 		
+		paradas.add(0, p);
 	}
 	/**
 	 * Cambia la parada fin de la linea
@@ -124,15 +120,10 @@ public class Linea{
 	 * @assert.pre p.getDistanciaAt(getParadaInicio)<100
 	 */
 	public void setParadaFin(Parada p) {
-<<<<<<< HEAD
 		assert(p!=null && !contains(p));
 		assert(p.getDistanciaEntre(getParadaInicio())<100);
 		
 		paradas.add(p);
-=======
-		// TODO Auto-generated method stub
-		
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Añade la parada intermedia en la posicion seleccionada
@@ -142,13 +133,10 @@ public class Linea{
 	 * @assert.pre i>1 && i<getParadas.length
 	 */
 	public void addParadaIntermediaAt(Parada p, int i) {
-<<<<<<< HEAD
 		assert(p!=null && !contains(p));
 		assert(i>1 && i<paradas.size()+1);
-=======
-		// TODO Auto-generated method stub
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 		
+		paradas.add(i-1, p);
 	}
 	/**
 	 * Elimina la parada intermedia de la linea
@@ -159,16 +147,11 @@ public class Linea{
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void removeParadaIntermedia(Parada p) {
-<<<<<<< HEAD
 		assert(p!=null && contains(p));
 		assert(paradas.size()>3);
 		assert(!p.equals(getParadaInicio()) && !p.equals(getParadaFin()));
 		
 		paradas.remove(p);
-=======
-		// TODO Auto-generated method stub
-		
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve una lista de paradas de la linea cercanas a una direccion
@@ -178,7 +161,6 @@ public class Linea{
 	 * @assert.pre gd!=null
 	 */
 	public Parada[] getParadasCercanas(GD gd) {
-<<<<<<< HEAD
 		assert(gd!=null);
 		Parada[] p;
 		if(!existeParadasCercanas(gd)){
@@ -194,10 +176,6 @@ public class Linea{
 			p = new Parada[pa.size()];
 			return pa.toArray(p);
 		}
-=======
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve si hay parads cercanas de esa linea a una direccion
@@ -206,7 +184,6 @@ public class Linea{
 	 * @assert.pre gd!=null
 	 */
 	public boolean existeParadasCercanas(GD gd) {
-<<<<<<< HEAD
 		assert(gd!=null);
 		boolean e = false;
 		for(int i=0; i<paradas.size(); i++){
@@ -216,10 +193,6 @@ public class Linea{
 			}
 		}
 		return e;
-=======
-		// TODO Auto-generated method stub
-		return false;
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	
 	/**
@@ -249,7 +222,6 @@ public class Linea{
 	 * @assert.pre l!=null
 	 */
 	public Parada[] getParadasConCorrespondencia(Linea l) {
-<<<<<<< HEAD
 		assert(l!=null);
 		if(l==this || l.equals(this))
 			return getParadas();
@@ -265,16 +237,11 @@ public class Linea{
 		}
 		p = new Parada[pAux.size()];
 		return pAux.toArray(p);
-=======
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve si hay o no correspondencia de this con l
 	 * @param l Linea con la que queremos hallar si hay correspondencia
 	 * @return hayCorrespondencia
-<<<<<<< HEAD
 	 * @assert.pre l!=null
 	 */
 	public boolean existeCorrespondencia(Linea l) {
@@ -293,14 +260,6 @@ public class Linea{
 			}
 		}
 		return e;
-=======
-	 * @assert.pre !this.equals(l)
-	 * @throws IllegalArgumentException si l==null
-	 */
-	public boolean existeCorrespondencia(Linea l) {
-		// TODO Auto-generated method stub
-		return false;
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve la lista de paradas con transbordo directo de this con l
@@ -310,7 +269,6 @@ public class Linea{
 	 * @assert.pre l!=null
 	 */
 	public Parada[] getParadasConTransbordoDirecto(Linea l) {
-<<<<<<< HEAD
 		assert(l!=null);
 		if(l==this || l.equals(this))
 			return getParadas();
@@ -326,10 +284,6 @@ public class Linea{
 		}
 		p = new Parada[pAux.size()];
 		return pAux.toArray(p);
-=======
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve si hay transbordo directo entre this y l
@@ -338,7 +292,6 @@ public class Linea{
 	 * @assert.pre l!=null
 	 */
 	public boolean existeTransbordoDirecto(Linea l) {
-<<<<<<< HEAD
 		assert(l!=null);
 		if(l==this || l.equals(this))
 			return true;
@@ -354,10 +307,6 @@ public class Linea{
 			}
 		}
 		return e;
-=======
-		// TODO Auto-generated method stub
-		return false;
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	/**
 	 * Devuelve si la linea contiene una parada
@@ -366,13 +315,8 @@ public class Linea{
 	 * @assert.pre p!=null
 	 */
 	public boolean contains(Parada p) {
-<<<<<<< HEAD
 		assert(p!=null);
 		return paradas.contains(p);
-=======
-		// TODO Auto-generated method stub
-		return false;
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
 	 
 	/**
@@ -382,7 +326,6 @@ public class Linea{
 	 * @assert.pre l!=null
 	 * @assert.pre l[] !contains null
 	 */
-<<<<<<< HEAD
 	public static boolean lineasRepetidas(Linea[] l){
 		assert(l!=null);
 		assert(!Arrays.asList(l).contains(null));
@@ -427,11 +370,4 @@ public class Linea{
     public int hashCode() {
         return Objects.hash(id,paradas);
     }
-=======
-	public static boolean lineasRepetidas(Linea[] lista_lineas){
-		// TODO Auto-generated constructor stub
-		return false;
-	}
-	
->>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 }
