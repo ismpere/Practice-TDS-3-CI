@@ -102,7 +102,7 @@ public class RedAutobuses {
 	
 	/**
 	 * Comprueba si la red contiene una determinada línea
-	 * @param linea
+	 * @param linea Linea a buscar
 	 * @return contieneLinea
 	 * @throws IllegalArgumentException si linea==null
 	 */
@@ -119,8 +119,8 @@ public class RedAutobuses {
 	}
 	/**
 	 * Devuelve si hay Lineas con paradas cercanas a una direccion con un radio de distancia maxima
-	 * @param gd Direccion
-	 * @param radio de distancia
+	 * @param dirección Direccion
+	 * @param radio Distancia máxima hasta una parada de otra línea
 	 * @return existenLineasConparadasCercanas
 	 * @assert.pre radio>=0
 	 * @throws IllegalArgumentException si gd==null
