@@ -57,6 +57,66 @@ public class RedAutobusesIntegrationTDDTest {
         assertArrayEquals(lista_lineas, red.getAllLineas());
     }
    
+    @Test
+    public void testContieneParadaValido(){
+        Linea[] lista_lineas={l1,l2};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+       
+        boolean c = red.contains(l1);
+       
+        assertNotNull(red);
+        assertTrue(c);
+    }
+    
+    @Test
+    public void testAddLineaValido(){
+       
+        GD gd4 = new GD(-100.00, 100.00);  
+        GD gd5 = new GD(-100.0002, 100.00);
+        GD gd6 = new GD(-100.00001, 100.00);
+        Parada p4 = new Parada("d", gd4);
+        Parada p5 = new Parada("d", gd5);
+        Parada p6 = new Parada("d", gd6);
+       
+        Parada pa3[] = {p4, p5, p6};
+        Linea l3 = new Linea(3, pa3);
+       
+        Linea[] lista_lineas={l1,l2};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+       
+        red.addLinea(l3);
+       
+        Linea l[] = {l1,l2,l3};
+       
+        assertNotNull(red);
+        assertTrue(red.contains(l3));
+        assertArrayEquals(l, red.getAllLineas());
+    }
+   
+    @Test
+    public void testDeleteLineaValido() {
+       
+        GD gd4 = new GD(-100.00, 100.00);  
+        GD gd5 = new GD(-100.0002, 100.00);
+        GD gd6 = new GD(-100.00001, 100.00);
+        Parada p4 = new Parada("d", gd4);
+        Parada p5 = new Parada("d", gd5);
+        Parada p6 = new Parada("d", gd6);
+       
+        Parada pa3[] = {p4, p5, p6};
+        Linea l3 = new Linea(3, pa3);
+       
+        Linea[] lista_lineas={l1,l2,l3};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+       
+        red.deleteLinea(l3);
+       
+        Linea l[] = {l1,l2};
+       
+        assertNotNull(red);
+        assertFalse(red.contains(l3));
+        assertArrayEquals(l, red.getAllLineas());
+    }
 	
 	 @Test
 	    public void testExistenLineasConParadasCercanasValido(){
