@@ -39,8 +39,7 @@ public class RedAutobuses {
 	 */
 	public Linea getLinea(int id){
 		assert(contains(id));
-		Linea res=mapa_lineas.get(id);
-		return res;
+		return mapa_lineas.get(id);
 	}
 	
 	/**
