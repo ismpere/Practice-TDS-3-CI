@@ -363,6 +363,9 @@ public class Linea{
 	}
 	
 	@Override
+	/**
+	 * @see
+	 */
     public int hashCode() {
         return Objects.hash(id,paradas);
     }
