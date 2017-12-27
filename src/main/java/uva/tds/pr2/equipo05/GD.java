@@ -6,37 +6,32 @@ package uva.tds.pr2.equipo05;
  * @author martorb
  */
 public class GD{
-	
-	private double latitud;
-	private double longitud;
-	private static final double RADIO_TIERRA = 6371.00;
 	/**
-	 * Constructor por defecto de GD
+	 * Cosntructor por defecto de GD
 	 * @param latitud
 	 * @param longitud
 	 * @assert.pre latitud>-180.00 && latitud<180.00
 	 * @assert.pre longitud>-180.00 && longitud<180.00
+	 * @throws IllegalArgumentException si latitud==null || longitud ==null
 	 */
 	public GD(double latitud, double longitud) {
-		assert(latitud>-180.00 && latitud<180.00);
-		assert(longitud>-180.00 && longitud<180.00);
-		
-		this.latitud = latitud;
-		this.longitud = longitud;
+		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Devuelve la latitud de la direccion
 	 * @return latitud
 	 */
 	public double getLatitud() {
-		return latitud;
+		// TODO Auto-generated method stub
+		return 0.0;
 	}
 	/**
 	 * Devuelve la longitud de la direccion
 	 * @return longitud
 	 */
 	public double getLongitud() {
-		return longitud;
+		// TODO Auto-generated method stub
+		return 0.0;
 	}
 	/**
 	 * Cambia la latitud de la direccion 
@@ -44,9 +39,8 @@ public class GD{
 	 * @assert.pre latitud>-180.00 && latitud<180.00
 	 */
 	public void setLatitud(double latitud) {
-		assert(latitud>-180.00 && latitud<180.00);
+		// TODO Auto-generated method stub
 		
-		this.latitud = latitud;
 	}
 	/**
 	 * Cambia la longitud de la direccion
@@ -54,9 +48,8 @@ public class GD{
 	 * @assert.pre longitud>-180.00 && longitud<180.00
 	 */
 	public void setLongitud(double longitud) {
-		assert(longitud>-180.00 && longitud<180.00);
+		// TODO Auto-generated method stub
 		
-		this.longitud = longitud;
 	}
 	/**
 	 * Devuelve la distancia de this a gd en metros
@@ -65,6 +58,7 @@ public class GD{
 	 * @assert.pre gd!=null
 	 */
 	public double getDistanciaAt(GD gd) {
+<<<<<<< HEAD
 		assert(gd!=null);
 		if(gd==this || gd.equals(this))
 			return 0.0;
@@ -88,5 +82,10 @@ public class GD{
 		distancia = RADIO_TIERRA * d;
 		
 		return (distancia*1000);
+=======
+		// TODO Auto-generated method stub
+		return 0.0;
+>>>>>>> 099b9154dd7fbb7ab76e21977741661f744dcf28
 	}
+	
 }

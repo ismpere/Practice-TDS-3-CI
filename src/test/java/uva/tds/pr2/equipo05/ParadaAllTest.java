@@ -6,11 +6,8 @@ import org.junit.runners.Suite.SuiteClasses;
  
 @RunWith(Suite.class)
 @SuiteClasses({ 
-    ParadaUnitTDDTest.class,
-    ParadaIntegrationTDDTest.class,
-    ParadaBlackBoxUnitTest.class,
-    ParadaBlackBoxIntegrationTest.class,
-    ParadaIsolationTest.class,
+    ParadaTDDTest.class,
+    ParadaBlackBoxTest.class,
     ParadaSecuenceTest.class,})
 
 /**
