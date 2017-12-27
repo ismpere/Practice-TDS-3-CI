@@ -34,6 +34,17 @@ public class LineaIntegrationTDDTest {
     }
     
     @Test
+	public void testInicializaLineaValido() {
+		Linea l1 = new Linea(1, p);
+		
+		assertNotNull(l1);
+		assertEquals(1, l1.getId());
+		assertEquals(p1, l1.getParadaInicio());
+		assertEquals(p3, l1.getParadaFin());
+		assertArrayEquals(p, l1.getParadas());
+	}
+    
+    @Test
 	public void testSetParadaInicioValido(){
 		Linea l1 = new Linea(1, p);
 		
