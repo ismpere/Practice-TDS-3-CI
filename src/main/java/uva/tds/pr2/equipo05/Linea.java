@@ -2,6 +2,7 @@ package uva.tds.pr2.equipo05;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * 
@@ -360,4 +361,9 @@ public class Linea{
 	    
 	    return paradas.equals(((Linea)other).getParadas());
 	}
+	
+	@Override
+    public int hashCode() {
+        return Objects.hash(id,paradas);
+    }
 }
