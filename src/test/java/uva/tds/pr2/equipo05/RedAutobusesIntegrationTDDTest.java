@@ -17,39 +17,36 @@ import org.junit.experimental.categories.Category;
 public class RedAutobusesIntegrationTDDTest {
 
 	private GD gd1 = new GD (41.3154608,-4.9177346);
-	private GD gd2 = new GD (41.3142809,-4.9189326);
-	private GD gd3 = new GD (41.3153508,-4.9176232);
-	
-	private GD gd4 = new GD(41.308344,-4.9180686);
-	private GD gd5 = new GD(41.3123926,-4.9176796);
-	private GD gd6 = new GD(41.3078393, -4.9181145);
-	
-	private Parada p1, p2, p3, p4, p5, p6;
-	
-	Parada[] lp1 = {p1, p2, p3};
-	Parada[] lp2 = {p4, p5, p6};
-	
-	@Before
+    private GD gd2 = new GD (41.3142809,-4.9189326);
+    private GD gd3 = new GD (41.3153508,-4.9176232);
+    private GD gd4 = new GD (41.308344,-4.9180686);
+    private GD gd5 = new GD (41.3123926,-4.9176796);
+    private GD gd6 = new GD (41.3078393, -4.9181145);
+    
+    private Parada p1 = new Parada("a",gd1);
+    private Parada p2 = new Parada("b",gd2);
+    private Parada p3 = new Parada("c",gd3);
+    private Parada p4 = new Parada("d", gd4);
+    private Parada p5 = new Parada("e", gd5);
+    private Parada p6 = new Parada("f", gd6);
+    
+    private Linea l1, l2;
+    private Parada lp1[], lp2[];
+    
+    @Before
     public void setUp() throws Exception {
-        p1 = new Parada("a", gd1);
-        p2 = new Parada("b", gd2);
-        p3 = new Parada("c", gd3);
-        
-        p4 = new Parada("d", gd4);
-    	p5 = new Parada("e", gd5);
-    	p6 = new Parada("f", gd6);
+    	Parada lp1[] = {p1,p2,p3};
+        Parada lp2[] = {p4,p5,p6};
+        l1= new Linea(1,lp1);
+        l2= new Linea(2,lp2);
     }
-     
+    
     @After
-    public void tearDown() throws Exception {
-        p1 = null;	
-        p2 = null;	
-        p3 = null;
-        p4 = null;
-        p5 = null;
-        p6 = null;
+    public void tearDown() throws Exception{
+        l1= null;
+        l2= null;
     }
-  
+    
 	@Test
 	public void testInicializaRedValido() {  //integr
 		Linea l1 = new Linea(1, lp1);
