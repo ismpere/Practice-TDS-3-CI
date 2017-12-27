@@ -23,8 +23,8 @@ public class RedAutobuses {
 	 */
 	public RedAutobuses(Linea[] lista_lineas){
 		assert(lista_lineas!=null && lista_lineas.length>1);
-		assert(Linea.lineasRepetidas(lista_lineas));
-		assert(!new ArrayList<Linea>(Arrays.asList(lista_lineas)).contains(null));
+		assert(!Linea.lineasRepetidas(lista_lineas));
+		assert(Arrays.asList(lista_lineas)).contains(null);
 		
 		for(int i=0; i<lista_lineas.length;i++){
 			mapa_lineas.put(lista_lineas[i].getId(),lista_lineas[i]);
