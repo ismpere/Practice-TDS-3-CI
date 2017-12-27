@@ -5,16 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 /**
  * Implementacion de la clase de test de caja negra de la clase Parada
  * @author ismpere
  * @author martorb
  */
-@Category({Unit.class})
-public class ParadaBlackBoxUnitTest {
+public class ParadaBlackBoxTest {
 	
-	private static final double ERROR_ADMISIBLE = 0.01;
 	private GD gd1;
 	private Parada p1;
 	
@@ -30,7 +27,27 @@ public class ParadaBlackBoxUnitTest {
     }
     
     @Test
-	public void testInicializaParadaIdGrandeValido() {
+    public void testGetIdParadaValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	String id = p1.getId();
+    	
+    	assertNotNull(gd1);
+    	assertEquals("a", id);
+    }
+    
+    @Test
+    public void testGetGDParadaValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	GD gd = p1.getGD();
+    	
+    	assertNotNull(gd1);
+    	assertEquals(gd1, gd);
+    }
+    
+    @Test
+	public void testInicializaParadaValidoIdGrande() {
 		p1 = new Parada("CincoCincoCincoCincoCincoCincoCincoCincoCincoCinco", gd1);
 		
 		assertNotNull(p1);
@@ -50,7 +67,7 @@ public class ParadaBlackBoxUnitTest {
 	}
     
     @Test
-	public void testNoHayParadasRepetidasNingunaRepetidaValido(){
+	public void testNoHayParadasRepetidasValido(){
 		p1 = new Parada("a", gd1);
 		GD gd2 = new GD(179.99, -179.99);
 		Parada p2 = new Parada("b", gd2);
@@ -62,103 +79,9 @@ public class ParadaBlackBoxUnitTest {
 		assertNotNull(p1);
 		assertNotNull(p2);
 		assertFalse(repetidas);
+		
+		fail("El test pasa en verde ya que la fake implementacion de existeAlgunaParada siempre devuelve false");
 	}
-    
-    @Test
-	public void testNoHayParadasRepetidasListaVaciaValido(){
-		Parada p3[] = {};
-		
-		boolean repetidas = Parada.existeAlgunaParadaRepetida(p3);
-		
-		assertFalse(repetidas);
-	}
-    
-    @Test
-	public void testNoHayParadasRepetidasUnaParadaValido(){
-    	p1 = new Parada("a", gd1);
-		Parada p3[] = {p1};
-		
-		boolean repetidas = Parada.existeAlgunaParadaRepetida(p3);
-		
-		assertFalse(repetidas);
-	}
-    
-    @Test
-	public void testHayParadasRepetidasMismoGDValido(){
-    	p1 = new Parada("a", gd1);
-    	Parada p2 = new Parada("b", gd1);
-		Parada p3[] = {p1,p2};
-		
-		boolean repetidas = Parada.existeAlgunaParadaRepetida(p3);
-		
-		assertNotNull(p2);
-		assertTrue(repetidas);
-	}
-    
-    @Test
-	public void testCalculaDistanciaEntreParadasValidoParadaThis(){
-		p1 = new Parada("a", gd1);
-		
-		double distancia = p1.getDistanciaEntre(p1);
-		
-		assertNotNull(p1);
-		assertEquals(0.00, distancia, ERROR_ADMISIBLE); 
-	}
-    
-    @Test
-    public void testEqualsParadaValidoParadasIguales(){
-    	p1 = new Parada("a", gd1);
-    	Parada p2 = new Parada("b", gd1);
-    	
-    	boolean iguales = p1.equals(p2);
-    	
-    	assertNotNull(p1);
-    	assertNotNull(p2);
-    	assertTrue(iguales);
-    }
-    
-    @Test
-    public void testEqualsParadaValidoParadasDiferentes(){
-    	p1 = new Parada("a", gd1);
-    	GD gd2 = new GD(179.99, -179.99);
-    	Parada p2 = new Parada("b", gd2);
-    	
-    	boolean iguales = p1.equals(p2);
-    	
-    	assertNotNull(p1);
-    	assertNotNull(p2);
-    	assertFalse(iguales);
-    }
-    
-    @Test
-    public void testEqualsParadaValidoParadaThis(){
-    	p1 = new Parada("a", gd1);
-    	
-    	boolean iguales = p1.equals(p1);
-    	
-    	assertNotNull(p1);
-    	assertTrue(iguales);
-    }
-    
-    @Test
-    public void testEqualsParadaValidoParadaNull(){
-    	p1 = new Parada("a", gd1);
-    	
-    	boolean iguales = p1.equals(null);
-    	
-    	assertNotNull(p1);
-    	assertFalse(iguales);
-    }
-    
-    @Test
-    public void testEqualsParadaValidoNoEsUnaParada(){
-    	p1 = new Parada("a", gd1);
-    	
-    	boolean iguales = p1.equals(gd1);
-    	
-    	assertNotNull(p1);
-    	assertFalse(iguales);
-    }
 
 	@Test(expected = AssertionError.class)
 	public void testInicializaParadaNoValidoIdVacio(){
@@ -182,6 +105,12 @@ public class ParadaBlackBoxUnitTest {
 		Parada p2 = null;
 		
 		p1.getDistanciaEntre(p2);
+	}
+	@Test(expected = AssertionError.class)
+	public void testCalculaDistanciaEntreParadasNoValidoParadaIgual(){
+		p1 = new Parada("a", gd1);
+		
+		p1.getDistanciaEntre(p1);
 	}
 	@Test(expected = AssertionError.class)
 	public void testSetIdNoValidoIdVacio(){
