@@ -15,9 +15,88 @@ import org.junit.experimental.categories.Category;
 @Category({Isolation.class})
 public class RedAutobusesIsolationTest {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+	   
+    private Linea l1, l2;
+   
+    @Before
+    public void setUp() throws Exception {
+        l1= createMock(Linea.class);
+        l2= createMock(Linea.class);
+    }
+   
+    @After
+    public void tearDown() throws Exception{
+        verify(l1);
+        verify(l2);
+        l1= null;
+        l2= null;
+    }
+   
+    @Test
+    public void testContieneParadaValido(){
+       
+        expect(l1.getId()).andReturn((int)1).times(2);
+        expect(l2.getId()).andReturn((int)2).once();
+       
+        replay(l1); replay(l2);
+       
+        Linea[] lista_lineas={l1,l2};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+       
+        boolean c = red.contains(l1);
+       
+        assertNotNull(red);
+        assertTrue(c);
+    }
+   
+    @Test
+    public void testAddLineaValido(){
+       
+        Linea l3 = createMock(Linea.class);
+       
+        expect(l1.getId()).andReturn((int)1).once();
+        expect(l2.getId()).andReturn((int)2).once();
+        expect(l3.getId()).andReturn((int)3).times(3);
+       
+        replay(l1); replay(l2); replay(l3);
+       
+        Linea[] lista_lineas={l1,l2};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+       
+        red.addLinea(l3);
+       
+        Linea l[] = {l1,l2,l3};
+       
+        assertNotNull(red);
+        assertTrue(red.contains(l3));
+        assertArrayEquals(l, red.getAllLineas());
+       
+        verify(l3);
+    }
+   
+    @Test
+    public void testDeleteLineaValido() {
+ 
+        Linea l3 = createMock(Linea.class);
+       
+        expect(l1.getId()).andReturn((int)1).once();
+        expect(l2.getId()).andReturn((int)2).once();
+        expect(l3.getId()).andReturn((int)3).times(4);
+       
+        replay(l1); replay(l2); replay(l3);
+       
+        Linea[] lista_lineas={l1,l2,l3};
+        RedAutobuses red= new RedAutobuses(lista_lineas);
+       
+        red.deleteLinea(l3);
+       
+        Linea l[] = {l1,l2};
+       
+        assertNotNull(red);
+        assertFalse(red.contains(l3));
+        assertArrayEquals(l, red.getAllLineas());
+       
+        verify(l3);
+    }
 
 }
