@@ -23,20 +23,18 @@ public class RedAutobusesSecuenceTest {
 	private GD gd3 = new GD (-177.99,177.99);
 	private GD gd4 = new GD (-176.99,176.99);
 	
-	private Parada p1,p2,p3,p4;
-	private Parada p_1[] = {p1,p2,p3};
-	private Parada p_2[] = {p2,p3,p4};
-	private Parada p_3[] = {p4,p1,p2};
+	private Parada p1= new Parada("1",gd1);
+	private Parada p2= new Parada("2",gd2);
+	private Parada p3= new Parada("3",gd3);
+	private Parada p4= new Parada("4",gd4);
 	
 	private Linea l1, l2,l3;
 	
 	@Before
     public void setUp() throws Exception {
-		
-		p1= new Parada("1",gd1);
-		p2= new Parada("2",gd2);
-		p3= new Parada("3",gd3);
-		p4= new Parada("4",gd4);
+		Parada p_1[] = {p1,p2,p3};
+		Parada p_2[] = {p2,p3,p4};
+		Parada p_3[] = {p4,p1,p2};
 		l1= new Linea(1,p_1);
 		l2= new Linea(2,p_2);
 		l3= new Linea(3,p_3);
@@ -54,7 +52,7 @@ public class RedAutobusesSecuenceTest {
 	}
 	
 	@Test
-	public void testSecuenciaEliminarYAñadirLineaValido() {
+	public void testSecuenciaEliminarYAñadirLineaValido() { //falla
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
@@ -66,7 +64,7 @@ public class RedAutobusesSecuenceTest {
 	}
 	
 	@Test
-	public void testSecuenciaAñadirYEliminarLineaValido() {
+	public void testSecuenciaAñadirYEliminarLineaValido() { //falla
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
@@ -78,18 +76,18 @@ public class RedAutobusesSecuenceTest {
 	}
 	
 	@Test
-	public void testSecuenciaContainsDespuesDeEliminarLineaValido() {
+	public void testSecuenciaContainsDespuesDeEliminarLineaValido() { //falla
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
 		red.deleteLinea(l3);
 		assertFalse(red.contains(3));
 		
-		fail("El test no falla por si solo ya que la fake implementacion de contains devuelve siempre false");
+		//fail("El test no falla por si solo ya que la fake implementacion de contains devuelve siempre false");
 	}
 	
 	@Test (expected = AssertionError.class)
-	public void testSecuenciaEliminar2VecesMismaLineaNoValido() {
+	public void testSecuenciaEliminar2VecesMismaLineaNoValido() { //falla
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
@@ -98,7 +96,7 @@ public class RedAutobusesSecuenceTest {
 	}
 	
 	@Test (expected = AssertionError.class)
-	public void testSecuenciaEliminarHastaTenerMenosDeDosLineasNoValido() {
+	public void testSecuenciaEliminarHastaTenerMenosDeDosLineasNoValido() { //falla
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
@@ -107,7 +105,7 @@ public class RedAutobusesSecuenceTest {
 	}
 	
 	@Test (expected = AssertionError.class)
-	public void testSecuenciaEliminarHastaTenerMenosDeDosLineasNoValidoOtroOrden() {
+	public void testSecuenciaEliminarHastaTenerMenosDeDosLineasNoValidoOtroOrden() { //falla
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
@@ -116,7 +114,7 @@ public class RedAutobusesSecuenceTest {
 	}
 	
 	@Test (expected = AssertionError.class)
-	public void testSecuenciaGetLineaPorIdQueYaNoExisteNoValido() {
+	public void testSecuenciaGetLineaPorIdQueYaNoExisteNoValido() { //falla
 		Linea[] lista_lineas={l1,l2,l3};
 		RedAutobuses red= new RedAutobuses(lista_lineas);
 		
