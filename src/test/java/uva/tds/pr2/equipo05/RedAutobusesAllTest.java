@@ -6,9 +6,12 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
-    RedAutobusesTDDTest.class,
-    RedAutobusesBlackBoxTest.class,
+    RedAutobusesUnitTDDTest.class,
+    RedAutobusesIntegrationTDDTest.class,
+    RedAutobusesUnitBlackBoxTest.class,
+    RedAutobusesIntegrationBlackBoxTest.class,
     RedAutobusesGetLineasConParadasCercanasTest.class,
+    RedAutobusesIsolationTest.class,
     RedAutobusesSecuenceTest.class})
 
 /**

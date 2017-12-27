@@ -2,6 +2,7 @@ package uva.tds.pr2.equipo05;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * 
@@ -17,16 +18,14 @@ public class Linea{
 	 * Constructor por defecto de la clase Linea
 	 * @param id de la Linea
 	 * @param paradas de la linea
-	 * @assert.pre paradas.length>2
+	 * @assert.pre paradas!=null && paradas.length>2
+	 * @assert.pre paradas[] !contains null
 	 * @assert.pre !Parada.existeAlgunaParadaRepetida(paradas)
 	 * @assert.pre paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100
-	 * @throws IllegalArgumentException si paradas==null || alguna de las paradas de paradas es null
 	 */
 	public Linea(int id, Parada[] paradas) {
-		if(paradas==null || Arrays.asList(paradas).contains(null))
-			throw new IllegalArgumentException();
-		
-		assert(paradas.length>2);
+		assert(paradas!=null && paradas.length>2);
+		assert(!Arrays.asList(paradas).contains(null));
 		assert(!Parada.existeAlgunaParadaRepetida(paradas));
 		assert(paradas[0].getDistanciaEntre(paradas[paradas.length-1])<100.00);
 		
@@ -68,13 +67,11 @@ public class Linea{
 	/**
 	 * Añade una nueva parada a la Linea
 	 * @param p Parada a añadir
+	 * @assert p!=null
 	 * @assert.pre !contains(p)
-	 * @throws IllegalArgumentException si p==null
 	 */
 	public void addParadaIntermedia(Parada p) {
-		if(p==null)
-			throw new IllegalArgumentException();
-		
+		assert(p!=null);
 		assert(!contains(p));
 		
 		double dMin;
@@ -107,15 +104,11 @@ public class Linea{
 	/**
 	 * Cambia la parada ininio de la linea
 	 * @param p Nueva parada Inicio
-	 * @assert.pre !contains(p)
+	 * @assert.pre p!=null && !contains(p)
 	 * @assert.pre p.getDistanciaAt(getParadaFin)<100
-	 * @throws IllegalArgumentException si p==null
 	 */
 	public void setParadaInicio(Parada p) {
-		if(p==null)
-			throw new IllegalArgumentException();
-		
-		assert(!contains(p));
+		assert(p!=null && !contains(p));
 		assert(p.getDistanciaEntre(getParadaFin())<100);
 		
 		paradas.add(0, p);
@@ -123,15 +116,11 @@ public class Linea{
 	/**
 	 * Cambia la parada fin de la linea
 	 * @param p Nueva parada Fin
-	 * @assert.pre !contains(p)
+	 * @assert.pre p!=null && !contains(p)
 	 * @assert.pre p.getDistanciaAt(getParadaInicio)<100
-	 * @throws IllegalArgumentException si p==null
 	 */
 	public void setParadaFin(Parada p) {
-		if(p==null)
-			throw new IllegalArgumentException();
-		
-		assert(!contains(p));
+		assert(p!=null && !contains(p));
 		assert(p.getDistanciaEntre(getParadaInicio())<100);
 		
 		paradas.add(p);
@@ -140,15 +129,11 @@ public class Linea{
 	 * Añade la parada intermedia en la posicion seleccionada
 	 * @param p Parada intermedia a añadir
 	 * @param i Posicion en la que se va a añadir
-	 * @assert.pre !contains(p)
+	 * @assert.pre p!=null && !contains(p)
 	 * @assert.pre i>1 && i<getParadas.length
-	 * @throws IllegalArgumentException si p==null
 	 */
 	public void addParadaIntermediaAt(Parada p, int i) {
-		if(p==null)
-			throw new IllegalArgumentException();
-		
-		assert(!contains(p));
+		assert(p!=null && !contains(p));
 		assert(i>1 && i<paradas.size()+1);
 		
 		paradas.add(i-1, p);
@@ -156,16 +141,13 @@ public class Linea{
 	/**
 	 * Elimina la parada intermedia de la linea
 	 * @param p Parada a eliminar
-	 * @assert.pre contains(p)
+	 * @assert.pre p!=null && contains(p)
 	 * @assert.pre getParadas.length>3
 	 * @assert.pre !p.equals(getParadaInicio) && !p.equals(getParadaFin)
 	 * @throws IllegalArgumentException si p==null
 	 */
 	public void removeParadaIntermedia(Parada p) {
-		if(p==null)
-			throw new IllegalArgumentException();
-		
-		assert(contains(p));
+		assert(p!=null && contains(p));
 		assert(paradas.size()>3);
 		assert(!p.equals(getParadaInicio()) && !p.equals(getParadaFin()));
 		
@@ -176,12 +158,10 @@ public class Linea{
 	 * La lista estara vacia si no hay ninguna parada cercana
 	 * @param gd Direccion desde la que queremos hallar las paradas cercanas
 	 * @return paradas cercanas a esa direccion
-	 * @throws IllegalArgumentException si gd==null
+	 * @assert.pre gd!=null
 	 */
 	public Parada[] getParadasCercanas(GD gd) {
-		if(gd==null)
-			throw new IllegalArgumentException();
-		
+		assert(gd!=null);
 		Parada[] p;
 		if(!existeParadasCercanas(gd)){
 			p = new Parada[0];
@@ -201,15 +181,33 @@ public class Linea{
 	 * Devuelve si hay parads cercanas de esa linea a una direccion
 	 * @param gd Direccion desde la que queremos comprobar si hay paradas cercanas
 	 * @return existenParadasCercanas
-	 * @throws IllegalArgumentException si gd==null
+	 * @assert.pre gd!=null
 	 */
 	public boolean existeParadasCercanas(GD gd) {
-		if(gd==null)
-			throw new IllegalArgumentException();
-		
+		assert(gd!=null);
 		boolean e = false;
 		for(int i=0; i<paradas.size(); i++){
 			if(gd.getDistanciaAt(paradas.get(i).getGD())<200){
+				e = true;
+				break;
+			}
+		}
+		return e;
+	}
+	
+	/**
+	 * Devuelve si hay paradas cercanas de esa linea a una direccion y en un radio de distancia dado
+	 * @param gd Direccion desde la que queremos comprobar si hay paradas cercanas
+	 * @param radio Radio de distancia máxima de la parada hasta las buscadas
+	 * @return existenParadasCercanas
+	 * @assert.pre gd!=null
+	 */
+	public boolean existeParadasCercanas(GD gd, double radio) {
+		assert(gd!=null);
+		assert(radio>0);
+		boolean e = false;
+		for(int i=0; i<paradas.size(); i++){
+			if(gd.getDistanciaAt(paradas.get(i).getGD())<=radio){
 				e = true;
 				break;
 			}
@@ -221,13 +219,10 @@ public class Linea{
 	 * Esta lista estara vacia si no hay ninguna parada con correspondencia con l
 	 * @param l Linea con la que queremos hallar las paradas con correspondencia
 	 * @return paradas con correspondencia de this con l
-	 * @assert.pre !this.equals(l)
-	 * @throws IllegalArgumentException si l==null
+	 * @assert.pre l!=null
 	 */
 	public Parada[] getParadasConCorrespondencia(Linea l) {
-		if(l==null)
-			throw new IllegalArgumentException();
-		
+		assert(l!=null);
 		if(l==this || l.equals(this))
 			return getParadas();
 		
@@ -247,12 +242,10 @@ public class Linea{
 	 * Devuelve si hay o no correspondencia de this con l
 	 * @param l Linea con la que queremos hallar si hay correspondencia
 	 * @return hayCorrespondencia
-	 * @throws IllegalArgumentException si l==null
+	 * @assert.pre l!=null
 	 */
 	public boolean existeCorrespondencia(Linea l) {
-		if(l==null)
-			throw new IllegalArgumentException();
-		
+		assert(l!=null);
 		if(l==this || l.equals(this))
 			return true;
 		
@@ -273,13 +266,10 @@ public class Linea{
 	 * Esta lista estara vacia si no hay ninguna parada con transbordo directo
 	 * @param l Linea con la que queremos hallar las paradas con transbordo directo
 	 * @return paradas con transbordo directo
-	 * @assert.pre !this.equals(l)
-	 * @throws IllegalArgumentException si l==null
+	 * @assert.pre l!=null
 	 */
 	public Parada[] getParadasConTransbordoDirecto(Linea l) {
-		if(l==null)
-			throw new IllegalArgumentException();
-		
+		assert(l!=null);
 		if(l==this || l.equals(this))
 			return getParadas();
 		
@@ -299,13 +289,10 @@ public class Linea{
 	 * Devuelve si hay transbordo directo entre this y l
 	 * @param l Linea con la que queremos hallar si hay transbordo directo
 	 * @return existeTransbordoDirecto
-	 * @assert.pre !this.equals(l)
-	 * @throws IllegalArgumentException si l==null
+	 * @assert.pre l!=null
 	 */
 	public boolean existeTransbordoDirecto(Linea l) {
-		if(l==null)
-			throw new IllegalArgumentException();
-		
+		assert(l!=null);
 		if(l==this || l.equals(this))
 			return true;
 		
@@ -325,24 +312,23 @@ public class Linea{
 	 * Devuelve si la linea contiene una parada
 	 * @param p Parada a comprobar que contiene
 	 * @return contieneParada
-	 * @throws IllegalArgumentException si p==null
+	 * @assert.pre p!=null
 	 */
 	public boolean contains(Parada p) {
-		if(p==null)
-			throw new IllegalArgumentException();
-		
+		assert(p!=null);
 		return paradas.contains(p);
 	}
-	
+	 
 	/**
 	 * Comprueba si en una lista (array) existen líneas repetidas
 	 * @param lista_lineas lista a comprobar
 	 * @return hayLineaRepetida
-	 * @throws IllegalArgumentException si lista_lineas==null || alguna de las lineas de la lista es null
+	 * @assert.pre l!=null
+	 * @assert.pre l[] !contains null
 	 */
 	public static boolean lineasRepetidas(Linea[] l){
-		if(l==null || Arrays.asList(l).contains(null))
-			throw new IllegalArgumentException();
+		assert(l!=null);
+		assert(!Arrays.asList(l).contains(null));
 		
 		if(l.length<2)
 			return false;
@@ -374,6 +360,14 @@ public class Linea{
 	    if (!(other instanceof Linea))
 	    	return false;
 	    
-	    return paradas.equals(((Linea)other).getParadas());
+	    return paradas.equals(new ArrayList<>(Arrays.asList(((Linea)other).getParadas())));
 	}
+	
+	@Override
+	/**
+	 * @see
+	 */
+    public int hashCode() {
+        return Objects.hash(id,paradas);
+    }
 }

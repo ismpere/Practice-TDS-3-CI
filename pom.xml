@@ -30,9 +30,6 @@
 			<properties>
 				<testcase.groups>uva.tds.pr2.equipo05.Unit</testcase.groups>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 		<profile>
 			<id>TDD</id>

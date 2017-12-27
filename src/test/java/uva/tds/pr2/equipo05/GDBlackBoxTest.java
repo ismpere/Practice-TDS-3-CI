@@ -144,11 +144,10 @@ public class GDBlackBoxTest {
 		
 		gd1.setLongitud(180.00);
 	}
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = AssertionError.class)
 	public void testCalculaDistanciaEntreDosGDNoValidoGDNulo(){
 		GD gd1 = new GD(179.99, -179.99);
-		GD gd2 = null;
 		
-		gd1.getDistanciaAt(gd2);
+		gd1.getDistanciaAt(null);
 	}
 }

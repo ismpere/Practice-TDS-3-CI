@@ -159,6 +159,15 @@ public class ParadaBlackBoxUnitTest {
     	assertNotNull(p1);
     	assertFalse(iguales);
     }
+    
+    @Test
+    public void testHashCodeValido(){
+    	p1 = new Parada("a", gd1);
+    	
+    	int a = p1.hashCode();
+    	
+    	assertNotNull(p1);
+    }
 
 	@Test(expected = AssertionError.class)
 	public void testInicializaParadaNoValidoIdVacio(){
@@ -168,15 +177,27 @@ public class ParadaBlackBoxUnitTest {
 	public void testInicializaParadaNoValidoIdGrande(){
 		p1 = new Parada("CincoCincoCincoCincoCincoCincoCincoCincoCincoCinco+", gd1);
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
 	public void testInicializaParadaNoValidoIdNulo(){
 		p1 = new Parada(null, gd1);
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
 	public void testInicializaParadaNoValidoGDNulo(){
 		p1 = new Parada("a", null);
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
+	public void testInicializaParadaNoValidoGDNuloIDNulo(){
+		p1 = new Parada(null, null);
+	}
+	@Test(expected = AssertionError.class)
+	public void testInicializaParadaNoValidoGDNuloIDGrande(){
+		p1 = new Parada("CincoCincoCincoCincoCincoCincoCincoCincoCincoCinco+", null);
+	}
+	@Test(expected = AssertionError.class)
+	public void testInicializaParadaNoValidoGDNuloIDVacio(){
+		p1 = new Parada("", null);
+	}
+	@Test(expected = AssertionError.class)
 	public void testCalculaDistanciaEntreParadasNoValidoParadaNulo(){
 		p1 = new Parada("a", gd1);
 		Parada p2 = null;
@@ -193,29 +214,29 @@ public class ParadaBlackBoxUnitTest {
 		p1 = new Parada("a", gd1);
 		p1.setId("CincoCincoCincoCincoCincoCincoCincoCincoCincoCinco+");
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
 	public void testSetIdNoValidoIdNulo(){
 		p1 = new Parada("a", gd1);
 		p1.setId(null);
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
 	public void testSetGDNoValidoGDNulo(){
 		p1 = new Parada("1", gd1);
 		
 		p1.setGD(null);
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
 	public void testExistenParadasIgualesNoValidoParadasNulo(){
 		
 		Parada.existeAlgunaParadaRepetida(null);
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
 	public void testExistenParadasIgualesNoValidoUnaParadaNulo(){
 		Parada pa2[] = {null};
 		
 		Parada.existeAlgunaParadaRepetida(pa2);
 	}
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = AssertionError.class)
 	public void testExistenParadasIgualesNoValidoAlgunaParadaNulo(){
 		Parada pa2[] = {p1, null};
 		

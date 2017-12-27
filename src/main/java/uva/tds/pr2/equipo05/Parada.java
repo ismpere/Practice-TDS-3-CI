@@ -2,6 +2,7 @@ package uva.tds.pr2.equipo05;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Implementación de la clae parada
@@ -17,12 +18,12 @@ public class Parada{
 	 * @param id Identificador de la parada
 	 * @param gd Direccion de la parada
 	 * @assert.pre id.length>0 && id.length<=50
-	 * @throws IllegalArgumentException si gd==null || id==null
+	 * @assert.pre gd!=null
+	 * @assert.pre id!=null
 	 */
 	public Parada(String id, GD gd) {
-		if(id==null || gd==null)
-			throw new IllegalArgumentException();
-		
+		assert(gd!=null);
+		assert(id!=null);
 		assert(id.length()>0 && id.length()<=50);
 		
 		this.id = id;
@@ -47,37 +48,29 @@ public class Parada{
 	/**
 	 * Cambia el id de la parada
 	 * @param id nuevo identificador
-	 * @assert.pre id.length>0 && id.length<=50
-	 * @throws IllegalArgumentException si id==null
+	 * @assert.pre id!=null && id.length>0 && id.length<=50
 	 */
 	public void setId(String id) {
-		if(id==null)
-			throw new IllegalArgumentException();
-		
-		assert(id.length()>0 && id.length()<=50);
-		
+		assert(id!=null && id.length()>0 && id.length()<=50);
 		this.id = id;
 	}
 	/**
 	 * Cambia la direccion de la parada
 	 * @param gd Nueva direccion
-	 * @throws IllegalArgumentException si gd==null
+	 * @assert.pre gd!=null
 	 */
 	public void setGD(GD gd) {
-		if(gd==null)
-			throw new IllegalArgumentException();
-		
+		assert(gd!=null);
 		this.gd = gd;
 	}
 	/**
 	 * Devuelve la distancia en metros entre dos paradas
 	 * @param p Parada a la que calcular la distancia desde this
 	 * @return distancia entre las paradas
-	 * @throws IllegalArgumentException si p==null
+	 * @assert.pre p!=null
 	 */
 	public double getDistanciaEntre(Parada p) {
-		if(p==null)
-			throw new IllegalArgumentException();
+		assert(p!=null);
 		
 		if(p==this || p.equals(this))
 			return 0.0;
@@ -88,11 +81,12 @@ public class Parada{
 	 * Devuelve si hay paradas repetidas en una lista de paradas
 	 * @param p lista de paradas
 	 * @return hayParadasRepetidas
-	 * @throws IllegalArgumentException si alguna de las paradas es null o p es null
+	 * @assert.pre p!=null
+	 * @assert.pre p[] !contains null
 	 */
 	public static boolean existeAlgunaParadaRepetida(Parada[] p) {
-		if(p==null || new ArrayList<Parada>(Arrays.asList(p)).contains(null))
-			throw new IllegalArgumentException();
+		assert(p!=null);
+		assert(!new ArrayList<Parada>(Arrays.asList(p)).contains(null));
 		
 		if(p.length<2)
 			return false;
@@ -126,4 +120,12 @@ public class Parada{
 	    
 	    return gd.equals(((Parada)other).getGD());
 	}
+	
+	/**
+	 * @see
+	 */
+	@Override
+    public int hashCode() {
+        return Objects.hash(id,gd);
+    }
 }
