@@ -359,7 +359,10 @@ public class Linea{
 	    if (!(other instanceof Linea))
 	    	return false;
 	    
-	    return paradas.equals(((Linea)other).getParadas());
+	    Parada[] p1 = new Parada[paradas.size()];
+	    Parada[] p2 = new Parada[paradas.size()];
+	    
+	    return paradas.equals(new ArrayList<>(Arrays.asList(((Linea)other).getParadas())));
 	}
 	
 	@Override
