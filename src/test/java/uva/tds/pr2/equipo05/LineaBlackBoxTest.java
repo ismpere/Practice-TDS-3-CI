@@ -200,8 +200,8 @@ public class LineaBlackBoxTest {
     	
     	boolean iguales = l1.equals(l2);
     	
-    	assertNotNull(p1);
-    	assertNotNull(p2);
+    	assertNotNull(l1);
+    	assertNotNull(l2);
     	assertTrue(iguales);
     }
     
@@ -211,12 +211,12 @@ public class LineaBlackBoxTest {
     	Linea l1 = new Linea(1, p);
     	
     	Parada[] pp = {p3,p2,p1};
-    	Linea l2 = new Linea(2,p);
+    	Linea l2 = new Linea(2,pp);
     	
     	boolean iguales = l1.equals(l2);
     	
-    	assertNotNull(p1);
-    	assertNotNull(p2);
+    	assertNotNull(l1);
+    	assertNotNull(l2);
     	assertFalse(iguales);
     }
     
@@ -227,7 +227,7 @@ public class LineaBlackBoxTest {
     	
     	boolean iguales = l1.equals(l1);
     	
-    	assertNotNull(p1);
+    	assertNotNull(l1);
     	assertTrue(iguales);
     }
     
@@ -238,7 +238,7 @@ public class LineaBlackBoxTest {
     	
     	boolean iguales = l1.equals(null);
     	
-    	assertNotNull(p1);
+    	assertNotNull(l1);
     	assertFalse(iguales);
     }
     
@@ -251,7 +251,7 @@ public class LineaBlackBoxTest {
     	
     	boolean iguales = l1.equals(pa1);
     	
-    	assertNotNull(p1);
+    	assertNotNull(l1);
     	assertFalse(iguales);
     }
     
