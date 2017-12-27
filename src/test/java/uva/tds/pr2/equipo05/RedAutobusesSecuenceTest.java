@@ -2,9 +2,12 @@ package uva.tds.pr2.equipo05;
 
 import static org.junit.Assert.*;
 
+import javax.sound.midi.Sequence;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  * Tests de secuencia para la clase RedAutobuses
@@ -12,6 +15,7 @@ import org.junit.Test;
  * @author ismpere
  *
  */
+@Category({Sequence.class, Integration.class})
 public class RedAutobusesSecuenceTest {
 	
 	private GD gd1 = new GD (-179.99,179.99);
